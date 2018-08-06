@@ -7,6 +7,8 @@ $ffall: Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 //colours
 $cb: #222;
 $cw: #fff;
+$ca: #333; //accent
+// $cl: #008080; //link
 
 //widths
 $wms: 320px;
@@ -28,6 +30,21 @@ $wxs: 220px;
 	@media only screen and (max-width: #{$width}) { @content; }
 }
 
+//themes
+%tb{
+	background: $cb;
+	color: $cw;
+}
+
+//placeholder
+%flex{
+    text-align: center; //fallback
+	-webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
 //body
 body{
 	font-family: "Raleway",#{$ffall};
@@ -35,11 +52,11 @@ body{
 
 //header
 .header{
-	background: $cb;
-	color: $cw;
+	@extend %tb;
 
 	.titleholder{
-		// todo
+		padding: 10vh 0;
+		text-align: center;
 	}
 }
 
@@ -80,4 +97,23 @@ body{
 			}
 		}
 	}
+}
+
+//navigation bar
+.nav{
+	@extend %tb;
+	padding: 10px;
+    border-top: 2px solid $ca;
+    display: flex;
+
+    .opt{
+    	color: $cw;
+    }
+
+    // .opt:hover{
+    // 	background: $cw;
+    // }
+}
+.nav, .opt{
+    @extend %flex
 }
