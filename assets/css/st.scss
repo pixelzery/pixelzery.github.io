@@ -1,6 +1,70 @@
 ---
 ---
 
-.cs{
-    lel:test
+//colours
+$cb: #222;
+$cw: #fff;
+
+//widths
+$wms: 320px;
+$wmm: 375px;
+$wml: 425px;
+$wt: 768px;
+$wl: 1024px;
+$wll: 1440px;
+$wxl: 2560px;
+$wm: 670px;
+$ws: 490px;
+$wxs: 320px;
+
+@mixin min($width) {
+	@media only screen and (min-width: #{$width}) { @content; }
+}
+@mixin max($width) {
+	@media only screen and (max-width: #{$width}) { @content; }
+}
+
+.header{
+	background: $cb;
+	color: $cw;
+
+	.titleholder{
+		// todo
+	}
+}
+
+.home{
+	.header{
+		.titleholder{
+			padding: 10vh 0;
+			text-align: center;
+
+			h1{
+				font-size: 100px;
+			}
+
+			h2{
+				font-size: 20px;
+			}
+		}
+
+		@include max($wm){
+			.titleholder{
+				padding: 5vh 0;
+				h1{
+					font-size: 75px
+				}
+			}
+		}
+		@include max($ws){
+			.titleholder{
+				h1{
+					font-size: 50px
+				}
+				h2{
+					font-size: 16px;
+				}
+			}
+		}
+	}
 }
