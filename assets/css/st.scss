@@ -51,12 +51,9 @@ $wxs: 220px;
 		@include max($wm){
 			.titleholder{
 				padding: 5vh 0;
-				line-height: 1.2;
+				line-height: 1.3;
 				h1{
 					font-size: 75px
-				}
-				h2{
-					font-size: 16px;
 				}
 			}
 		}
@@ -66,7 +63,7 @@ $wxs: 220px;
 					font-size: 30vw;
 				}
 				h2{
-					font-size: 7vw;
+					font-size: 8vw;
 				}
 			}
 		}
