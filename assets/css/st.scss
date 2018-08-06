@@ -16,7 +16,6 @@ $wxl: 2560px;
 $wm: 670px;
 $ws: 490px;
 $wxs: 220px;
-// $wxxs: 150px;
 
 @mixin min($width) {
 	@media only screen and (min-width: #{$width}) { @content; }
@@ -39,6 +38,7 @@ $wxs: 220px;
 		.titleholder{
 			padding: 10vh 0;
 			text-align: center;
+			line-height: 1.4;
 
 			h1{
 				font-size: 100px;
@@ -48,10 +48,10 @@ $wxs: 220px;
 				font-size: 20px;
 			}
 		}
-
 		@include max($wm){
 			.titleholder{
 				padding: 5vh 0;
+				line-height: 1.2;
 				h1{
 					font-size: 75px
 				}
@@ -60,26 +60,6 @@ $wxs: 220px;
 				}
 			}
 		}
-		@include max($ws){
-			.titleholder{
-				h1{
-					// font-size: 65px
-				}
-				h2{
-					// font-size: 16px;
-				}
-			}
-		}
-		// @include max($wxs){
-		// 	.titleholder{
-		// 		h1{
-		// 			font-size: 55px
-		// 		}
-		// 		h2{
-		// 			// font-size: 16px;
-		// 		}
-		// 	}
-		// }
 		@include max($wxs){
 			.titleholder{
 				h1{
