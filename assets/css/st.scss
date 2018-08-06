@@ -8,6 +8,7 @@ $ffall: Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 $cb: #222;
 $cw: #fff;
 $ca: #333; //accent
+$cg: #999; //grey
 // $cl: #008080; //link
 
 //widths
@@ -48,6 +49,11 @@ $wxs: 220px;
 //body
 body{
 	font-family: "Raleway",#{$ffall};
+}
+
+//footer
+footer{
+	text-align: center;
 }
 
 //header
