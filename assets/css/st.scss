@@ -83,6 +83,9 @@ body{
 				h1{
 					font-size: 75px
 				}
+				h2{
+					font-size: 16px;
+				}
 				//todo h2 size here will depend on normal text size
 			}
 		}
@@ -102,17 +105,18 @@ body{
 //navigation bar
 .nav{
 	@extend %tb;
-	padding: 10px;
+	padding: 10px 30%; //2nd arg only for small no items
     border-top: 2px solid $ca;
     display: flex;
+
+    @include max($ws){
+    	padding: 10px;
+    }
 
     .opt{
     	color: $cw;
     }
 
-    // .opt:hover{
-    // 	background: $cw;
-    // }
 }
 .nav, .opt{
     @extend %flex
