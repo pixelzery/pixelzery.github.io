@@ -15,7 +15,8 @@ $wll: 1440px;
 $wxl: 2560px;
 $wm: 670px;
 $ws: 490px;
-$wxs: 320px;
+$wxs: 220px;
+// $wxxs: 150px;
 
 @mixin min($width) {
 	@media only screen and (min-width: #{$width}) { @content; }
@@ -54,15 +55,38 @@ $wxs: 320px;
 				h1{
 					font-size: 75px
 				}
+				h2{
+					font-size: 16px;
+				}
 			}
 		}
 		@include max($ws){
 			.titleholder{
 				h1{
-					font-size: 50px
+					// font-size: 65px
 				}
 				h2{
-					font-size: 16px;
+					// font-size: 16px;
+				}
+			}
+		}
+		// @include max($wxs){
+		// 	.titleholder{
+		// 		h1{
+		// 			font-size: 55px
+		// 		}
+		// 		h2{
+		// 			// font-size: 16px;
+		// 		}
+		// 	}
+		// }
+		@include max($wxs){
+			.titleholder{
+				h1{
+					font-size: 30vw;
+				}
+				h2{
+					font-size: 7vw;
 				}
 			}
 		}
