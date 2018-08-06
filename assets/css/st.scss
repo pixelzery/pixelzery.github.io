@@ -1,5 +1,8 @@
 ---
 ---
+//fonts
+$ffall: Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400);
 
 //colours
 $cb: #222;
@@ -17,6 +20,7 @@ $wm: 670px;
 $ws: 490px;
 $wxs: 220px;
 
+//responsive
 @mixin min($width) {
 	@media only screen and (min-width: #{$width}) { @content; }
 }
@@ -24,6 +28,12 @@ $wxs: 220px;
 	@media only screen and (max-width: #{$width}) { @content; }
 }
 
+//body
+body{
+	font-family: "Raleway",#{$ffall};
+}
+
+//header
 .header{
 	background: $cb;
 	color: $cw;
@@ -33,6 +43,7 @@ $wxs: 220px;
 	}
 }
 
+//home header
 .home{
 	.header{
 		.titleholder{
@@ -55,6 +66,7 @@ $wxs: 220px;
 				h1{
 					font-size: 75px
 				}
+				//todo h2 size here will depend on normal text size
 			}
 		}
 		@include max($wxs){
