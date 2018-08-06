@@ -1,26 +1,23 @@
-title: Your awesome title
-email: your-email@example.com
+title: Starry
 description: >-
   Starry projects ☆.
+
+author:
+  name:    starry
+  twitter: starry_xp
+  github:  starryyy
+  email:   starry.xp@gmail.com
+
 baseurl: ""
 url: "http://starryyy.github.io"
-twitter_username: starry_xp
-github_username:  starryyy
+repository: starryyy/starryyy.github.io
 
-# Build settings
+permalink: /:categories/:title/
+
+
+# Build stuff:
 markdown: kramdown
 plugins:
   - jekyll-feed
-
 sass:
   style: compressed
-
-# default excludes:
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
