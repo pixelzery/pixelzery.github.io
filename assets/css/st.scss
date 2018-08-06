@@ -69,7 +69,7 @@ footer{
 //home header
 .home{
 	.header{
-		.titleholder{
+			.titleholder{
 			padding: 10vh 0;
 			text-align: center;
 			line-height: 1.4;
@@ -92,7 +92,6 @@ footer{
 				h2{
 					font-size: 16px;
 				}
-				//todo h2 size here will depend on normal text size
 			}
 		}
 		@include max($wxs){
@@ -104,6 +103,16 @@ footer{
 					font-size: 8vw;
 				}
 			}
+		}
+	}
+}
+
+//page header
+.page{
+	.header{
+			.titleholder{
+		    padding: 5vh 0;
+		    padding-bottom: 1vh;
 		}
 	}
 }
@@ -126,4 +135,10 @@ footer{
 }
 .nav, .opt{
     @extend %flex
+}
+
+//content
+//todo responsive
+.content{
+	padding: 20px 10%;
 }
