@@ -1,7 +1,7 @@
 .highlight {
 	margin-bottom: 1.5em;
 	background: #1d1f21;
-	color: #ffffff
+	color: #ffffff;
 	overflow-x: auto;
 	@include rounded(4px);
 	pre {
@@ -10,12 +10,12 @@
 		padding: 10px;
 	}
 	pre::-webkit-scrollbar-thumb:horizontal {
-	    background-color: #6a6d5d;
-	    @include rounded(4px);
+		@include rounded(4px);
+	    background-color: lighten(#1d1f21,20);
 	}
 	pre::-webkit-scrollbar {
 	    height: 12px;
-	    background-color: #34362e;
+	    background-color: lighten(#1d1f21,5);
 	}
 	// theme information:
 	/*
