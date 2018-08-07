@@ -50,6 +50,7 @@ $wxs: 220px;
 //body
 body{
 	font-family: "Raleway",#{$ffall};
+	background-color: $cw;
 }
 
 //footer
@@ -136,6 +137,19 @@ footer{
 }
 .nav, .opt{
     @extend %flex
+}
+
+//navigation bar when in content - (used in about)
+.content{
+	.nav{
+		padding: 10px;
+		// padding-top: 30px;
+		background-color: $cw;
+		border: none;
+	}
+	.opt{
+		color: $cb;
+	}
 }
 
 //content
