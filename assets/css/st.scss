@@ -19,6 +19,7 @@ $wt: 768px;
 $wl: 1024px;
 $wll: 1440px;
 $wxl: 2560px;
+$wl: 980px;
 $wm: 670px;
 $ws: 490px;
 $wxs: 220px;
@@ -138,7 +139,10 @@ footer{
 }
 
 //content
-//todo responsive
 .content{
-	padding: 20px 10%;
+	padding: 30px 20%;
+
+	@include max($wl){
+		padding: 20px 10%;
+	}
 }

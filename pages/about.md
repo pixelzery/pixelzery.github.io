@@ -4,5 +4,14 @@ title: About
 permalink: /about/
 ---
 
-lel
-{{ page.url }}
+Thank you for visiting my website! (◍•ᴗ•◍)
+
+I am a {% include myage.html %} old person living in the UK who likes to experiment, to create things and occasionally to look out at the dark sky on long nights.
+
+When I was a kid and first started programming, I did so solely for the fun of playing around with stuff and seeing what I can make. First it was funny little `BATCH` and `VBS` scripts, but then before I knew it, I had become addicted to `C#` and remained so for many years. Making countless random - even useful - projects and experimenting around has manifested in what programming ability I have today. I have a similar attitude to things like language and art too&#126;!
+
+{% comment %}
+I apply this attitude of curiosity, which I've retained since from when I was a kid, not just to programming, but to many things such as (human) languages and art. It may be interesting if you give it a try too!
+{% endcomment %}
+
+I started this website on 06/08/2018 as a place for some of my projects to live. The website itself is also one of them! Thanks for checking them out!

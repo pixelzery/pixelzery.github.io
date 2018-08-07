@@ -1,0 +1,1 @@
+{% capture days %}{{ site.time | date: '%j' }}{% endcapture %}{% capture cdays %}{{ site.time | date: '%Y' | times:365 }}{% endcapture %}{% for i in (2..days) %}{% capture cdays %}{{ cdays | plus: 1 }}{% endcapture %}{% endfor %}{% capture cdays %}{{ cdays | minus: 730965 }}{% endcapture %}{{ cdays | divided_by:365 }}y {{ cdays | modulo:365 | divided_by:30 }}m
