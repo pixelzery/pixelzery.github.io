@@ -51,7 +51,15 @@ $wxs: 220px;
 //body
 body{
 	font-family: "Raleway",#{$ffall};
+	font-size: 16px;
 	background-color: $cw;
+
+	@include max($wm){
+		font-size: 15px;
+	}
+	@include max($wxs){
+		font-size: 7vw;
+	}
 }
 
 //footer
@@ -161,4 +169,9 @@ footer{
 	@include max($wl){
 		padding: 20px 10%;
 	}
+}
+
+//content
+.content{
+	font-family: "Open Sans",#{$ffall};
 }

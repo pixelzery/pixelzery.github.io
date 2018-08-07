@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-Thank you for visiting my website! (◍•ᴗ•◍)
+Thank you for visiting my website! (=^o^=)
 
 I am a {% include myage.html %} old person living in the UK who likes to experiment, to create things and occasionally to look out at the dark sky on long nights.
 
