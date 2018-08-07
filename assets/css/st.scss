@@ -38,6 +38,10 @@ $wxs: 220px;
 	background: $cb;
 	color: $cw;
 }
+%tw{
+	background: $cw;
+	color: $cb;
+}
 
 //placeholder
 %flex{
@@ -52,7 +56,7 @@ $wxs: 220px;
 body{
 	font-family: "Raleway",#{$ffall};
 	font-size: 16px;
-	background-color: $cw;
+	@extend %tw;
 
 	@include max($wm){
 		font-size: 15px;
@@ -124,6 +128,10 @@ footer{
 			.titleholder{
 		    padding: 5vh 0;
 		    padding-bottom: 1vh;
+
+		    h1{
+		    	font-size: 45px;
+		    }
 		}
 	}
 }
