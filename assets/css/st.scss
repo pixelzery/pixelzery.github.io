@@ -177,6 +177,9 @@ footer{
 	@include max($wl){
 		padding: 20px 10%;
 	}
+	@include max($wm){
+		padding: 20px 5%;
+	}
 }
 
 //content
