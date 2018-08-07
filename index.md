@@ -3,5 +3,4 @@ title: Home
 layout: home
 ---
 
-e
-{{ page.title }}
+Coming soon!
