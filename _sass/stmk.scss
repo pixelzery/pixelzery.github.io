@@ -1,1 +1,12 @@
+//code+highlighting
 @import 'highlighting';
+
+//in-line code
+code.highlighter-rouge{
+	line-height: 1.5;
+    white-space: nowrap;
+    margin: 0 2px;
+    padding: 0 5px;
+    border: 1px solid #e6e6e6;
+    background-color: #f2f2f2;
+}
