@@ -1,56 +1,14 @@
 ---
 ---
 //fonts
-$ffall: Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,400');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-//colours
-$cb: #222;
-$cw: #fff;
-$ca: #333; //accent
-$cg: #999; //grey
-// $cl: #008080; //link
+//utils
+@import 'utils';
 
-//widths
-$wms: 320px;
-$wmm: 375px;
-$wml: 425px;
-$wt: 768px;
-$wl: 1024px;
-$wll: 1440px;
-$wxl: 2560px;
-$wl: 980px;
-$wm: 670px;
-$ws: 490px;
-$wxs: 220px;
-
-//responsive
-@mixin min($width) {
-	@media only screen and (min-width: #{$width}) { @content; }
-}
-@mixin max($width) {
-	@media only screen and (max-width: #{$width}) { @content; }
-}
-
-//themes
-%tb{
-	background: $cb;
-	color: $cw;
-}
-%tw{
-	background: $cw;
-	color: $cb;
-}
-
-//placeholder
-%flex{
-    text-align: center; //fallback
-	-webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-}
+//partials
+@import 'stmk';
 
 //body
 body{
