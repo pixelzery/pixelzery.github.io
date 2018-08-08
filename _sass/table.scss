@@ -1,10 +1,16 @@
 table {
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    border: 1px solid #cbcbcb;
     margin: 1.75em 0;
     width: 100%;
     max-width: 100%;
     background-color: transparent;
+}
+
+table thead{
+    background-color: #e0e0e0;
+    text-align: left;
+    vertical-align: bottom;
+    border-bottom: 1px solid #cbcbcb;
 }
 
 table th,
@@ -13,7 +19,7 @@ table td {
     line-height: 20px;
     text-align: left;
     vertical-align: top;
-    border-top: #EFEFEF 1px solid;
+    border-left: 1px solid #cbcbcb;
 }
 
 table th { color: #000; }
