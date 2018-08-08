@@ -10,7 +10,7 @@
 //partials
 @import 'stmk';
 
-//body
+//general
 body{
 	font-family: "Raleway",#{$ffall};
 	font-size: 16px;
@@ -23,7 +23,9 @@ body{
 		font-size: 7vw;
 	}
 }
-
+a{
+	color: $cl;
+}
 //footer
 footer{
 	text-align: center;
