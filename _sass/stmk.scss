@@ -52,4 +52,6 @@ img[align=left]{
 }
 //fixme img align right (when blockquote under it)
 
-//todo rule
+hr,.rule{
+    border-bottom: 1px solid #ccc;
+}
