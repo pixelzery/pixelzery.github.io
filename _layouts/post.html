@@ -4,9 +4,13 @@ layout: default
 
 <div class="post">
 <div class="header">
+	{% if page.image %}
+	<img class="header-img" src="{{ page.image }}">
+	{% else %}
 	<div class="titleholder">
 	<h1>Starry</h1>
 	</div>
+	{% endif %}
 </div>
 {% include navbar.html %}
 <div class="container">
