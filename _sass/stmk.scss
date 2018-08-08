@@ -38,4 +38,18 @@ ul,ol{
 	padding-left: 25px;
 }
 
-//todo rule, images
+//images
+img {
+    display: block;
+    max-width: 100%;
+    padding: 10px 0;
+    margin: 0 auto;
+}
+
+img[align=left]{
+	float: none;
+    margin: 0;
+}
+//fixme img align right (when blockquote under it)
+
+//todo rule
