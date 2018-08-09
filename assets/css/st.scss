@@ -156,6 +156,18 @@ $header-img-height: 250px;
 		}
 	}
 }
+@include max($wmx){
+	$temp: 132px;
+	.post{
+		.header{
+			height: $temp;
+			line-height: $temp;
+			.header-img{
+				height: $temp;
+			}
+		}
+	}
+}
 
 //post header title stuff
 .post{
