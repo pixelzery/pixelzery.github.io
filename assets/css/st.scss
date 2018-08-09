@@ -240,11 +240,24 @@ $header-img-height: 250px;
 		display: inline-block;
 		text-align: left;
 
+		width: 100%;
+		max-width: 1152px;
+
 		.grid-item{
 			float: left;
 		    display: inline-block;
 		    padding: 10px;
-		    // margin: 2px 2px;
+
+		    width: calc(100%/4);
+		    @include max(1340px){
+		    	width: calc(100%/3);
+		    }
+		    @include max(950px){
+		    	width: calc(100%/2);
+		    }
+		    @include max(500px){
+		    	width: calc(100%/1);
+		    }
 		}
 	}
 }
