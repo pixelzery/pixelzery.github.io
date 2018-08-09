@@ -1,18 +1,19 @@
 ---
-title: this is a test post
+title: This is a Test Post
 layout: post
+category: test
 image: https://orig00.deviantart.net/d29b/f/2012/229/f/7/half_inch_grid_lines_by_nav3r-d5bfjyk.png
 ---
 
-# Content Test
+Lorem `food` dolor sit amet, `i like to eat food` adipiscing elit. Fusce tincidunt malesuada dui, sit amet viverra augue mollis at. Pellentesque metus ante, volutpat id tincidunt sit amet, tempor ut lectus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi in placerat sem. Curabitur in quam diam. Curabitur dui ipsum, hendrerit at sapien at, ornare condimentum quam. Suspendisse ut nisl sed libero mollis malesuada id sit amet ante. Aliquam in ligula augue. Sed hendrerit sollicitudin consectetur. Sed molestie massa quis ipsum faucibus, ac efficitur libero pretium.
+
+## Test table
 
 |table | good|
 |:------:|:------:|
 |tableo|very|
 |mensa | whomst|
 |nice  | bad|
-
-Lorem `food` dolor sit amet, `i like to eat food` adipiscing elit. Fusce tincidunt malesuada dui, sit amet viverra augue mollis at. Pellentesque metus ante, volutpat id tincidunt sit amet, tempor ut lectus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi in placerat sem. Curabitur in quam diam. Curabitur dui ipsum, hendrerit at sapien at, ornare condimentum quam. Suspendisse ut nisl sed libero mollis malesuada id sit amet ante. Aliquam in ligula augue. Sed hendrerit sollicitudin consectetur. Sed molestie massa quis ipsum faucibus, ac efficitur libero pretium.
 
 Here is a pic:
 ![](https://www.twosisterscrafting.com/wp-content/uploads/2016/09/mummy-marshmallow-pops-marshmallows.jpg)
