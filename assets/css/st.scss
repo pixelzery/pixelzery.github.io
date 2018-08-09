@@ -1,7 +1,7 @@
 ---
 ---
 //fonts
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,400');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 //utils
@@ -176,6 +176,26 @@ $header-img-height: 250px;
 			padding: 0;
 		}
 	}
+}
+
+//post-header (not to be confused w post header) stuff
+.post-header{
+	display: block;
+	padding: 1em 0;
+
+	h1{
+		font-size: 40px;
+		font-weight: 700;
+		padding: 0;
+	}
+	.meta{
+	    color: #6a737d;
+	    margin: 0;
+	    border-left: 5px solid #7a7a7a;
+	    padding: 0 1em;
+	    font-family: "Open Sans",#{$ffall};
+	}
+
 }
 
 //navigation bar
