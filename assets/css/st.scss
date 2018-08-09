@@ -227,6 +227,21 @@ $header-img-height: 250px;
 		padding: 20px 5%;
 	}
 }
+//narrow container
+.container.narrow{
+	padding: 30px 8%;
+	width: 100%;
+
+	@include max($wxl){
+		padding: 20px 8%;
+	}
+	@include max($wl){
+		padding: 20px 7%;
+	}
+	@include max($wm){
+		padding: 15px 3%;
+	}
+}
 
 //content
 .content{
@@ -252,7 +267,7 @@ $header-img-height: 250px;
 		    @include max(1340px){
 		    	width: calc(100%/3);
 		    }
-		    @include max(950px){
+		    @include max(800px){
 		    	width: calc(100%/2);
 		    }
 		    @include max(500px){
