@@ -3,12 +3,14 @@ layout: default
 ---
 
 <div class="post">
-{% if page.image %}
-<div class="header" style="background-image: url({{ page.image }});">
-<img class="header-img" src="{{ page.image }}">
+{% capture img %}{% if page.image %}{{ page.image }}{% else %}{{ site.defaultimage }}{% endif %}{% endcapture %}
+<div class="header" style="background-image: url({{ img }});">
+<img class="header-img" src="{{ img }}">
+<div class="titleholder">
+	<h1>{{ site.title }}</h1>
 </div>
-{% else %}
-{% endif %}
+</div>
+{% include header-img-fb.html %}
 {% include navbar.html %}
 <div class="container">
 <h1>{{ page.title }}</h1>
@@ -17,4 +19,3 @@ layout: default
 </div>
 </div>
 </div>
-{% include header-img-fb.html %}

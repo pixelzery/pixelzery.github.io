@@ -38,6 +38,7 @@ footer{
 	.titleholder{
 		padding: 10vh 0;
 		text-align: center;
+		vertical-align: middle;
 	}
 }
 
@@ -102,6 +103,7 @@ $header-img-height: 250px;
 	.header{
 	    background: rgba($cb,0.3);
 		height: $header-img-height;
+		line-height: $header-img-height;
 
 		//fallback stuff 90.57%->95.45+%
 		//nb: fb is not parallax:
@@ -135,6 +137,7 @@ $header-img-height: 250px;
 	.post{
 		.header{
 			height: $temp;
+			line-height: $temp;
 			.header-img{
 				height: $temp;
 			}
@@ -146,9 +149,19 @@ $header-img-height: 250px;
 	.post{
 		.header{
 			height: $temp;
+			line-height: $temp;
 			.header-img{
 				height: $temp;
 			}
+		}
+	}
+}
+
+//post header title stuff
+.post{
+	.header{
+		.titleholder{
+			padding: 0;
 		}
 	}
 }

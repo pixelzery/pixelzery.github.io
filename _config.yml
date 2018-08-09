@@ -14,6 +14,8 @@ url: "http://starryyy.github.io"
 gh: "http://github.com/starryyy"
 repository: starryyy/starryyy.github.io
 
+defaultimage: "http://media.pixcove.com/E/1/3/Background-Contextual-Textures-Backgrounds-Soft-Bl-3318.jpg"
+
 permalink: /:categories/:title/
 
 
