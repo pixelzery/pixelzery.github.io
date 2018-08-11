@@ -51,6 +51,13 @@ $wxs: 220px;
 }
 
 //util mixims
+@mixin prefix($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+  #{$property}: $value;
+}
+
 @mixin rounded($radius:4px) {
   -webkit-border-radius : $radius;
   -moz-border-radius : $radius;

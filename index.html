@@ -3,13 +3,21 @@ title: Home
 layout: home
 ---
 
-Coming soon!
 <div class="grid">
 <div class="gridbox">
 {% for post in site.posts %}
 <div class="grid-item">
-	<!-- TODO -->
-</div>
+	<div class="post-holder">
+	<div class="post-item">
+		<a href="{{ post.url }}"><h2 class="title">{{ post.title }}</h2></a>
+		{% capture image %}{% if post.image %}{{ post.image }}{% else %}{{ site.defaultimage }}{% endif %}{% endcapture %}
+		<div class="post-image-holder"><div class="post-image" style="background-image: url({{ image }});"></div></div>
+		{% capture excerpt %}{% if post.description %}{{ post.description }}{% else %}{{ post.content | markdownify | strip_html | truncate: 100 }}{% endif %}{% endcapture %}
+		<p>{{ excerpt }}</p>
+	</div>
+	</div>
 </div>
 {% endfor %}
+{% include post-item-fb.html %}
+</div>
 </div>

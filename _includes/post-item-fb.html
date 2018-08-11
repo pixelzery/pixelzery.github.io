@@ -1,0 +1,28 @@
+<script>
+var addEvent = function(object, type, callback) {
+    if (object == null || typeof(object) == 'undefined') return;
+    if (object.addEventListener) {
+        object.addEventListener(type, callback, false);
+    } else if (object.attachEvent) {
+        object.attachEvent("on" + type, callback);
+    } else {
+        object["on"+type] = callback;
+    }
+};
+addEvent(window, "resize", function(e) {
+  updtPostItems();
+});
+updtPostItems();
+function updtPostItems(){
+var biggest=0;
+  for (var i = 0; i < document.getElementsByClassName('post-item').length; i++) {
+  	var temp = document.getElementsByClassName('post-item')[i].clientHeight;
+  	if(temp>biggest){
+  		biggest=temp;
+  	}
+  }
+  for (var i = 0; i < document.getElementsByClassName('post-holder').length; i++) {
+  	document.getElementsByClassName('post-holder')[i].style['height']=biggest+'px';
+  }
+}
+</script>
