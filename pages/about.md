@@ -8,7 +8,7 @@ Thank you for visiting my website! (=^o^=)
 
 I am a {% include myage.html %} old person living in the UK who likes to experiment, to create things and occasionally to look out at the dark sky on long nights.
 
-When I was a kid and first started programming, I did so solely for the fun of playing around with stuff and seeing what I can make. First it was funny little `BATCH` and `VBS` scripts, but then before I knew it, I had become addicted to `C#` and remained so for many years. Making countless random - even useful - projects and experimenting around has manifested in what programming ability I have today. I have a similar attitude to things like language and art too&#126;!
+When I was a kid and first started programming, I did so solely for the fun of playing around with stuff and seeing what I can make. First it was little `BATCH` and `VBS` scripts, but then before I knew it, I had become addicted to `C#` and remained so for many years. What programming ability I have today is a pure manifestation of making countless random - even useful - projects and experimenting around.
 
 Nowadays I also do python and all sorts :)
 
