@@ -14,7 +14,7 @@ url: "http://makurell.github.io"
 gh: "http://github.com/makurell"
 repository: makurell/makurell.github.io
 
-defaultimage: "http://media.pixcove.com/E/1/3/Background-Contextual-Textures-Backgrounds-Soft-Bl-3318.jpg"
+defaultimage: "/assets/images/default.jpg"
 
 permalink: /:categories/:title/
 
