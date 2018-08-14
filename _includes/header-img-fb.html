@@ -6,7 +6,7 @@
 </script>
 <script type="text/javascript">
 //header-img js fallback system
-if((window.outerWidth || screen.width)>450){
+if(Math.max(document.documentElement.clientWidth, window.innerWidth || 0)>450){
 	if(Modernizr.objectfit){
 		document.getElementsByClassName('header')[0].style["background-image"]="none";
 		document.getElementsByClassName('header-img')[0].style["display"]="block";
