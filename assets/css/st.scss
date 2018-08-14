@@ -298,46 +298,42 @@ $header-img-height: 250px;
 }
 
 //post-item
-.post-holder{
+.post-item{
 	$pimg-height: 200px;
 	// height: 175px+$pimg-height;
 	height: inherit;
 	margin: 10px;
-	.post-item{
-		height: 100%;
-		.post-image-holder{
-			overflow: hidden;
-			border-radius: 8px 8px 0 0;
-			.post-image{
-				height: $pimg-height;
-				width: 100%;
-				@include prefix(transform, scale(1.4),webkit ms moz);
+	height: 100%;
+	.post-image-holder{
+		overflow: hidden;
+		border-radius: 8px 8px 0 0;
+		.post-image{
+			height: $pimg-height;
+			width: 100%;
+			@include prefix(transform, scale(1.4),webkit ms moz);
 
-			    background-size: cover;
-			    background-position: center center;
-			    background-repeat: no-repeat;
-			}
+		    background-size: cover;
+		    background-position: center center;
+		    background-repeat: no-repeat;
 		}
-		.linkbox{
-			    height: 200px;
-			    overflow: hidden;
-			    padding: 10px 20px;
+	}
+	.linkbox{
+		    height: 200px;
+		    overflow: hidden;
+		    padding: 10px 20px;
 
-			    h2{
-			    	padding: 0;
-			    }
-		}
+		    h2{
+		    	padding: 0;
+		    }
 	}
 	@include min(592px){
 		@include max(820px){
 			$pimg-height: 150px;
 			// height: 175px+$pimg-height;
 			height: inherit;
-			.post-item{
-				.post-image-holder{
-					.post-image{
-						height: $pimg-height;
-					}
+			.post-image-holder{
+				.post-image{
+					height: $pimg-height;
 				}
 			}
 		}
@@ -346,11 +342,9 @@ $header-img-height: 250px;
 		$pimg-height: 45vw;
 		height: inherit;
 		font-size: 3.75vw;
-		.post-item{
-			.post-image-holder{
-				.post-image{
-					height: $pimg-height;
-				}
+		.post-image-holder{
+			.post-image{
+				height: $pimg-height;
 			}
 		}
 	}
