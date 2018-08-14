@@ -1,8 +1,7 @@
 ---
 ---
 //fonts
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Lato:400');
 
 //utils
 @import 'utils';
@@ -12,7 +11,7 @@
 
 //general
 body{
-	font-family: "Raleway",#{$ffall};
+	font-family: "Lato",#{$ffall};
 	font-size: 16px;
 	@extend %tw;
 
@@ -196,7 +195,7 @@ $header-img-height: 250px;
 	    border-left: 5px solid #7a7a7a;
 	    padding-left: 15px;
     	margin-left: 5px;
-	    font-family: "Open Sans",#{$ffall};
+	    font-family: "Lato",#{$ffall};
 	    margin-bottom: 16px;
 	}
 
@@ -269,7 +268,7 @@ $header-img-height: 250px;
 
 //content
 .content{
-	font-family: "Open Sans",#{$ffall};
+	font-family: "Lato",#{$ffall};
 }
 
 //grid stuff
@@ -302,7 +301,7 @@ $header-img-height: 250px;
 	height: inherit;
 	margin: 10px;
 	height: 100%;
-	
+
 	a{
 		display: block;
 	}
