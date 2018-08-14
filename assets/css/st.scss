@@ -285,7 +285,7 @@ $header-img-height: 250px;
 		.grid-item{
 			float: left;
 		    display: inline-block;
-		    padding: 10px;
+		    padding: 0;
 		    text-align: left;
 
 		    @include min(592px){
@@ -299,12 +299,15 @@ $header-img-height: 250px;
 
 //post-item
 .post-holder{
-	$pimg-height: 100px;
-	height: 175px+$pimg-height;
-	margin-bottom: 10px;
+	$pimg-height: 200px;
+	// height: 175px+$pimg-height;
+	height: inherit;
+	margin: 10px;
 	.post-item{
+		height: 100%;
 		.post-image-holder{
 			overflow: hidden;
+			border-radius: 8px 8px 0 0;
 			.post-image{
 				height: $pimg-height;
 				width: 100%;
@@ -313,6 +316,41 @@ $header-img-height: 250px;
 			    background-size: cover;
 			    background-position: center center;
 			    background-repeat: no-repeat;
+			}
+		}
+		.linkbox{
+			    height: 200px;
+			    overflow: hidden;
+			    padding: 10px 20px;
+
+			    h2{
+			    	padding: 0;
+			    }
+		}
+	}
+	@include min(592px){
+		@include max(820px){
+			$pimg-height: 150px;
+			// height: 175px+$pimg-height;
+			height: inherit;
+			.post-item{
+				.post-image-holder{
+					.post-image{
+						height: $pimg-height;
+					}
+				}
+			}
+		}
+	}
+	@include max(400px){
+		$pimg-height: 45vw;
+		height: inherit;
+		font-size: 3.75vw;
+		.post-item{
+			.post-image-holder{
+				.post-image{
+					height: $pimg-height;
+				}
 			}
 		}
 	}
