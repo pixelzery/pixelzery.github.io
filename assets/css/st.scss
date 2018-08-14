@@ -299,16 +299,14 @@ $header-img-height: 250px;
 
 //post-item
 .post-item{
-	$pimg-height: 200px;
-	// height: 175px+$pimg-height;
 	height: inherit;
 	margin: 10px;
 	height: 100%;
 	.post-image-holder{
 		overflow: hidden;
-		border-radius: 8px 8px 0 0;
+		@include border-radius(8px,8px,0,0);
 		.post-image{
-			height: $pimg-height;
+			height: 200px;
 			width: 100%;
 			@include prefix(transform, scale(1.4),webkit ms moz);
 
@@ -319,11 +317,11 @@ $header-img-height: 250px;
 	}
 	.linkbox{
 		    display: block;
-		    height: 200px;
+		    height: 170px;
 		    overflow: hidden;
 		    padding: 10px 20px;
 
-    		border-radius: 0 0 8px 8px;
+    		@include border-radius(0,0,8px,8px);
     		@extend %tb;
 
 		    h2{
@@ -332,18 +330,16 @@ $header-img-height: 250px;
 	}
 	.linkbox:hover{
 		text-decoration: none;
+		background: $cbt;
 		h2{
 			text-decoration: underline;
 		}
 	}
 	@include min(592px){
 		@include max(820px){
-			$pimg-height: 150px;
-			// height: 175px+$pimg-height;
-			height: inherit;
 			.post-image-holder{
 				.post-image{
-					height: $pimg-height;
+					height: 150px;
 				}
 			}
 		}

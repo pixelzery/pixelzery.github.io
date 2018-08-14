@@ -7,6 +7,7 @@ $cw: #fff;
 $ca: #333; //accent
 $cg: #999; //grey
 $cl: #007db2; //link
+$cbt: #1f262e; //black tint
 
 //widths
 $wms: 320px;
@@ -64,7 +65,7 @@ $wxs: 220px;
   border-radius : $radius; 
 }
 
-@mixin border-radius($topright: 0, $bottomright: 0, $bottomleft: 0, $topleft: 0) {
+@mixin border-radius($topright: 0, $topleft: 0, $bottomright: 0, $bottomleft: 0) {
   -webkit-border-top-right-radius : $topright;
   -webkit-border-bottom-right-radius : $bottomright;
   -webkit-border-bottom-left-radius : $bottomleft;
