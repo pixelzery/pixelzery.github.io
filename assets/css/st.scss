@@ -318,13 +318,23 @@ $header-img-height: 250px;
 		}
 	}
 	.linkbox{
+		    display: block;
 		    height: 200px;
 		    overflow: hidden;
 		    padding: 10px 20px;
 
+    		border-radius: 0 0 8px 8px;
+    		@extend %tb;
+
 		    h2{
 		    	padding: 0;
 		    }
+	}
+	.linkbox:hover{
+		text-decoration: none;
+		h2{
+			text-decoration: underline;
+		}
 	}
 	@include min(592px){
 		@include max(820px){
@@ -338,14 +348,9 @@ $header-img-height: 250px;
 			}
 		}
 	}
-	@include max(400px){
-		$pimg-height: 45vw;
-		height: inherit;
-		font-size: 3.75vw;
-		.post-image-holder{
-			.post-image{
-				height: $pimg-height;
-			}
+	@include max(592px){
+		.linkbox{
+			height: inherit; //1 col so no longer need to worry
 		}
 	}
 }
