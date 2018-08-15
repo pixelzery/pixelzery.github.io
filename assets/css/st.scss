@@ -443,9 +443,43 @@ $header-bar-height: 80px;
 	}
 }
 
-//smaller
-.home-header.smaller{
+//smaller (resetting)
+.home-header.sm{
 	.header-bar{
-		position: fixed;
+		position: absolute; //fb
+    	position: fixed;
+    	height: $header-bar-height;
+
+    	.header-container{
+		    display: table;//fb
+			display: flex;
+			padding:0;
+
+			.titleholder{
+				padding: 0;
+			    text-align: start;
+			    line-height: inherit;
+			    flex: 1;
+
+			    h1{
+			    	font-weight: 600;
+    				font-size: 32px;
+			    }
+			}
+
+			.nav-inline{
+
+			}
+    	}
+	}
+	.header-pad{
+		    height: 259px; //temp
+	}
+
+	@supports(display: flex){
+		$header-bar-height: 65px;
+		.header-bar{
+			height: $header-bar-height;
+		}
 	}
 }
