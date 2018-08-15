@@ -2,20 +2,14 @@
 layout: default
 ---
 <div class="home">
-{% comment %}
-<div class="header">
-	<div class="titleholder">
-	<h1>{{ site.title }}</h1>
-	</div>
-</div>
-{% include navbar.html %}
-{% endcomment %}
-
-<div class="header-bar container">
+<div class="home-header">
+<div id="home-header-bar" class="header-bar container">
 	<div class="header-container">
 		<div class="titleholder"><h1><a href="/">{{ site.title }}</a></h1></div>
 		{% include nav-inline.html %}
 	</div>
+</div>
+<div class="header-pad"></div>
 </div>
 
 <div class="container narrow">

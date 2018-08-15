@@ -379,7 +379,11 @@ $header-bar-height: 80px;
 }
 
 //home header-bar
-.home{
+.home-header{
+	.header-pad{
+		height: 0;
+	}
+
 	.header-bar{
 		position: relative;
     	height: inherit;
@@ -436,5 +440,12 @@ $header-bar-height: 80px;
 				}
 			}
 		}
+	}
+}
+
+//smaller
+.home-header.smaller{
+	.header-bar{
+		position: fixed;
 	}
 }
