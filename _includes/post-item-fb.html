@@ -4,19 +4,15 @@ updtPostItems();
 function updtPostItems(){
   if($(window).width()>592){
     var biggest=0;
-    for (var i = 0; i < document.getElementsByClassName('linkbox-inner').length; i++) {
-    	var temp = document.getElementsByClassName('linkbox-inner')[i].clientHeight;
-    	if(temp>biggest){
-    		biggest=temp;
-    	}
-    }
-    for (var i = 0; i < document.getElementsByClassName('linkbox').length; i++) {
-    	document.getElementsByClassName('linkbox')[i].style['height']=(biggest+35)+'px';
-    }
+    $('.linkbox-inner').each(function(i, obj) {
+        var temp = $(obj).height();
+        if(temp>biggest){
+          biggest=temp;
+        }
+    });
+    $('.linkbox').css('height',(biggest+35)+'px');
   }else{
-    for (var i = 0; i < document.getElementsByClassName('linkbox').length; i++) {
-      document.getElementsByClassName('linkbox')[i].style['height']='inherit';
-    }
+    $('.linkbox').css('height','inherit');
   }
 }
 </script>
