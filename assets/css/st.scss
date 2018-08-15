@@ -381,7 +381,7 @@ $header-bar-height: 80px;
 //home header-bar
 .home-header{
 	.header-bar{
-		position: absolute;
+		position: relative;
     	height: inherit;
 
 		.header-container{
@@ -441,12 +441,6 @@ $header-bar-height: 80px;
 }
 .home{
 	.header-pad{
-		height:259.2px;
-		@include max($wm){
-			height: 201.6px;
-		}
-		@include max($wxs){
-			height: 100vw; //approx
-		}
+		height: 0;
 	}
 }
