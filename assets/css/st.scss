@@ -202,7 +202,7 @@ $header-img-height: 250px;
 }
 
 //navigation bar
-.nav{
+.nav-bar{
 	@extend %tb;
 	padding: 10px 30%; //2nd arg only for small no items
     border-top: 2px solid $ca;
@@ -218,13 +218,13 @@ $header-img-height: 250px;
     }
 
 }
-.nav, .opt{
+.nav-bar, .opt{
     @extend %flex
 }
 
 //navigation bar when in container - (used in about)
 .container{
-	.nav{
+	.nav-bar{
 		padding: 10px;
 		// padding-top: 30px;
 		background-color: $cw;
@@ -368,8 +368,15 @@ $header-bar-height: 70px;
 	    display: flex;
 	    align-items: center;
 	    justify-content: center;
-	    h1{
+	    a{
+	    	color: $cw;
 	    	flex: 1;
+	    }
+	    a:hover{
+	    	color: $cg;
+	    	text-decoration: none;
+	    }
+	    h1{
 	    	padding: 0;
 	    }
     }
