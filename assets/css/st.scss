@@ -352,3 +352,21 @@ $header-img-height: 250px;
 		}
 	}
 }
+
+//header-bar
+$header-bar-height: 100px;
+.header-bar{
+	@extend %tb;
+	height: $header-bar-height;
+	position: absolute; //fallback
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+}
+.header-pad{
+	height: $header-bar-height;
+}
+//overide header-img top
+.post .header .header-img{
+	top: $header-bar-height;
+}
