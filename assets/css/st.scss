@@ -443,25 +443,6 @@ $header-bar-height: 80px;
 	}
 }
 
-//home-header transitions
-%transition{
-	@include prefix(transition,ease all 0.2s,webkit ms moz o);
-}
-.home-header{
-	.header-bar{
-		@extend %transition;
-		.header-container{
-			@extend %transition;
-			.titleholder{
-				@extend %transition;
-				h1{
-					@extend %transition;
-				}
-			}
-		}
-	}
-}
-
 //smaller (resetting)
 .home-header.sm{
 	.header-bar{
