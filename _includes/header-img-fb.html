@@ -1,10 +1,10 @@
 {% include modernizr.html %}
 <script type="text/javascript">
 //header-img js fallback system
-if(Math.max(document.documentElement.clientWidth, window.innerWidth || 0)>450){
+if($(window).width()>450){
 	if(Modernizr.objectfit){
-		document.getElementsByClassName('header')[0].style["background-image"]="none";
-		document.getElementsByClassName('header-img')[0].style["display"]="block";
+		$('.header').css("background-image","none");
+		$('.header').css("display","block");
 	}
 }
 </script>
