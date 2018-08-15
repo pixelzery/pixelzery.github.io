@@ -1,20 +1,8 @@
 <script>
-var addEvent = function(object, type, callback) {
-    if (object == null || typeof(object) == 'undefined') return;
-    if (object.addEventListener) {
-        object.addEventListener(type, callback, false);
-    } else if (object.attachEvent) {
-        object.attachEvent("on" + type, callback);
-    } else {
-        object["on"+type] = callback;
-    }
-};
-addEvent(window, "resize", function(e) {
-  updtPostItems();
-});
+$(window).on('resize', updtPostItems);
 updtPostItems();
 function updtPostItems(){
-  if(Math.max(document.documentElement.clientWidth, window.innerWidth || 0)>592){
+  if($(window).width()>592){
     var biggest=0;
     for (var i = 0; i < document.getElementsByClassName('linkbox-inner').length; i++) {
     	var temp = document.getElementsByClassName('linkbox-inner')[i].clientHeight;
