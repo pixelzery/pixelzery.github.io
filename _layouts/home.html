@@ -2,17 +2,18 @@
 layout: default
 ---
 <div class="home">
+
+{% include header-bar.html %}
 <div class="home-header">
-<div class="header-bar container">
-	<div class="header-container">
-		<div class="titleholder"><h1><a href="/">{{ site.title }}</a></h1></div>
-		{% include nav-inline.html %}
+	<div class="header-bar container">
+		<div class="header-container">
+			<div class="titleholder"><h1><a href="/">{{ site.title }}</a></h1></div>
+			{% include nav-inline.html %}
+		</div>
 	</div>
 </div>
-</div>
-{% comment %}
 {% include home-scrollpast.html %}
-{% endcomment %}
+
 <div class="container narrow">
 <div class="content">
 {{ content }}

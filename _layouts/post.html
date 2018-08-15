@@ -4,6 +4,7 @@ layout: default
 
 <div class="post">
 {% include header-bar.html %}
+<div class="header-pad"></div>
 {% capture img %}{% if page.image %}{{ page.image }}{% else %}{{ site.defaultimage }}{% endif %}{% endcapture %}
 <div class="header" style="background-image: url({{ img }});">
 <img class="header-img" src="{{ img }}">
