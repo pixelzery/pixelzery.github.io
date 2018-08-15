@@ -41,49 +41,6 @@ footer{
 	}
 }
 
-//home header
-.home{
-	.header{
-			.titleholder{
-			padding: 10vh 0;
-			text-align: center;
-			line-height: 1.4;
-
-			h1{
-				font-weight: 300;
-				font-size: 100px;
-			}
-
-			h2{
-				font-weight: 300;
-				font-size: 20px;
-			}
-		}
-		@include max($wm){
-			.titleholder{
-				padding: 5vh 0;
-				line-height: 1.3;
-				h1{
-					font-size: 65px
-				}
-				h2{
-					font-size: 16px;
-				}
-			}
-		}
-		@include max($wxs){
-			.titleholder{
-				h1{
-					font-size: 30vw;
-				}
-				h2{
-					font-size: 8vw;
-				}
-			}
-		}
-	}
-}
-
 //page header
 .page,.post{
 	.header{
@@ -430,7 +387,7 @@ $header-bar-height: 80px;
 		.header-container{
 			display: table;
 			padding: 10px;
-			
+
 			.titleholder{
 				padding: 5vh 0;
 			    text-align: center;
@@ -440,6 +397,33 @@ $header-bar-height: 80px;
 			    	font-weight: 300;
     				font-size: 100px;
 			    }
+			    h2{
+					font-weight: 300;
+					font-size: 20px;
+				}
+			}
+
+			@include max($wm){
+				.titleholder{
+					padding: 5vh 0;
+					line-height: 1.3;
+					h1{
+						font-size: 65px
+					}
+					h2{
+						font-size: 16px;
+					}
+				}
+			}
+			@include max($wxs){
+				.titleholder{
+					h1{
+						font-size: 30vw;
+					}
+					h2{
+						font-size: 8vw;
+					}
+				}
 			}
 
 			.nav-inline{
