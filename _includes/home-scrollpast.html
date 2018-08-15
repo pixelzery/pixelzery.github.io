@@ -4,9 +4,14 @@
 		var h = 65;//height of final bar in px
 		window.addEventListener("scroll", function() {
 			var elem = document.getElementById("home-header");
+			var ty=(elem.offsetTop + elem.offsetHeight)-h;
 			if(!elem.classList.contains('sm')){
-				if(window.scrollY>(elem.offsetTop + elem.offsetHeight)-h){
-					elem.className += " sm";
+				if(window.scrollY>=ty){
+					elem.classList.add("sm");
+				}
+			}else{
+				if(window.scrollY<=ty){
+					elem.classList.remove("sm");
 				}
 			}
 		});
