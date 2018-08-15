@@ -375,6 +375,9 @@ $header-bar-height: 80px;
 		    	color: $cg;
 		    	text-decoration: none;
 		    }
+		    &.cur{
+		    	font-weight: 700;
+		    }
 	    }
 	    h1{
 	    	padding: 0;

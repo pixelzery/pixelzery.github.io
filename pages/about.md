@@ -14,7 +14,7 @@ Nowadays I also do python and all sorts :)
 
 I started this website on 06/08/2018 as a place for some of my projects to live. [The website itself is also one of them]({{ site.gh }}/starryyy.github.io)! Thanks for checking them out!
 
-<div class="nav">
+<div class="nav-bar">
 	{% for opt in site.author %}
 	{% case opt[0] %}
 		{% when 'twitter' %}
