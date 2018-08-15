@@ -381,11 +381,11 @@ $header-bar-height: 80px;
 //home header-bar
 .home-header{
 	.header-pad{
-		height: 0;
+		height: 259px;
 	}
 
 	.header-bar{
-		position: relative;
+		position: absolute;
     	height: inherit;
 
 		.header-container{
@@ -472,9 +472,9 @@ $header-bar-height: 80px;
 			}
     	}
 	}
-	.header-pad{
-		    height: 259px; //temp
-	}
+	// .header-pad{
+	// 	    height: 259px; //temp
+	// }
 
 	@supports(display: flex){
 		$header-bar-height: 65px;

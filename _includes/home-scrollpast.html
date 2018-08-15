@@ -1,23 +1,35 @@
 {% include modernizr.html %}
 <script>
 	if(Modernizr.flexbox){
-		var h = 65;//height of final bar in px
 		var pelem = document.getElementById("header-pad");
+		var belem=document.getElementById("home-header-bar");
+		var elem = document.getElementById("home-header");
+		var eh=259;
+		var h = 65;//height of final bar in px
 
-		window.addEventListener("scroll", function() {
-			var elem = document.getElementById("home-header");
-			var ty=(elem.offsetTop + elem.offsetHeight)-h;
+		updt();
+		window.addEventListener("load", function() {
+			updt();
+		});
+
+		window.addEventListener("scroll", updt);
+
+		function updt(){
+			var ty=(eh)-h;
 			if(!elem.classList.contains('sm')){
-				if(window.scrollY>=ty){
-					pelem.style['height']=elem.offsetHeight+'px';
+				eh=belem.offsetHeight;
+				pelem.style['height']=eh+'px';
+
+				if(window.scrollY>ty){
 					elem.classList.add("sm");
+					// belem.style['position']='fixed';
 				}
 			}else{
 				if(window.scrollY<ty){
-					pelem.style['height']="0";
 					elem.classList.remove("sm");
+					// belem.style['position']='absolute';
 				}
 			}
-		});
+		}
 	}
 </script>
