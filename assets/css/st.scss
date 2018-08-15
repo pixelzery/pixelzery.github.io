@@ -354,7 +354,7 @@ $header-img-height: 250px;
 }
 
 //header-bar
-$header-bar-height: 70px;
+$header-bar-height: 80px;
 .header-bar{
 	@extend %tb;
 	height: $header-bar-height;
@@ -365,12 +365,12 @@ $header-bar-height: 70px;
     .header-container{
 	    width: 100%;
 	    height: 100%;
+	    display: table; //fallback
 	    display: flex;
 	    align-items: center;
 	    justify-content: center;
 	    a{
 	    	color: $cw;
-	    	flex: 1;
 	    }
 	    a:hover{
 	    	color: $cg;
@@ -378,6 +378,13 @@ $header-bar-height: 70px;
 	    }
 	    h1{
 	    	padding: 0;
+	    	flex: 1;
+	    }
+
+	    .nav-inline{
+	    	a:not(:last-child){ //not last for fallback (if 'not' not supported, doesn't matter)
+	    		margin-right: 20px;
+	    	}
 	    }
     }
 }
@@ -393,4 +400,20 @@ $header-bar-height: 70px;
 //overide header-img top
 .post .header .header-img{
 	top: $header-bar-height;
+}
+
+//height updates
+@supports(display: flex){
+	//if not using fallback version, can afford smaller height
+	//special case: ie11 supports flex but not @supports
+	$header-bar-height: 65px;
+	.header-bar{
+		height: $header-bar-height;
+	}
+	.header-pad{
+		height: $header-bar-height;
+	}
+	.post .header .header-img{
+		top: $header-bar-height;
+	}
 }
