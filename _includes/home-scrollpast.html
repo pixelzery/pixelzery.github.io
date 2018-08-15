@@ -1,21 +1,36 @@
 <script>
 //scrollpast.js
-var t = $(".home-header").offset().top+$(".home-header").outerHeight()-$(".header-bar").outerHeight();
+updt();
+
+$(window).on('resize', updt);
+function updt(){
+	h=$(".home-header .header-bar").outerHeight();
+	t = $(".home-header .header-bar").offset().top+h-$(".header-bar").outerHeight();
+	$('.header-pad').css("height",h+"px");
+}
+
 var down=false;
 $(window).scroll(function(){
     if($(window).scrollTop() > t && !down){
     	console.log('down');
     	down=true;
+    	$('.home-header .nav-inline a').css("display","none");
     	$('.home-header .nav-inline a').animate({
 		"color":"#222"
+		},200);
+		$('.home-header .header-bar').animate({
+			"height":h-40
 		},200);
     }
     else if($(window).scrollTop() < t & down){
     	console.log('up');
     	down=false;
+		$('.home-header .header-bar').css("height","inherit");
+		$('.home-header .nav-inline a').css("display","inline");
     	$('.home-header .nav-inline a').animate({
 		"color":"#fff"
 		},200);
+		updt();
     }
 });
 </script>
