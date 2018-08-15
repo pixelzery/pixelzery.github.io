@@ -354,7 +354,7 @@ $header-img-height: 250px;
 }
 
 //header-bar
-$header-bar-height: 100px;
+$header-bar-height: 70px;
 .header-bar{
 	@extend %tb;
 	height: $header-bar-height;
@@ -362,6 +362,23 @@ $header-bar-height: 100px;
     position: fixed;
     width: 100%;
     z-index: 2;
+    .header-container{
+	    width: 100%;
+	    height: 100%;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    h1{
+	    	flex: 1;
+	    	padding: 0;
+	    }
+    }
+}
+.header-bar.container{
+	//override stuff
+	@extend %tb;
+	padding-top: 0;
+	padding-bottom: 0;
 }
 .header-pad{
 	height: $header-bar-height;
