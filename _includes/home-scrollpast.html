@@ -1,2 +1,21 @@
 <script>
+//scrollpast.js
+var t = $(".home-header").offset().top+$(".home-header").outerHeight()-$(".header-bar").outerHeight();
+var down=false;
+$(window).scroll(function(){
+    if($(window).scrollTop() > t && !down){
+    	console.log('down');
+    	down=true;
+    	$('.home-header .nav-inline a').animate({
+		"color":"#222"
+		},200);
+    }
+    else if($(window).scrollTop() < t & down){
+    	console.log('up');
+    	down=false;
+    	$('.home-header .nav-inline a').animate({
+		"color":"#fff"
+		},200);
+    }
+});
 </script>
