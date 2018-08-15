@@ -380,12 +380,8 @@ $header-bar-height: 80px;
 
 //home header-bar
 .home-header{
-	.header-pad{
-		height: 259px;
-	}
-
 	.header-bar{
-		position: absolute;
+		position: relative;
     	height: inherit;
 
 		.header-container{
@@ -439,47 +435,6 @@ $header-bar-height: 80px;
 					flex: 1;
 				}
 			}
-		}
-	}
-}
-
-//smaller (resetting)
-.home-header.sm{
-	.header-bar{
-		position: absolute; //fb
-    	position: fixed;
-    	height: $header-bar-height;
-
-    	.header-container{
-		    display: table;//fb
-			display: flex;
-			padding:0;
-
-			.titleholder{
-				padding: 0;
-			    text-align: start;
-			    line-height: inherit;
-			    flex: 1;
-
-			    h1{
-			    	font-weight: 600;
-    				font-size: 32px;
-			    }
-			}
-
-			.nav-inline{
-
-			}
-    	}
-	}
-	// .header-pad{
-	// 	    height: 259px; //temp
-	// }
-
-	@supports(display: flex){
-		$header-bar-height: 65px;
-		.header-bar{
-			height: $header-bar-height;
 		}
 	}
 }
