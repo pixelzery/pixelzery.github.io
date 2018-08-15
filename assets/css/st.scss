@@ -420,3 +420,37 @@ $header-bar-height: 80px;
 		top: $header-bar-height;
 	}
 }
+
+//home header-bar
+.home{
+	.header-bar{
+		position: relative;
+    	height: inherit;
+
+		.header-container{
+			display: table;
+			padding: 10px;
+			
+			.titleholder{
+				padding: 5vh 0;
+			    text-align: center;
+			    line-height: 1.4;
+
+			    h1{
+			    	font-weight: 300;
+    				font-size: 100px;
+			    }
+			}
+
+			.nav-inline{
+			   	display: block; //fb
+    			display: flex;
+				text-align: center;
+
+				a{
+					flex: 1;
+				}
+			}
+		}
+	}
+}
