@@ -1,0 +1,14 @@
+{% include modernizr.html %}
+<script>
+	if(Modernizr.flexbox){
+		var h = 65;//height of final bar in px
+		window.addEventListener("scroll", function() {
+			var elem = document.getElementById("home-header");
+			if(!elem.classList.contains('sm')){
+				if(window.scrollY>(elem.offsetTop + elem.offsetHeight)-h){
+					elem.className += " sm";
+				}
+			}
+		});
+	}
+</script>
