@@ -99,7 +99,7 @@ h1,h2{
             color: $cdg;
         }
         &::after{
-            $triangle-size: 6px;
+            $triangle-size: 7px;
             //triangle shape
             content: ' ';
             display: inline-block;

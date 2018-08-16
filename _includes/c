@@ -1,5 +1,7 @@
+{% if n %}{% assign n = n | plus:1 %}{% else %}{% assign n = 0 %}{% endif %}
+{% capture id %}{{ include.title | slugify }}-{{ n }}{% endcapture %}
 <div class="wrap-collapsible">
-<input id="collapsible" class="toggle" type="checkbox">
-<label for="collapsible" class="lbl-toggle">More info</label>
+<input id="{{ id }}" class="toggle" type="checkbox">
+<label for="{{ id }}" class="lbl-toggle">{{ include.title }}</label>
 <div class="collapsible-content">
 <p markdown="1">
