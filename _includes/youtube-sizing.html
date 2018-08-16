@@ -6,11 +6,9 @@ function updt(){
 			.height(newWidth*$(e).data('aspectRatio'));
 	});
 }
-$(window).on('load',function(){
+$(document).ready(function(){
 	$('.youtube iframe').each(function(i,e){
-		$(e).data('aspectRatio',e.height/e.width)
-			.removeAttr('height')
-			.removeAttr('width');
+		$(e).data('aspectRatio',e.height/e.width);
 	});
 	updt();
 });

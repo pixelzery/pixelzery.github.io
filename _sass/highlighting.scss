@@ -8,15 +8,17 @@
 		position: relative;
 		margin: 0;
 		padding: 10px;
+		max-height: 65vh;
+		&::-webkit-scrollbar-thumb:horizontal, &::-webkit-scrollbar-thumb:vertical {
+			@include rounded(4px);
+		    background-color: lighten(#1d1f21,20);
+		}
+		&::-webkit-scrollbar {
+		    height: 12px;
+		    background-color: lighten(#1d1f21,5);
+		}
 	}
-	pre::-webkit-scrollbar-thumb:horizontal {
-		@include rounded(4px);
-	    background-color: lighten(#1d1f21,20);
-	}
-	pre::-webkit-scrollbar {
-	    height: 12px;
-	    background-color: lighten(#1d1f21,5);
-	}
+	
 	// theme information:
 	/*
     Name:       Base16 Tomorrow Dark
