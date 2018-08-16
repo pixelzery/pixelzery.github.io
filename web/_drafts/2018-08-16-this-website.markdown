@@ -12,7 +12,7 @@ In the past 10 days of work on this website since its conception, a total of 94 
 
 {% include youtube id='cJgHSf5PfWM' %}
 
-Simply put, I traversed through all of the commits pushed to the repository with [Git](https://git-scm.com/) and built then screenshotted each update with the help of [Selenium](https://www.seleniumhq.org/) in this script I made:
+Simply put, I traversed through all of the commits pushed to the repository with [Git](https://git-scm.com/) and built then screenshotted each update with the help of [Selenium](https://www.seleniumhq.org/) and overlayed some commit information with [PIL](https://python-pillow.org/) in this script I made:
 
 ```python
 import os
@@ -132,3 +132,28 @@ git('checkout','-f','master')
 print("done")
 
 ```
+This produces a bunch of screenshot images. I then stitched these images together as a video file with [Ffmpeg](https://www.ffmpeg.org/). Thing is, Ffmpeg (on Windows anyway) [doesn't seem to like it](https://stackoverflow.com/a/31513542) when you try to stitch images that have non-sequential names (I removed a bunch of the frames so there were gaps) so I renamed everything:
+
+```python
+import os
+import re
+def naturalSort(l):
+    l.sort(key=lambda x:[(int(c) if c.isdigit() else c) for c in re.split('([0-9]+)', x)])
+    return l
+i=1
+dirname='home'
+for img in naturalSort([ x for x in os.listdir(dirname) if x.endswith('.png')]):
+    name=f'{i:03}.png'
+    print(f'{img}->{name}')
+    os.rename(os.path.join(dirname,img),os.path.join(dirname,name))
+    i+=1
+
+```
+![Renaming](/passets/2/1.png)
+
+and then I could stitch together the images like so:
+```
+ffmpeg -r 5 -i about/%03d.png -c:v libxvid -b:v 16000k -pix_fmt yuv420p about.avi
+```
+
+Then I added fade and text 'n stuff~
