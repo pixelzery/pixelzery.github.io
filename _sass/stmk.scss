@@ -53,5 +53,76 @@ img[align=left]{
 //fixme img align right (when blockquote under it)
 
 hr,.rule{
-    border-bottom: 1px solid #ccc;
+    border-bottom: 2px solid #ccc;
+}
+
+//rule right after h
+h1,h2{
+    & + hr, & + .rule{
+        margin-top: 0;
+    }
+}
+
+//collapsibles
+.wrap-collapsible{
+    padding-bottom: 8px;
+
+    input.toggle{
+        display: none;
+
+        &:checked + .lbl-toggle + .collapsible-content {
+            max-height: 350px;
+        }
+        &:checked + .lbl-toggle {
+            //rotate triangel shape
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+            &::after{
+                transform: rotate(90deg) translateX(-3px);
+            }
+        }
+    }
+    .lbl-toggle{
+        padding-bottom: 8px;
+        display:block;
+        font-size: 32px;
+        font-weight: 600;
+
+        @extend %tw;
+
+        cursor: pointer;
+
+        // border-radius: 7px;
+        border-bottom: 2px solid #ccc;
+
+        &:hover{
+            color: $cdg;
+        }
+        &::after{
+            $triangle-size: 6px;
+            //triangle shape
+            content: ' ';
+            display: inline-block;
+
+            border-top: $triangle-size solid transparent;
+            border-bottom: $triangle-size solid transparent;
+            border-left: $triangle-size solid currentColor; //todo fb
+
+            vertical-align: middle;
+            margin-left: .7rem;
+            transform: translateY(-2px);
+
+            transition: transform .2s ease-out;
+
+            &:hover{
+                color: $cdg;
+            }
+        }
+    }
+    .collapsible-content {
+      max-height: 0px;
+      overflow: hidden;
+
+      transition: max-height .25s ease-in-out;
+    }
 }

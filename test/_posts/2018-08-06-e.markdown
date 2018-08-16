@@ -21,6 +21,13 @@ Here is a pic:
 
 > Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tincidunt malesuada dui, sit amet viverra augue mollis at. Pellentesque metus ante, volutpat id tincidunt sit amet, tempor ut lectus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi in placerat sem. Curabitur in quam diam. Curabitur dui ipsum, hendrerit at sapien at, ornare condimentum quam. Suspendisse ut nisl sed libero mollis malesuada id sit amet ante. Aliquam in ligula augue. Sed hendrerit sollicitudin consectetur. Sed molestie massa quis ipsum faucibus, ac efficitur libero pretium.
 
+{% include c %}
+Lorem ipsumm dolor sit amet, consectetur adipiscing elit. Fusce tincidunt malesuada dui, sit amet viverra augue mollis at. Pellentesque metus ante, volutpat id tincidunt **sit** amet, tempor ut lectus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi in placerat sem. Curabitur in quam diam. Curabitur dui ipsum, hendrerit at sapien at, ornare condimentum quam. Suspendisse ut nisl sed libero mollis malesuada id sit amet ante. Aliquam in ligula augue. Sed hendrerit sollicitudin consectetur. Sed molestie massa quis ipsum faucibus, ac efficitur libero pretium.
+{% include endc %}
+
+# No more info
+--------------
+
 <small>small</small> normal
 <strong>strong</strong>
 
