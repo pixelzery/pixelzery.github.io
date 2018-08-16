@@ -4,4 +4,4 @@
 <input id="{{ id }}" class="toggle" type="checkbox">
 <label for="{{ id }}" class="lbl-toggle">{{ include.title }}</label>
 <div class="collapsible-content">
-<p markdown="1">
+<p {% if include.nomk %}{% else %}markdown="1"{% endif %}>

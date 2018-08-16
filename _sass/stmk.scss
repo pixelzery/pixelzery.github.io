@@ -72,7 +72,8 @@ h1,h2{
         display: none;
 
         &:checked + .lbl-toggle + .collapsible-content {
-            max-height: 350px;
+            max-height: 999999999999999px;//fb
+            max-height: inherit;
         }
         &:checked + .lbl-toggle {
             //rotate triangel shape
@@ -123,7 +124,5 @@ h1,h2{
     .collapsible-content {
       max-height: 0px;
       overflow: hidden;
-
-      transition: max-height .25s ease-in-out;
     }
 }
