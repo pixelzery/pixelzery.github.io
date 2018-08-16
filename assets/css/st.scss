@@ -268,11 +268,13 @@ $header-img-height: 250px;
 		.post-image{
 			height: 200px;
 			width: 100%;
-			@include prefix(transform, scale(1.4),webkit ms moz);
 
 		    background-size: cover;
 		    background-position: center center;
 		    background-repeat: no-repeat;
+		}
+		.post-image.zoom{
+			@include prefix(transform, scale(2),webkit ms moz);
 		}
 	}
 	.linkbox{

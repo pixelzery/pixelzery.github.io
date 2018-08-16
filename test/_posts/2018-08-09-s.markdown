@@ -1,7 +1,7 @@
 ---
 title: s
 layout: post
-image: "/passets/images/splash.png"
+image: "/passets/1/splash.png"
 ---
 
 This formula converges quite fast. The calculator shows every stage in the summation as k changes from 0 to infinity. You probably won't need to use pi to such an accuracy and even if you did, you can easily find pre-computed values of pi on the Internet. The computer calculating pi in this way looks pretty cool, either way.
