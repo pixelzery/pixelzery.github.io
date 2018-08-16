@@ -2,7 +2,7 @@
 $(window).on('resize', updtPostItems);
 updtPostItems();
 function updtPostItems(){
-  if($(window).width()>592){
+  if(window.innerWidth>592){
     var biggest=0;
     $('.linkbox-inner').each(function(i, obj) {
         var temp = $(obj).height();
