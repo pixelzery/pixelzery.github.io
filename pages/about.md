@@ -12,7 +12,7 @@ When I was a kid and first started programming, I did so solely for the fun of p
 
 Nowadays I also do python and all sorts :)
 
-I started this website on 06/08/2018 as a place for some of my projects to live. [The website itself is also one of them]({{ site.gh }}/starryyy.github.io)! Thanks for checking them out!
+I started this website on 06/08/2018 as a place for some of my projects to live. [The website itself is also one of them](/web/this-website/)! Thanks for checking them out!
 
 <div class="nav-bar">
 	{% for opt in site.author %}
