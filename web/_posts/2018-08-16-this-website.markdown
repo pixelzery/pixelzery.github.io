@@ -22,7 +22,7 @@ In the past 10 days of work on this website since its conception, a total of 94 
 
 {% include_relative includes/namer.html %}
 
-<p><img src="/passets/2/1.png" alt="Renaming"></p>
+<p><img src="/passets/2/namer-shell.png" alt="Renaming"></p>
 
 <p>Then I added fade and text ‘n stuff~</p>
 {% include endc %}
