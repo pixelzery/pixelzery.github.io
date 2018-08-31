@@ -368,4 +368,4 @@ start "watchmedo" "shell-command -w -R -c""python preprocess.py ${watch_src_path
 start "jekyll" "serve --host=0.0.0.0 --drafts"
 ```
 
-That's about it. Thanks for reading. You can find my full translation of that song I was talking about and other cool stuff on that website if you're into that kind of thing. [Click here](///makurell.github.io/translation/).
+That's about it. Thanks for reading. You can find my full translation of that song I was talking about and other cool stuff on that website if you're into that kind of thing. [Click here](///makurell.github.io/translation/enn-chata/).
