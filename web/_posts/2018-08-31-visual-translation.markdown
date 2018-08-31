@@ -10,6 +10,8 @@ With translation, a whole lot of information is lost - you wouldn't really be ab
 
 After coming across a Touhou song that seemed pretty interesting to try and translate, and after deciding translate it, I started thinking about a good way of showing which words are translated from what. The answer: a system where hovering over the text highlights the corresponding parts. Then, I made it happen.
 
+![](/passets/3/gif.gif)
+
 The way I implemented something like this is for the web was by using a bunch of `<span>`s to split up translated text into bits which can highlight when you move your mouse over them.
 
 It's pretty easy implementing this, actually: just give IDs to the spans and, using javascript, when the mouse is over the it, change the colours of all the spans with the selected ID. Right?
