@@ -13,7 +13,7 @@ In the past 10 days of work on this website since its conception, a total of 94 
 {% include youtube id='cJgHSf5PfWM' %}
 (Yeah, I changed my name from Starry to Makurell - I'm kinda difficult when it comes to picking usernames)
 
-{% include c title="How this Video was Made" nomk=true %}
+{% include c title="How this Video was Made" nomk='1' %}
 <p>Simply put, I traversed through all of the commits pushed to the repository with <a href="https://git-scm.com/">Git</a> and built then screenshotted each update with the help of <a href="https://www.seleniumhq.org/">Selenium</a> and overlayed some commit information with <a href="https://python-pillow.org/">PIL</a> with this script I made:</p>
 
 {% include_relative includes/ghp_lapse.html %}
@@ -23,6 +23,9 @@ In the past 10 days of work on this website since its conception, a total of 94 
 {% include_relative includes/namer.html %}
 
 <p><img src="/passets/2/namer-shell.png" alt="Renaming"></p>
+
+<p>After renaming, I could succesfully stitch everything with this command:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ffmpeg -r 5 -i about/%03d.png -c:v libxvid -b:v 16000k -pix_fmt yuv420p about.avi</code></pre></div></div>
 
 <p>Then I added fade and text ‘n stuff~</p>
 {% include endc %}

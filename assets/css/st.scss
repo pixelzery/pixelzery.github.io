@@ -145,6 +145,7 @@ $header-img-height: 250px;
 		font-size: 40px;
 		font-weight: 700;
 		padding: 0;
+		padding-top: 1rem;
 	}
 	.meta{
 	    color: #6a737d;
@@ -265,6 +266,8 @@ $header-img-height: 250px;
 	.post-image-holder{
 		overflow: hidden;
 		@include border-radius(8px,8px,0,0);
+		border: #ccc solid 2px;
+    	border-bottom: none;
 		.post-image{
 			height: 200px;
 			width: 100%;
@@ -445,4 +448,14 @@ $header-bar-height: 80px;
 	.header-pad{
 		height: 0;
 	}
+}
+
+h1,h2{
+	padding-top:1rem;
+    padding-bottom: 0;
+}
+
+.contentbox{
+	padding: 20px;
+    border: solid #ccc;
 }
