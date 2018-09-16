@@ -8,12 +8,14 @@ layout: home
 {% for post in site.posts %}
 <div class="grid-item">
 	<div class="post-item">
-		<a href="{{ post.url }}" class="post-image-holder"><div class="post-image{% if post.thumb %}{% else %} zoom{% endif %}" style="background-image: url({% if post.thumb %}{{ post.thumb }}{% elsif post.image %}{{ post.image }}{% else %}{{ site.defaultimage }}{% endif %});">
+		<a href="{{ post.url }}" class="post-image-holder"><div class="post-image" style="background-image: url({% if post.thumb %}{{ post.thumb }}{% elsif post.image %}{{ post.image }}{% else %}{{ site.defaultimage }}{% endif %});{% if post.background %}background:{{ post.background }}{% endif %};">
+			{% if post.imgcode %}
 			<div class="imgcode-holder">
 				<div class="imgcode">
-					<div>{% include_relative passets/3/logo.html %}</div>
+					<div>{% include_relative {{ post.imgcode }} %}</div>
 				</div>
 			</div>
+			{% endif %}
 		</div></a>
 		<a href="{{ post.url }}" class="linkbox"><div class="linkbox-inner"><h2 class="title">{{ post.title }}</h2><p>{% if post.description %}{{ post.description }}{% else %}{{ post.content | markdownify | strip_html | truncate: 100 }}{% endif %}</p></div></a>
 	</div>
