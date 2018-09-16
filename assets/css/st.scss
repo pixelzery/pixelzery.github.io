@@ -266,8 +266,6 @@ $header-img-height: 250px;
 	.post-image-holder{
 		overflow: hidden;
 		@include border-radius(8px,8px,0,0);
-		border: #ccc solid 2px;
-    	border-bottom: none;
 		.post-image{
 			height: 200px;
 			width: 100%;
@@ -275,6 +273,19 @@ $header-img-height: 250px;
 		    background-size: cover;
 		    background-position: center center;
 		    background-repeat: no-repeat;
+
+		    //post imgcode
+		    .imgcode-holder{
+		    	display: table-cell;
+			    vertical-align: middle;
+			    width: 100000000000000000000px;
+			    height: inherit;
+
+			    .imgcode{
+				    text-align: center;
+				    padding: 0 20%;
+			    }
+		    }
 		}
 		.post-image.zoom{
 			@include prefix(transform, scale(2),webkit ms moz);
@@ -299,7 +310,7 @@ $header-img-height: 250px;
 			}
 		}
 	}
-	@include min(592px){
+	@include min(591px){
 		@include max(820px){
 			.post-image-holder{
 				.post-image{
@@ -308,7 +319,7 @@ $header-img-height: 250px;
 			}
 		}
 	}
-	@include max(592px){
+	@include max(591px){
 		.linkbox{
 			height: inherit; //1 col so no longer need to worry
 		}
