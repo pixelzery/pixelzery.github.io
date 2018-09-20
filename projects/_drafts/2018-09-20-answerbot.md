@@ -6,15 +6,17 @@ description: "A search engine for parsing and answering plain English questions 
 Is it possible to parse a natural language (plain English) question and gather relevant information for it from the internet using Natural Language Processing techniques? AnswerBot is the answer.
 
 AnswerBot is, put simply, a search engine. You input a question, it parses it using the NLP techniques of Part-Of-Speech tagging and dependency parsing and then searches through Wikipedia, making use of semantic similarity calculations, to gather information to answer the input. The NLP functionalities just mentioned are provided by the Python library [SpaCy](https://spacy.io/). <!-- If you don’t understand what you just read, don’t worry... -->
-
 <!-- # Summary -->
-
 <!-- - Minor pre-processing to ensure input looks like a question in terms of punctuation. -->
 <!-- - Keywords extracted from the question and arranged into a linear abstract hierarchy of dependency and relative importance through recursive consideration of -->
 
 # Background Information
 
-If you’re new to Natural Language Processing, some of what I just wrote may sound slightly confusing, but don’t worry.
+<!--If you’re new to Natural Language Processing, some of what I just wrote may sound slightly confusing, but don’t worry.-->
+
+### Semantic Similarity
+
+This basically is just how similar two things are in terms of the meanings of their words.
 
 ### Part-Of-Speech tagging
 
@@ -24,11 +26,25 @@ This simply means that the words in some text are categorised into whether they 
 
 In terms of linguistics, the words in a sentence can be thought of as being linked to each other as dependencies. Dependency parsing essentially means parsing and categorising how the words in a sentence relate and link to each other.
 
+<svg width="" height="" viewBox="0 0 950 200" preserveAspectRatio="xMinYMax meet" style="color: rgb(245, 244, 240);background: #222;font: inherit;"><text fill="currentColor" text-anchor="middle" y="140"><tspan x="150" fill="currentColor" data-displacy="word">The cat</tspan><tspan x="150" dy="2em" fill="currentColor" data-displacy-tag="NOUN" class="d-tag" style="
+    color: #70C1B3;
+">NOUN</tspan></text><text fill="currentColor" text-anchor="middle" y="140"><tspan x="350" fill="currentColor" data-displacy="word">sat</tspan><tspan x="350" dy="2em" fill="currentColor" data-displacy-tag="VERB" class="d-tag" style="
+    color: #F25F5C;
+">VERB</tspan></text><text fill="currentColor" text-anchor="middle" y="140"><tspan x="550" fill="currentColor" data-displacy="word">on</tspan><tspan x="550" dy="2em" fill="currentColor" data-displacy-tag="ADP" class="d-tag" style="
+    color: #247BA0;
+">ADP</tspan></text><text fill="currentColor" text-anchor="middle" y="140"><tspan x="750" fill="currentColor" data-displacy="word">the mat.</tspan><tspan x="750" dy="2em" fill="currentColor" data-displacy-tag="NOUN" class="d-tag" style="
+    color: #70C1B3;
+">NOUN</tspan></text><g><path id="arrow-0" d="M150,100 C150,0 350,0 350,100" stroke-width="2" fill="none" stroke="currentColor" class="d-arc"></path><text dy="1em"><textPath xlink:href="#arrow-0" startOffset="50%" fill="currentColor" text-anchor="middle" class="d-label">nsubj</textPath></text><path d="M150,102 L144,92 156,92" fill="currentColor"></path></g><g><path id="arrow-1" d="M350,100 C350,0 550,0 550,100" stroke-width="2" fill="none" stroke="currentColor" class="d-arc"></path><text dy="1em"><textPath xlink:href="#arrow-1" startOffset="50%" fill="currentColor" text-anchor="middle" class="d-label">prep</textPath></text><path d="M550,102 L556,92 544,92" fill="currentColor"></path></g><g><path id="arrow-2" d="M550,100 C550,0 750,0 750,100" stroke-width="2" fill="none" stroke="currentColor" class="d-arc"></path><text dy="1em"><textPath xlink:href="#arrow-2" startOffset="50%" fill="currentColor" text-anchor="middle" class="d-label">pobj</textPath></text><path d="M750,102 L756,92 744,92" fill="currentColor"></path></g></svg>
+
+Above is a visualisation of dependency parsing and POS tagging. You can visualise your own sentences on [the DisplaCy website](https://explosion.ai/demos/displacy).
+
+Note that there is one word from which all other words are linked either directly or indirectly. This is called the `root`. In this case, it’s the word “sat”.
+
 # Question Parsing
 
 What essentially needs to be extracted from the question are the keywords and then the words which modify or add detail to those keywords.
 
-Rather than opting for a strict binary “this is a keyword” and “this is additional information” type of parsing, I decided to take a more fuzzy approach due to the intrinsic fuzzy nature of this type of classification: when does a word stop being ‘additional information’ and start being a ‘keyword’? By trying to enforce an algorithm to resolve a word into either category, valuable information about the word is lost, which may result in a less informed and so more inaccurate result - especially given the inaccuracies that arise from trying to resolve such words by simply considering their grammatical dependencies and Part-Of-Speech and the inaccuracies of the SpaCy library itself due to the fundamental difficulty of Natural Language Processing, over which I have no control.
+Rather than opting for a strict binary “this is a keyword” and “this is additional information” type of parsing, I decided to take a more fuzzy approach due to the intrinsic fuzzy nature of this type of classification: when does a word stop being ‘additional information’ and start being a ‘keyword’? By trying to enforce an algorithm to resolve a word into either category, valuable information about the word is lost, which may result in a less informed and so more inaccurate result - especially given the inaccuracies that arise from trying to resolve such words by simply by using the mentioned NLP techniques and the inaccuracies of the SpaCy library itself, over which I have no control.
 
 The type of parsing I opted for instead is arranging the relevant terms in the sentence into a spectrum, where terms which are more likely to be ‘keywords’ emerge at the left and those more likely to be ‘detail’ emerge at the right. This essentially means a linear hierarchal structure, since the ‘detail’ terms can be thought of as being below the ‘keyword’ terms in an abstract hierarchy of dependency/importance/etc. This structure is represented internally as a list. Some examples below:
 
@@ -42,7 +58,7 @@ Note how in some of these, the arrangement is subjective. That will be handled i
 
 Note: Google Search has a feature similar to what is trying to be achieved here called `Featured Snippets` (image below), which seems to make use of a hierarchal structure similar to the one described here (see underlined).
 
-![Google's Featured Snippets](https://i.snag.gy/u10vha.jpg)
+![Google's Featured Snippets](https://i.snag.gy/u10vha.jpg){: style="max-width:70%"}
 
 ## Question Fixing
 
