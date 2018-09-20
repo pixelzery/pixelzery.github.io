@@ -9,15 +9,14 @@ In this project, essentially what is being made is a search engine, relying prim
 
 Where mathematical definitions are provided here, I use the following notation:
 
-| Notation | Definition                                                   |
-| -------- | ------------------------------------------------------------ |
-| $$g$$    | ‘grouping’ (list)                                            |
-| $$g_i$$  | $$i$$-th group of the ‘grouping’. The first group is when $$i = 0$$ |
-| $$l$$    | length                                                       |
-| $$s$$    | spacy’s semantic similarity calculation function             |
-| $$p$$    | (Wikipedia) page                                             |
-| $$p_t$$  | page’s title                                                 |
-| $$p_c$$  | page’s content                                               |
+| Notation     | Definition                                                   |
+| ------------ | ------------------------------------------------------------ |
+| $$g$$        | ‘grouping’ (list)                                            |
+| $$g_i$$      | $$i$$-th group of the ‘grouping’. The first group is when $$i = 0$$ |
+| $$s(..,..)$$ | spacy’s semantic similarity calculation function             |
+| $$p$$        | (Wikipedia) page                                             |
+| $$p_t$$      | page’s title                                                 |
+| $$p_c$$      | page’s content                                               |
 
 Indexing is 0-based.
 
@@ -179,7 +178,7 @@ Let’s say 0 = no comma, 1 = comma. The possible split positions in this exampl
 111
 ```
 
-(positive integers in binary up to $2^{n}-1$ where $n$ is the number of split positions)
+(positive integers in binary up to $$2^{n}-1$$ where $$n$$ is the number of split positions)
 
 Splitting a string `abcd` based on these positions will therefore look like:
 
@@ -214,11 +213,13 @@ Initially, the first group (which may consist of one or more keywords) of each o
 
 The titles of the candidates then have the semantic similarity between them and the group of keywords calculated (provided by SpaCy)  to serve as a metric for relevancy, and those under a certain threshold are discarded.
 
-Relevancy metric (want to maximise):
+Relevancy metric (want to maximise) for a given page $$p$$:
 
 $$
 s(p_t,g_0)
 $$
+
+Where $$s(..,..)$$ is spacy’s semantic similarity function and $$g_0$$ corresponds to the 0-th group of the grouping (first group) and $$p_t$$ corresponds to the page’s title.
 
 Only the titles are used for the elimination because getting the entire content for each candidate, given the amount of candidates at this stage, will mean an almost unfeasibly large number of additional API requests to be made to Wikipedia and may also mean that the semantic similarity calculations take longer to be performed (due to the size of the texts being considered). The amount of external API calls is tried to be kept to a minimum as much as possible because sending and receiving data over the internet takes a relatively long time and the wait times can quickly add up (also, excessive requests to Wikipedia is not very nice to their servers~)
 
@@ -228,12 +229,54 @@ After the elimination, the contents of all the remaining pages are then download
 
 Now that we have a list of potentially relevant Wikipedia pages as well as the list of groupings to be considered (from the parsing section), we can now start thinking of parsing relevant data.
 
-To start off the evaluation process, for each grouping, each page is ranked in terms of relevancy to the grouping. This is, again, done with SpaCy’s semantic similarity calculation functionality, however this time, the _whole content_ of each page are considered.
+To start off the evaluation process, for each grouping, each page is ranked in terms of relevancy to the grouping. This is, again, done with SpaCy’s semantic similarity calculation functionality, however this time, the _whole contents_ of each page are considered.
 
-Ranking metric (want to maximise):
+Ranking metric (want to maximise) for a given page:
 
 $$
 \frac{\sum _i^{l\:}\:s\left(p_c,g_i\right)}{l}+s\left(p_t,g_0\right)
 $$
 
-where $$l$$ is the length of the `grouping` object (number of `groups`)
+| Notation     | Definition                                                   |
+| ------------ | ------------------------------------------------------------ |
+| $$g$$        | ‘grouping’ (list)                                            |
+| $$g_i$$      | $$i$$-th group of the ‘grouping’. The first group is when $$i = 0$$ |
+| $$s(..,..)$$ | spacy’s semantic similarity calculation function             |
+| $$p$$        | (Wikipedia) page                                             |
+| $$p_t$$      | page’s title                                                 |
+| $$p_c$$      | page’s content                                               |
+| $$l$$        | the length of the `grouping` object (number of `groups`)     |
+
+
+
+## Data Searching
+
+Now that we a list of groupings and a weighted list of candidate Wikipedia Pages, all that’s left to do is evaluate each variation - find the relevant data for each variation from the candidates. What this means, more precisely, is to find sentences, given a list of input sentences, that maximise relevancy to the groupings.
+
+Remember that a `grouping` is a list of `groups` of terms. The list of `groups` in every `grouping` is iterated over, and all the sentences in the given input sentences are ranked by their relevancy to the `group`. All but the top (certain number of) sentences are then discarded. The remaining sentences is the list of sentences that is operated on in the next iteration (the scope). In this fashion, by eliminating less relevant sentences for each group, the most relevant sentences for each `grouping` are selected.
+
+The relevancy metric for a certain `group` of terms and a sentence is the semantic similarity calculation between the group and the sentences provided by `SpaCy` + the sum of the individual terms’ semantic similarity to the sentence divided by the number of terms (AKA: the average semantic similarity of the individual terms to the sentence). The second metric, however, part (the one representing the individual terms) is weighted (halved).
+
+The relevancy metric for a certain `group` of terms and a sentence is composed of two metrics:
+
+1. the semantic similarity (provided by SpaCy) between the group and the sentence
+2. The sentence has the same keywords parsing and arranging algorithm performed upon it as the one used on input questions (described in the [question parsing section](#parsing)). This metric is the average semantic similarity between each keyword extracted from the sentence and the group.
+
+The 2^nd^ metric is weighted (halved).
+
+The relevancy metric of a sentence to a `group` can be represented as (want to maximise):
+
+$$
+\sum _i^l\:s\left(x,\:a_i\right)+\frac{1}{2}\left(\sum _i^l\:\left(\frac{\sum _j^k\:s\left(a_i,\:p\left(x\right)_j\right)}{k}\right)\right)
+$$
+
+| Notation  | Definition                           |
+| --------- | ------------------------------------ |
+| $$a$$     | the group                            |
+| $$a_i$$   | i-th term of the group               |
+| $$x$$     | the sentence                         |
+| $$p(..)$$ | parsing algorithm - list of keywords |
+| $$l$$     | number of terms in the group         |
+| $$k$$     | number of keywords                   |
+| $$s(..,..)$$ | spacy’s semantic similarity calculation function             |
+
