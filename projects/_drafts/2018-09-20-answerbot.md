@@ -1,32 +1,19 @@
 ---
 title: AnswerBot
-description: "A search engine for answering trivia questions by searching for and parsing text from Wikipedia using NLP."
+description: "A search engine for parsing and answering plain English questions using NLP techniques."
 ---
 
-In this project, essentially what is being made is a search engine, relying primarily on the Natural Language Processing functionality provided by the python library, SpaCy. Laid out below is the journey in a generally chronological order that occurs each time a question is inputted to the program, as well as technical information thereof.
+Is it possible to parse a natural language (plain English) question and gather relevant information for it from the internet using Natural Language Processing techniques? AnswerBot is the answer.
 
-# Mathematical Notation
+AnswerBot is, put simply, a search engine. You input a question, it parses it using the NLP techniques of Part-Of-Speech tagging and dependency parsing and then searches through Wikipedia, making use of semantic similarity calculations, to gather information to answer the input.
 
-Where mathematical definitions are provided here, I use the following notation:
 
-| Notation     | Definition                                                   |
-| ------------ | ------------------------------------------------------------ |
-| $$g$$        | ‘grouping’ (list)                                            |
-| $$g_i$$      | $$i$$-th group of the ‘grouping’. The first group is when $$i = 0$$ |
-| $$s(..,..)$$ | spacy’s semantic similarity calculation function             |
-| $$p$$        | (Wikipedia) page                                             |
-| $$p_t$$      | page’s title                                                 |
-| $$p_c$$      | page’s content                                               |
-
-Indexing is 0-based.
 
 # Question Parsing
 
 What essentially needs to be extracted from the question are the keywords and then the words which modify or add detail to those keywords.
 
 Rather than opting for a strict binary “this is a keyword” and “this is additional information” type of parsing, I decided to take a more fuzzy approach due to the intrinsic fuzzy nature of this type of classification: when does a word stop being ‘additional information’ and start being a ‘keyword’? By trying to enforce an algorithm to resolve a word into either category, valuable information about the word is lost, which may result in a less informed and so more inaccurate result - especially given the inaccuracies that arise from trying to resolve such words by simply considering their grammatical dependencies and Part-Of-Speech and the inaccuracies of the SpaCy library itself due to the fundamental difficulty of Natural Language Processing, over which I have no control.
-
-(example)
 
 The type of parsing I opted for instead is arranging the relevant terms in the sentence into a spectrum, where terms which are more likely to be ‘keywords’ emerge at the left and those more likely to be ‘detail’ emerge at the right. This essentially means a linear hierarchal structure, since the ‘detail’ terms can be thought of as being below the ‘keyword’ terms in an abstract hierarchy of dependency/importance/etc. This structure is represented internally as a list. Some examples below:
 
@@ -38,7 +25,7 @@ The type of parsing I opted for instead is arranging the relevant terms in the s
 
 Note how in some of these, the arrangement is subjective. That will be handled in the next section.
 
-Note: Google Search has a feature similar to what is trying to be achieved here called `Featured Snippets` (image below), which seems to make use of a hierarchal structure similar to the one described here (see underlined)
+Note: Google Search has a feature similar to what is trying to be achieved here called `Featured Snippets` (image below), which seems to make use of a hierarchal structure similar to the one described here (see underlined).
 
 ![Google's Featured Snippets](https://i.snag.gy/u10vha.jpg)
 
@@ -247,8 +234,6 @@ $$
 | $$p_c$$      | page’s content                                               |
 | $$l$$        | the length of the `grouping` object (number of `groups`)     |
 
-
-
 ## Data Searching
 
 Now that we a list of groupings and a weighted list of candidate Wikipedia Pages, all that’s left to do is evaluate each variation - find the relevant data for each variation from the candidates. What this means, more precisely, is to find sentences, given a list of input sentences, that maximise relevancy to the groupings.
@@ -262,7 +247,7 @@ The relevancy metric for a certain `group` of terms and a sentence is composed o
 1. the semantic similarity (provided by SpaCy) between the group and the sentence
 2. The sentence has the same keywords parsing and arranging algorithm performed upon it as the one used on input questions (described in the [question parsing section](#parsing)). This metric is the average semantic similarity between each keyword extracted from the sentence and the group.
 
-The 2^nd^ metric is weighted (halved).
+The 2<sup>nd</sup> metric is weighted (halved).
 
 The relevancy metric of a sentence to a `group` can be represented as (want to maximise):
 
