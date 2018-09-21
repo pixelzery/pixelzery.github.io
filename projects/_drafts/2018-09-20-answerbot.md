@@ -11,10 +11,6 @@ AnswerBot is, put simply, a search engine. You input a question, it parses it us
 <!-- - Minor pre-processing to ensure input looks like a question in terms of punctuation. -->
 <!-- - Keywords extracted from the question and arranged into a linear abstract hierarchy of dependency and relative importance through recursive consideration of -->
 
-# Demonstration
-
-{% include youtube id='8yQCvzhGDkk' %}
-
 # Background Information
 
 <!--If you’re new to Natural Language Processing, some of what I just wrote may sound slightly confusing, but don’t worry.-->
@@ -146,7 +142,7 @@ Illustrating this with the example above, grouping `Europe` and `animal` togethe
 
 Getting all these different variants of the terms is what this section is about. (All the permutations of the groupings of the terms). It ultimately means that we consider all of the following (actual program output):
 
-```
+```python
 [["Europe", "animal", "biggest"]]
 
 [["Europe", "animal"], ["biggest"]]
@@ -301,3 +297,12 @@ $$
 | $$k$$     | number of keywords                   |
 | $$s(..,..)$$ | spacy’s semantic similarity calculation function             |
 
+
+
+---
+
+# Demonstration
+
+A demonstration of the final program running. [You can find it here](https://github.com/makurell/AnswerBot).
+
+{% include youtube id='8yQCvzhGDkk' %}
