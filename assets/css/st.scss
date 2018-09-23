@@ -510,3 +510,21 @@ h1,h2{
 	padding: 20px;
     border: solid #ccc;
 }
+
+// h + h underline css
+.content{
+	h1, h2, h3, h4, h5, h6 { position: relative; margin-top: 1rem; margin-bottom: 1rem; font-weight: bold; line-height: 1.4; cursor: text; }
+h1 { padding-bottom: 0.3em; font-size: 2.25em; line-height: 1.2; border-bottom: 1px solid $cwg;}
+h2 {padding-bottom: 0.3em;font-size: 1.75em;line-height: 1.225;border-bottom: 1px solid $cwg;}
+h3 { font-size: 1.5em; line-height: 1.43; }
+h4 { font-size: 1.25em; }
+h5 { font-size: 1em; }
+h6 { font-size: 1em; }
+hr { height: 2px; padding: 0px; margin: 16px 0px; border: 0px none; overflow: hidden; box-sizing: content-box; }
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p { margin-top: 0px; }
+li p.first { display: inline-block; }
+p { margin-bottom: 0.8rem; }
+ul,ol{
+	    margin-bottom: 0.8rem;
+}
+}
