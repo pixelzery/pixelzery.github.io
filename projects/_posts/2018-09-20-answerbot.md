@@ -494,4 +494,4 @@ Here is a graph of how the execution time increases as the input length increase
 </g></g><g id="g456"><g clip-path="url(#clipPath462)" id="g458"><text id="text466" style="font-variant:normal;font-weight:normal;font-size:17.25600052px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#595959;fill-opacity:1;fill-rule:nonzero;stroke:none" transform="matrix(1,0,0,-1,362.69,514.25)"><tspan id="tspan464" y="0" x="0 8.4036722 12.372552 26.091072 34.684559 38.446369 47.592049 56.685959 70.473503 79.412109 83.380989 91.646614 99.118462 103.12186 108.90262">Time Complexity</tspan></text>
 </g></g><path id="path468" style="fill:none;stroke:#d9d9d9;stroke-width:0.92106003;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" d="m 51.081,55.423 h 739.94 v 484.4 H 51.081 Z"></path></g></svg>
 
-An exponential regression curve has been calculated and has been added to the graph to show the trend.
+An exponential regression curve has been calculated and added to the graph to show the trend.
