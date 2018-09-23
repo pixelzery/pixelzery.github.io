@@ -6,26 +6,21 @@ image: /passets/5/demo3.png
 
 Is it possible to parse a natural language (plain English) question and gather relevant information for it from the internet using Natural Language Processing techniques? AnswerBot is the answer. [Code can be found here](https://github.com/makurell/AnswerBot).
 
-AnswerBot is, put simply, a search engine. You input a question, it parses it using the NLP techniques of Part-Of-Speech tagging and dependency parsing and then searches through Wikipedia, making use of semantic similarity calculations, to gather information to answer the input. The NLP functionalities just mentioned are provided by the Python library [SpaCy](https://spacy.io/). <!-- If you don’t understand what you just read, don’t worry... -->
-<!-- # Summary -->
-<!-- - Minor pre-processing to ensure input looks like a question in terms of punctuation. -->
-<!-- - Keywords extracted from the question and arranged into a linear abstract hierarchy of dependency and relative importance through recursive consideration of -->
+AnswerBot is, put simply, a search engine. You input a question, it parses it using the NLP techniques of Part-Of-Speech tagging and dependency parsing and then searches through Wikipedia, making use of semantic similarity calculations, to gather information to answer the input. The NLP functionalities just mentioned are provided by the Python library [SpaCy](https://spacy.io/).
 
 # Background Information
 
-<!--If you’re new to Natural Language Processing, some of what I just wrote may sound slightly confusing, but don’t worry.-->
-
 ### Semantic Similarity
 
-This basically is just how similar two things are in terms of the meanings of their words.
+How similar two things are in terms of the meanings of their words.
 
 ### Part-Of-Speech tagging
 
-This simply means that the words in some text are categorised into whether they are a noun or a verb, etc (their part of speech).
+Words in some text are categorised into whether they are a noun or a verb, etc (their part of speech).
 
 ### Dependency parsing
 
-In terms of linguistics, the words in a sentence can be thought of as being linked to each other as dependencies. Dependency parsing essentially means parsing and categorising how the words in a sentence relate and link to each other.
+In terms of linguistics, the words in a sentence can be thought of as being linked to each other as dependencies. Dependency parsing means parsing and categorising how the words in a sentence relate and link to each other.
 
 <svg viewBox="0 0 950 200" preserveAspectRatio="xMinYMax meet" style="color: rgb(245, 244, 240);background: #222;font: inherit;"><text fill="currentColor" text-anchor="middle" y="140"><tspan x="150" fill="currentColor" data-displacy="word">The cat</tspan><tspan x="150" dy="2em" fill="currentColor" data-displacy-tag="NOUN" class="d-tag" style="
     color: #70C1B3;
@@ -38,15 +33,15 @@ In terms of linguistics, the words in a sentence can be thought of as being link
 ">NOUN</tspan></text><g><path id="arrow-0" d="M150,100 C150,0 350,0 350,100" stroke-width="2" fill="none" stroke="currentColor" class="d-arc"></path><text dy="1em"><textPath xlink:href="#arrow-0" startOffset="50%" fill="currentColor" text-anchor="middle" class="d-label">nsubj</textPath></text><path d="M150,102 L144,92 156,92" fill="currentColor"></path></g><g><path id="arrow-1" d="M350,100 C350,0 550,0 550,100" stroke-width="2" fill="none" stroke="currentColor" class="d-arc"></path><text dy="1em"><textPath xlink:href="#arrow-1" startOffset="50%" fill="currentColor" text-anchor="middle" class="d-label">prep</textPath></text><path d="M550,102 L556,92 544,92" fill="currentColor"></path></g><g><path id="arrow-2" d="M550,100 C550,0 750,0 750,100" stroke-width="2" fill="none" stroke="currentColor" class="d-arc"></path><text dy="1em"><textPath xlink:href="#arrow-2" startOffset="50%" fill="currentColor" text-anchor="middle" class="d-label">pobj</textPath></text><path d="M750,102 L756,92 744,92" fill="currentColor"></path></g></svg>
 Above is a visualisation of dependency parsing and POS tagging. You can visualise your own sentences on [the DisplaCy website](https://explosion.ai/demos/displacy).
 
-Note that there is one word from which all other words are linked either directly or indirectly. This is called the `root`. In this case, it’s the word “sat”.
+Note: there is one word from which all other words are linked either directly or indirectly. This is called the `root`. In this case, it’s the word “sat”.
 
 # Question Parsing
 
-What essentially needs to be extracted from the question are the keywords and then the words which modify or add detail to those keywords.
+What needs to be extracted from the input is terms, categorised into being either ’detail’ or ‘keywords’.
 
-Rather than opting for a strict binary “this is a keyword” and “this is additional information” type of parsing, I decided to take a more fuzzy approach due to the intrinsic fuzzy nature of this type of classification: when does a word stop being ‘additional information’ and start being a ‘keyword’? By trying to enforce an algorithm to resolve a word into either category, valuable information about the word is lost, which may result in a less informed and so more inaccurate result - especially given the inaccuracies that arise from trying to resolve such words by only using the mentioned NLP techniques and the inaccuracies of the SpaCy library itself, over which I have no control.
+When does a ‘detail’ stop being just additional information and start being a ‘keyword’, though? It isn’t as binary as you might first think - and resolving terms to be strictly either may result in a less complete representation of the question and so in inaccuracies. For this reason, I decided to take a fuzzy approach and arrange the terms into a linear hierarchal list (aka: a spectrum) of relative ‘detail’-ness (dependency/importance) instead.
 
-The type of parsing I opted for instead is arranging the relevant terms in the sentence into a spectrum, where terms which are more likely to be ‘keywords’ emerge at the left and those more likely to be ‘detail’ emerge at the right. This essentially means a linear hierarchal structure, since the ‘detail’ terms can be thought of as being below the ‘keyword’ terms in an abstract hierarchy of dependency/importance/etc. This structure is represented internally as a list. Some examples below:
+Internally, this structure shall be represented by a list of terms, where ‘keyword’-like terms emerge at the left and the ‘detail’-like emerge at the right.
 
 | Natural Language                       | Abstract Hierarchy                |
 | -------------------------------------- | --------------------------------- |
@@ -54,123 +49,39 @@ The type of parsing I opted for instead is arranging the relevant terms in the s
 | Obama’s dad’s age                      | `["Obama", "dad", "age"]`         |
 | the biggest animal ever seen in Europe | `["Europe", "animal", "biggest"]` |
 
-Note how in some of these, the arrangement is subjective. That will be handled in the next section.
-
-Note: Google Search has a feature similar to what is trying to be achieved here called `Featured Snippets` (image below), which seems to make use of a hierarchal structure similar to the one described here (see underlined).
+Note: Google Search has a feature similar to what is trying to be achieved here called `Featured Snippets` (image below), which seems to make use of a similar hierarchal structure (see underlined).
 
 ![Google's Featured Snippets](https://i.snag.gy/u10vha.jpg)
 
 ## Question Fixing
 
-First of all, some minor pre-processing is performed upon the input. This essentially means a simple algorithm to transform the input sentence to look more like a question - making sure it ends with a `?` and starts with a capital letter.
+First of all, minor pre-processing is performed upon the input to ensure the input looks like a question - making sure it ends with a `?` and starts with a capital letter.
 
 ## Parsing
 
-The `question` is split into `queries` and the queries are parsed into `terms` arranged into the hierarchy as described. (This is the terminology I use in the code). In terms of the backend data types, a `question` is usually represented with SpaCy’s `Document`, the `queries` are `Spans` and, most importantly, the `terms` are `Tokens`.
+The `question` is split into `queries` and the queries are parsed into `terms`, which are arranged into the hierarchy as described.
 
 | My Terminology | SpaCy Representation | Info                                                         |
 | -------------- | -------------------- | ------------------------------------------------------------ |
-| question       | Document             | This is the question after the `question fixing` pre-processing. |
-| query          | Span                 | Usually the Span represents a sentence, but it doesn’t _have_ to be a full sentence. |
-| term           | Token                |                                                              |
+| `question`     | `Document`           | This is the question after the [question fixing](#question-fixing) pre-processing. |
+| `query`        | `Span`               | Usually the Span represents a sentence, but it doesn’t _have_ to be a full sentence. |
+| `term`         | `Token`              |                                                              |
 
-The core functionality of the parsing is parsing a `Span` object into a hierarchal list of `Tokens`. 
+The parsing works using a function, in which an input `Token` has all of its [dependants](#dependency-parsing) (children) traversed through, and for each child, it is decided (by considering the dependency type + POS) whether to prepend or append the child to the list (relative to the input token) and whether to omit certain terms. The function is recursively called for each of the children as well - the termination point being: when the input token has no children.
 
-In essence, the way this works is by starting out with a list of just one token - (the `root` token - the token from which all the other tokens are grammatically dependent). For each of the children tokens of that token, it decided whether the child should be (in the list) just before the token (prepended) or just after it (appended), or not in the list at all (ignored). Sometimes the root token itself is omitted (ignored). The children tokens of that child then have the same process applied to them in a recursive fashion (as if that child token is now the `root`). The recursion’s termination point is when the `token` being considered has no children (in which case, the token itself may or may not be appended). NB: In the actual code, not only the dependency of the `tokens` but also the Part-Of-Speech is taken slightly into account.
+The recursion is initiated with the [root token](#dependency-parsing) of a certain query (which is a `Span` object).
 
-Some python-like pseudocode to help illustrate the basic process:
-
-```python
-parse(token,skip=False):
-	list=[]
-    # prepending
-    for child in token:
-        if child.dependency in (certain list):
-            continue # ignore
-        elif child.dependency in (certain list):
-            list.extend(parse(child),True) # prepend children's children to but not child itself
-        elif child.dependency in (certain list):
-            list.extend(parse(child),False) # prepend child and its children
-    
-    if not skip:
-        list.append(token) # add the ('root') token if not skipping it
-    
-    # appending
-    for child in token:
-        if child.dependency in (certain list):
-            continue # ignore
-        elif child.dependency in (certain list):
-            list.extend(parse(child),True) # appending children's children to but not child itself
-        elif child.dependency in (certain list):
-            list.extend(parse(child),False) # append child and its children
-            
-     return list
-```
-
-The lists will essentially hold dependency-names (defined by SpaCy) which together serve as a type of ‘config’ as to which tokens to be added and how. E.g one such list (specifically, the one that defines which tokens to be prepended) in the code looks like:
-
-```python
-[
-    'nsubj',
-    'poss',
-    'acl',
-    'advcl',
-    'relcl',
-    'compound',
-    'attr',
-],
-```
+[View code](https://github.com/makurell/AnswerBot/blob/master/answerbot.py#L99){: target="_blank"}
 
 # Variations Generation
 
-We now have a hierarchal list of keywords which are parsed from the question, which look something like `["Europe", "animal", "biggest"]`.
-
-Ultimately, the goal is to find pages and extract the relevant information from those pages relating to these keywords. One way of doing this is to look up a page with a title relating to the starting elements of the list (`["Europe", "animal"]`), and to search for data relating to the last element (`"biggest"`) within that page.
-
-That method, however, is not great at all. Parsing an accurate hierarchal list of keywords (especially with Spacy alone) is very difficult due to the intrinsic difficulty of Natural Language Processing, and so the output of the parsing function should not be relied on too heavily.
-
-Even assuming the keywords parsing + hierarchal order is faultless, what if it is easier to find a page relating to `["animal", "Europe"]` than `["Europe", "animal"]`?
-
-Theoretically, there could be some Wikipedia page - called ‘European Animals’, for example, which shows up in the results of “Europe animal” but not in “Europe” by itself or “animal” by itself. This is, of course, an exaggerated example, but for cases similar to these, it would be helpful if we considered when some of the terms are grouped together.
-
-Structure reform: up until now, the structure we have been dealing with is essentially a hierarchal list of terms. If we want to group some of these terms together, we’d need another layer to this list. The structure we are dealing with now shall now be a hierarchal list __of groups__ of terms. 
-
-Illustrating this with the example above, grouping `Europe` and `animal` together would mean going from `[["Europe"], ["animal"]]` to `[["Europe", "animal"]]`.
-
-Getting all these different variants of the terms is what this section is about. (All the permutations of the groupings of the terms). It ultimately means that we consider all of the following (actual program output):
-
-```python
-[["Europe", "animal", "biggest"]]
-
-[["Europe", "animal"], ["biggest"]]
-[["biggest"], ["Europe", "animal"]]
-
-[["Europe"], ["animal", "biggest"]]
-[["animal biggest"], ["Europe"]]
-
-[["Europe"], ["animal"], ["biggest"]]
-[["Europe"], ["biggest"], ["animal"]]
-[["animal"], ["Europe"], ["biggest"]]
-[["animal"], ["biggest"], ["Europe"]]
-[["biggest"], ["Europe"], ["animal"]]
-[["biggest"], ["animal"], ["Europe"]]
-```
-
-Note that, here, both the `[["Europe", "animal"], ["biggest"]]` and `[["animal", "biggest"], ["Europe"]]` is considered. This may correspond to finding a Wikipedia article relating to “Europe animal” then finding references to “biggest” within that as well as finding a Wikipedia article relating to “biggest animal” then finding references to “Europe”. One may provide better results than the other - this is the why considering these variants are so important.
-
-### Terminology
-
-I call a group of `terms` a `group`. A `group` is used when grouping certain terms as described. 
-
- A list of these `groups` is a `grouping` (the total hierarchal structure) but also may be called a `variation` since they can be thought of as being a variant of the hierarchal structure.
-
-Reminder: `terms` are internally `Token` objects not `strings`. (Internally, this may mean slightly faster semantic similarity calculation (more info later) - you don’t need to worry too much about it, though)
+Note on terminology: I call a group of `terms` a `group`. And a list of these `groups` is a `grouping` (but also may be called a `variation` since they can be thought of as being a variant of the hierarchal structure).
 
 ## Grouping Combinations
 
-When searching for pages relevant to the parsed terms, etc, we want to consider the different groupings of the terms for a fuller picture. E.g: both `[["home"], ["country"]] ` and `[["home", "country"]] ` (The difference being, in the first example, `home` and `country` are part of different, length-1 groups, whereas in the second example, they are grouped together and are part of the same group). To do this, essentially, we need to get every way of splitting a list into a list of lists.
+When searching for pages relevant to the parsed terms, we want to consider the different groupings of the terms for a fuller picture. E.g: both `[["animal"], ["biggest"]] ` and `[["animal", "biggst"]] `. (What if there was a page relating to ‘’biggest animals” directly?). Note: the structure is now a list __of groups__ of terms.
 
-The way I implemented this is by starting out by grouping everything together, then splitting the list at every possible position (based on the binary pattern). NB: this ‘where to split’ can be thought of as ‘where to put a comma’ to help with understanding.
+First of all, everything is grouped together into a list, then that list is split at every possible position. The spaces in-between items can be thought of ‘split positions’ or ‘places to put a comma’. Let’s say that $$1$$ means to split and $$0$$ to not. The ways of splitting, then, is simply the binary pattern up to $$2^{n-1}-1$$ where $$n​$$ is the length of the list. This is how where to split is decided. [View code](https://github.com/makurell/AnswerBot/blob/master/answerbot.py#L174){: target="_blank"}.
 
 ### Example:
 
@@ -181,7 +92,7 @@ split positions:   0   1   2
 
 Note: the number of different `split positions` is always one less than the length of the list because the only valid split positions are those in-between two elements.
 
-Let’s say 0 = no comma, 1 = comma. The possible split positions in this example will look like the following:
+Possible split positions (Binary pattern up to $$2^{4-1}-1$$):
 
 ```
 000
@@ -194,9 +105,7 @@ Let’s say 0 = no comma, 1 = comma. The possible split positions in this exampl
 111
 ```
 
-(positive integers in binary up to $$2^{n}-1$$ where $$n$$ is the number of split positions)
-
-Splitting a string `abcd` based on these positions will therefore look like:
+Splitting a string `abcd` based on these positions:
 
 ```
 abcd
@@ -209,43 +118,35 @@ a,b,cd
 a,b,c,d
 ```
 
-This can, of course, be extended for an input list of any length, and that is how I implemented the algorithm.
-
 ## Grouping Permutations
 
-For every grouping of the terms, we also want to consider all the different ways of ordering the different groups too. E.g: `[["country"], ["home"]]` should be considered as well as `[["home"], ["country"]]`.
+For every grouping of the terms, we also want to consider all the different ways of ordering them too. E.g: `[["country"], ["home"]]` should be considered as well as `[["home"], ["country"]]`.
 
-This is done using the standard-library `itertools`‘s `permutation` function.
+This is done using the standard-library `itertools`‘s `permutation` function. [View code](https://github.com/makurell/AnswerBot/blob/master/answerbot.py#L204).
 
 # Searching
 
-Now we have a list of “groupings” (variations) of groups of terms. This section deals with the searching for candidate pages and the parsing of relevant information from those pages for each variation.
-
 ## Candidate Searching
 
-Here, I use `candidate` to refer to a potentially relevant Wikipedia Page from which relevant information may potentially be extracted. The aim of this section is to find the best (most relevant) such candidates.
+Initially, the first group (which may consist of one or more keywords) of each of the different groupings are run through the Wikipedia search API (I used the python wrapper library called `wikipedia` for this) to get some initial candidate pages.
 
-Initially, the first group (which may consist of one or more keywords) of each of the different groupings are run through the Wikipedia search API (I used the python wrapper library called `wikipedia` for this) to get some initial candidates.
+The titles of the candidates then have the semantic similarity between them and the group of terms calculated (provided by SpaCy)  to serve as a metric for relevancy, and those under a certain threshold are discarded.
 
-The titles of the candidates then have the semantic similarity between them and the group of keywords calculated (provided by SpaCy)  to serve as a metric for relevancy, and those under a certain threshold are discarded.
-
-Relevancy metric (want to maximise) for a given page $$p$$:
+Relevancy metric (want to maximise) for a given page $$p$$ and grouping $$g$$:
 
 $$
 s(p_t,g_0)
 $$
 
-Where $$s(..,..)$$ is spacy’s semantic similarity function and $$g_0$$ corresponds to the 0-th group of the grouping (first group) and $$p_t$$ corresponds to the page’s title.
+Where $$s(..,..)$$ is spacy’s semantic similarity function, and $$p_t$$ corresponds to the page’s title. NB: $$g_0$$ corresponds to the 0-th group of the grouping (the first group).
 
-Only the titles are used for the elimination because getting the entire content for each candidate, given the amount of candidates at this stage, will mean an almost unfeasibly large number of additional API requests to be made to Wikipedia and may also mean that the semantic similarity calculations take longer to be performed (due to the size of the texts being considered). The amount of external API calls is tried to be kept to a minimum as much as possible because sending and receiving data over the internet takes a relatively long time and the wait times can quickly add up (also, excessive requests to Wikipedia is not very nice to their servers~)
+Only the titles are used for the elimination because getting the entire content for each candidate, given the amount of candidates at this stage, will mean a large number of additional API requests to be made to Wikipedia, which should be minimised because sending and receiving data over the internet takes a relatively long time (also, excessive requests to Wikipedia is not very nice to their servers).
 
 After the elimination, the contents of all the remaining pages are then downloaded through the API, and are kept in order of their relevancy levels - their “score”.
 
 ## Page Ranking
 
-Now that we have a list of potentially relevant Wikipedia pages as well as the list of groupings to be considered (from the parsing section), we can now start thinking of parsing relevant data.
-
-To start off the evaluation process, for each grouping, each page is ranked in terms of relevancy to the grouping. This is, again, done with SpaCy’s semantic similarity calculation functionality, however this time, the _whole contents_ of each page are considered.
+Now that we have the contents, for each grouping, each page is ranked in terms of relevancy to the _specific_ grouping. This is, again, done with SpaCy’s semantic similarity calculation functionality, however this time, the _whole contents_ of each page are considered.
 
 Ranking metric (want to maximise) for a given page:
 
@@ -253,48 +154,28 @@ $$
 \frac{\sum _i^{l\:}\:s\left(p_c,g_i\right)}{l}+s\left(p_t,g_0\right)
 $$
 
-| Notation     | Definition                                                   |
-| ------------ | ------------------------------------------------------------ |
-| $$g$$        | ‘grouping’ (list)                                            |
-| $$g_i$$      | $$i$$-th group of the ‘grouping’. The first group is when $$i = 0$$ |
-| $$s(..,..)$$ | spacy’s semantic similarity calculation function             |
-| $$p$$        | (Wikipedia) page                                             |
-| $$p_t$$      | page’s title                                                 |
-| $$p_c$$      | page’s content                                               |
-| $$l$$        | the length of the `grouping` object (number of `groups`)     |
+Where $$p_c$$ is the page’s content, and $$l$$ is the length of the grouping.
 
 ## Data Searching
 
-Now that we a list of groupings and a weighted list of candidate Wikipedia Pages, all that’s left to do is evaluate each variation - find the relevant data for each variation from the candidates. What this means, more precisely, is to find sentences, given a list of input sentences, that maximise relevancy to the groupings.
+Now we want to find sentences, given a list of input sentences, that maximise relevancy to the groupings.
 
 Remember that a `grouping` is a list of `groups` of terms. The list of `groups` in every `grouping` is iterated over, and all the sentences in the given input sentences are ranked by their relevancy to the `group`. All but the top (certain number of) sentences are then discarded. The remaining sentences is the list of sentences that is operated on in the next iteration (the scope). In this fashion, by eliminating less relevant sentences for each group, the most relevant sentences for each `grouping` are selected.
-
-The relevancy metric for a certain `group` of terms and a sentence is the semantic similarity calculation between the group and the sentences provided by `SpaCy` + the sum of the individual terms’ semantic similarity to the sentence divided by the number of terms (AKA: the average semantic similarity of the individual terms to the sentence). The second metric, however, part (the one representing the individual terms) is weighted (halved).
 
 The relevancy metric for a certain `group` of terms and a sentence is composed of two metrics:
 
 1. the semantic similarity (provided by SpaCy) between the group and the sentence
-2. The sentence has the same keywords parsing and arranging algorithm performed upon it as the one used on input questions (described in the [question parsing section](#parsing)). This metric is the average semantic similarity between each keyword extracted from the sentence and the group.
+2. The sentence has the same keywords parsing and arranging algorithm performed upon it as the one used on input questions (described in the [question parsing section](#parsing)). The metric is then the average semantic similarity between each keyword extracted from the sentence and the group.
 
 The 2<sup>nd</sup> metric is weighted (halved).
 
-The relevancy metric of a sentence to a `group` can be represented as (want to maximise):
+The relevancy metric of a sentence to a given `group` $$a$$ and sentence $$x$$ can be represented as (want to maximise):
 
 $$
 \sum _i^l\:s\left(x,\:a_i\right)+\frac{1}{2}\left(\sum _i^l\:\left(\frac{\sum _j^k\:s\left(a_i,\:p\left(x\right)_j\right)}{k}\right)\right)
 $$
 
-| Notation  | Definition                           |
-| --------- | ------------------------------------ |
-| $$a$$     | the group                            |
-| $$a_i$$   | i-th term of the group               |
-| $$x$$     | the sentence                         |
-| $$p(..)$$ | parsing algorithm - list of keywords |
-| $$l$$     | number of terms in the group         |
-| $$k$$     | number of keywords                   |
-| $$s(..,..)$$ | spacy’s semantic similarity calculation function             |
-
-
+Where $$p(..)$$ is the parsing algorithm, that returns a list of keywords and of length $$k$$.
 
 ---
 
@@ -303,8 +184,6 @@ $$
 A demonstration of the final program running. [You can find it here](https://github.com/makurell/AnswerBot).
 
 {% include youtube id='8yQCvzhGDkk' %}
-
-
 
 # Analysis
 
@@ -346,11 +225,9 @@ I ran a set of 59 questions through the program and recorded the following thing
 </g></g><path id="path170" style="fill:#da2626;fill-opacity:1;fill-rule:evenodd;stroke:none" d="m 699.65,208.46 h 5.9132 v 5.9132 H 699.65 Z"></path><path id="path172" style="fill:none;stroke:#ffffff;stroke-width:1.79429996;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" d="m 699.65,208.46 h 5.9132 v 5.9132 H 699.65 Z"></path><g id="g174"><g clip-path="url(#clipPath180)" id="g176"><text id="text184" style="font-variant:normal;font-weight:normal;font-size:10.77600002px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#595959;fill-opacity:1;fill-rule:nonzero;stroke:none" transform="matrix(1,0,0,-1,708.17,208.32)"><tspan id="tspan182" y="0" x="0 5.2910161 9.0518398 12.780336 18.502392">Error</tspan></text>
 </g></g><path id="path186" style="fill:none;stroke:#d9d9d9;stroke-width:0.89714998;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" d="m 50.88,79.989 h 739.97 v 435.37 H 50.88 Z"></path></g></svg>
 
-As you can see, at least a majority (61%) of the questions asked were successfully answered (the green sections). Also, 86% of the time, relevant information was given in some form.
+A majority (61%) of the questions were successfully answered (the green sections). Also, 86% of the time, relevant information was given in some form.
 
 ## Results Breakdown
-
-Let’s break down each type of result.
 
 <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" viewBox="67 110 988 575" xml:space="preserve" id="svg2" version="1.1"><metadata id="metadata8"><rdf:rdf><cc:work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"></dc:type></cc:work></rdf:rdf></metadata><defs id="defs6"><clipPath id="clipPath34" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path32" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath46" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path44" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath58" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path56" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath70" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path68" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath82" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path80" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath94" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path92" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath106" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path104" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath118" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path116" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath130" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path128" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath142" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path140" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath154" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path152" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath166" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path164" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath178" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path176" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath190" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path188" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath202" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path200" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath214" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path212" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath226" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path224" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath238" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path236" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath252" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path250" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath266" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path264" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath280" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path278" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath294" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path292" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath><clipPath id="clipPath308" clipPathUnits="userSpaceOnUse"><path style="clip-rule:evenodd" id="path306" d="M 50.88,83.28 H 790.92 V 511.8 H 50.88 Z"></path></clipPath></defs><g transform="matrix(1.3333333,0,0,-1.3333333,0,793.76)" id="g10"><path id="path12" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none" d="M 50.88,83.358 H 790.9 v 428.52 H 50.88 Z"></path><path id="path14" style="fill:none;stroke:#d9d9d9;stroke-width:0.85540003;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" d="M 214.98,469.58 V 135.91 m 79.66,333.67 V 135.91 m 79.79,333.67 V 135.91 m 79.79,333.67 V 135.91 m 79.65,333.67 V 135.91 m 79.8,333.67 V 135.91 m 79.79,333.67 V 135.91 m 79.7,333.67 V 135.91"></path><path id="path16" style="fill:#4472c4;fill-opacity:1;fill-rule:nonzero;stroke:none" d="M 294.64,148.37 H 135.19 v 16.7 h 159.45 z m 159.58,41.74 H 135.19 v 16.7 h 319.03 z m -279.2,41.75 h -39.83 v 16.69 h 39.83 z M 294.64,273.6 H 135.19 v 16.7 h 159.45 z m -39.83,41.61 H 135.19 v 16.69 h 119.62 z m 0,41.74 H 135.19 v 16.7 h 119.62 z"></path><path id="path18" style="fill:#ed7d31;fill-opacity:1;fill-rule:nonzero;stroke:none" d="m 334.6,148.37 h -39.96 v 16.7 h 39.96 z m 199.27,41.74 h -79.65 v 16.7 h 79.65 z m -318.89,41.75 h -39.96 v 16.69 h 39.96 z m 279.07,83.35 H 254.81 v 16.69 h 239.24 z"></path><path id="path20" style="fill:#a5a5a5;fill-opacity:1;fill-rule:nonzero;stroke:none" d="m 334.6,148.37 h 39.828 v 16.697 H 334.6 Z"></path><path id="path22" style="fill:#ffc000;fill-opacity:1;fill-rule:nonzero;stroke:none" d="M 733.29,148.37 H 374.43 v 16.7 h 358.86 z m -159.45,41.74 h -39.97 v 16.7 h 39.97 z m -279.2,41.75 h -79.66 v 16.69 h 79.66 z m 79.79,41.74 h -79.79 v 16.7 h 79.79 z m 239.24,41.61 H 494.05 v 16.69 h 119.62 z m -319.03,41.74 h -39.83 v 16.7 h 39.83 z m -119.62,41.74 h -39.83 v 16.7 h 39.83 z m 0,41.75 H 135.19 V 457 h 39.83 z"></path><path id="path24" style="fill:#5b9bd5;fill-opacity:1;fill-rule:nonzero;stroke:none" d="M 733.29,315.21 H 613.67 V 331.9 H 733.29 Z M 334.6,356.95 h -39.96 v 16.7 H 334.6 Z M 214.98,440.44 H 175.02 V 457 h 39.96 z"></path><path id="path26" style="fill:none;stroke:#d9d9d9;stroke-width:0.85540003;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" d="M 135.19,135.91 V 469.58"></path><g id="g28"><g clip-path="url(#clipPath34)" id="g30"><text id="text38" style="font-variant:normal;font-weight:normal;font-size:10.27200031px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#595959;fill-opacity:1;fill-rule:nonzero;stroke:none" transform="matrix(1,0,0,-1,132.6,119.59)"><tspan id="tspan36" y="0" x="0">0</tspan></text>
 </g></g><g id="g40"><g clip-path="url(#clipPath46)" id="g42"><text id="text50" style="font-variant:normal;font-weight:normal;font-size:10.27200031px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#595959;fill-opacity:1;fill-rule:nonzero;stroke:none" transform="matrix(1,0,0,-1,212.38,119.59)"><tspan id="tspan48" y="0" x="0">2</tspan></text>
@@ -377,10 +254,10 @@ Let’s break down each type of result.
 </g></g><path id="path300" style="fill:#5b9bd5;fill-opacity:1;fill-rule:evenodd;stroke:none" d="m 491.42,97.005 h 5.638 v 5.638 h -5.638 z"></path><g id="g302"><g clip-path="url(#clipPath308)" id="g304"><text id="text312" style="font-variant:normal;font-weight:normal;font-size:10.27200031px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#595959;fill-opacity:1;fill-rule:nonzero;stroke:none" transform="matrix(1,0,0,-1,499.51,96.84)"><tspan id="tspan310" y="0" x="0 6.8308802 10.272 15.592896 20.790527">Other</tspan></text>
 </g></g><path id="path314" style="fill:none;stroke:#d9d9d9;stroke-width:0.85540003;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" d="M 50.88,83.358 H 790.9 v 428.52 H 50.88 Z"></path></g></svg>
 
-From the above stacked bar chart, you can see the breakdown of what type of questions produced which results. From it, a couple things can clearly be seen:
+Above is a breakdown of what type of questions produced which results.
 
 - quite a large proportion of the `Top-Page + Item` results are achieved by `Info` type questions.
--  `Attribute` questions seem to largely result in only `Relevant` results. This can be explained by the program not putting extra emphasis on attribute keywords such as `when` and so only giving vague related information.
+- `Attribute` questions seem to largely result in only `Relevant` results. This can be explained by the program not putting extra emphasis on attribute keywords such as `when` and so only giving vague related information.
 - The amount of `Top-Page + Item` results and `Relevant` results are equal. This would imply it is just as likely that the program gives only `Relevant` information without answering the question as it is to give an immediate answer, right at the top of the results.
 - Of the times the question is answered, the majority of the time, it is answered with the answer right at the top of the results (`Top Page + Item`)
 
