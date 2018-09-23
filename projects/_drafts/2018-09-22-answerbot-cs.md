@@ -146,7 +146,7 @@ After the elimination, the contents of all the remaining pages are then download
 
 ## Page Ranking
 
-First of all, for each grouping, each page is ranked in terms of relevancy to the grouping. This is, again, done with SpaCy’s semantic similarity calculation functionality, however this time, the _whole contents_ of each page are considered.
+Now that we have the contents, for each grouping, each page is ranked in terms of relevancy to the grouping. This is, again, done with SpaCy’s semantic similarity calculation functionality, however this time, the _whole contents_ of each page are considered.
 
 Ranking metric (want to maximise) for a given page:
 
@@ -158,16 +158,14 @@ Where $$g$$ is the grouping (list of groups), $$p_t$$ is the page’s title.
 
 ## Data Searching
 
-Now that we a list of groupings and a weighted list of candidate Wikipedia Pages, all that’s left to do is evaluate each variation - find the relevant data for each variation from the candidates. What this means, more precisely, is to find sentences, given a list of input sentences, that maximise relevancy to the groupings.
+Now we want to find sentences, given a list of input sentences, that maximise relevancy to the groupings.
 
 Remember that a `grouping` is a list of `groups` of terms. The list of `groups` in every `grouping` is iterated over, and all the sentences in the given input sentences are ranked by their relevancy to the `group`. All but the top (certain number of) sentences are then discarded. The remaining sentences is the list of sentences that is operated on in the next iteration (the scope). In this fashion, by eliminating less relevant sentences for each group, the most relevant sentences for each `grouping` are selected.
-
-The relevancy metric for a certain `group` of terms and a sentence is the semantic similarity calculation between the group and the sentences provided by `SpaCy` + the sum of the individual terms’ semantic similarity to the sentence divided by the number of terms (AKA: the average semantic similarity of the individual terms to the sentence). The second metric, however, part (the one representing the individual terms) is weighted (halved).
 
 The relevancy metric for a certain `group` of terms and a sentence is composed of two metrics:
 
 1. the semantic similarity (provided by SpaCy) between the group and the sentence
-2. The sentence has the same keywords parsing and arranging algorithm performed upon it as the one used on input questions (described in the [question parsing section](#parsing)). This metric is the average semantic similarity between each keyword extracted from the sentence and the group.
+2. The sentence has the same keywords parsing and arranging algorithm performed upon it as the one used on input questions (described in the [question parsing section](#parsing)). The metric is then the average semantic similarity between each keyword extracted from the sentence and the group.
 
 The 2<sup>nd</sup> metric is weighted (halved).
 
