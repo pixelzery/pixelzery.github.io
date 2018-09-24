@@ -175,7 +175,7 @@ $$
 \sum _i^l\:s\left(x,\:a_i\right)+\frac{1}{2}\left(\sum _i^l\:\left(\frac{\sum _j^k\:s\left(a_i,\:p\left(x\right)_j\right)}{k}\right)\right)
 $$
 
-Where $$p(..)$$ is the parsing algorithm, that returns a list of keywords and of length $$k$$.
+Where $$p(..)$$ is the parsing algorithm, that returns a list of keywords of length $$k$$.
 
 ---
 
@@ -187,7 +187,7 @@ A demonstration of the final program running. [You can find it here](https://git
 
 # Analysis
 
-I ran a set of 59 questions through the program and recorded the following things for each question: Execution Time (in seconds), Result Classification and Question Type.
+I ran a set of 59 questions through the program and recorded the following things for each question: Execution Time (in seconds), Result Classification and Question Type. [Spreadsheet available here](https://docs.google.com/spreadsheets/d/1aaZbaLmO78emP0V25uU7My3EPFrqMlC_n1H1pCVWWJw/edit?usp=sharing).
 
 ### Result Classification
 
@@ -207,7 +207,7 @@ I ran a set of 59 questions through the program and recorded the following thing
 | Type      | Info                                                         |
 | --------- | ------------------------------------------------------------ |
 | Fact      | Answerable with a specific value, theoretically should be same independent of source |
-| Attribute | Searching for the attribute x of y (e.g age of y)            |
+| Attribute | Searching for the attribute x of y (e.g age of y, population of y) |
 | Search    | General search as opposed to question                        |
 | Info      | Answerable with information, not necessarily expecting a ‘value’ response |
 | Other     | Invalid/Improperly formed/Out of scope (asking for the time, etc) |
@@ -315,7 +315,7 @@ Here I’ve simplified the Result Classes to either `Answered` or `Unanswered`. 
 - Large majorities of the `Answered` questions are quite clearly `Info` and `Fact` type questions. This would suggest that there is a greater probability that the program will answer these types of questions correctly in comparison to the other types.
 - The `Unanswered` question types are very evenly split, which implies that there is no one type of question that has a greater tendency than the others to be unanswered.
 
-## Speed Distribution
+## Execution Time Distribution
 
 This program is quite slow to execute, especially in comparison to modern search engines. A large factor for this is the large amount of requests over the internet that it must make. This shall be investigated further later.
 
@@ -338,10 +338,11 @@ This program is quite slow to execute, especially in comparison to modern search
 </g></g><g id="g268"><g clip-path="url(#clipPath274)" id="g270"><text id="text278" style="font-variant:normal;font-weight:normal;font-size:10.34399986px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#595959;fill-opacity:1;fill-rule:nonzero;stroke:none" transform="matrix(1,0,0,-1,762.72,130.8)"><tspan id="tspan276" y="0" x="0 5.232008 10.464016">100</tspan></text>
 </g></g><g id="g280"><g clip-path="url(#clipPath286)" id="g282"><text id="text290" style="font-variant:normal;font-weight:normal;font-size:11.47200012px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#595959;fill-opacity:1;fill-rule:nonzero;stroke:none" transform="matrix(-4.4e-8,1,1,4.4e-8,76.272,277.3)"><tspan id="tspan288" y="0" x="0 5.2656479 9.2120161 14.85624 20.913456 26.970673 32.614895 38.672112 43.524769">Frequency</tspan></text>
 </g></g><g id="g292"><g clip-path="url(#clipPath298)" id="g294"><text id="text302" style="font-variant:normal;font-weight:normal;font-size:11.47200012px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#595959;fill-opacity:1;fill-rule:nonzero;stroke:none" transform="matrix(1,0,0,-1,398.9,113.62)"><tspan id="tspan300" y="0" x="0 4.8182402 10.863984 19.032047 24.699217 28.702944 31.456224 37.696991 43.742737 49.799953 55.857166 61.914383 64.380867 67.85688 72.250656">Upper Bound (s)</tspan></text>
-</g></g><g id="g304"><g clip-path="url(#clipPath310)" id="g306"><text id="text314" style="font-variant:normal;font-weight:normal;font-size:16.15200043px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#595959;fill-opacity:1;fill-rule:nonzero;stroke:none" transform="matrix(1,0,0,-1,360.26,475.15)"><tspan id="tspan312" y="0" x="0 7.4137678 15.893568 23.856504 31.851744 40.283089 43.981895 53.915375 57.630337 63.848858 69.259773 74.896828 78.611786 87.026978 95.458321 100.86924 104.5842 113.09631">Speed Distribution</tspan></text>
+</g></g><g id="g304"><g clip-path="url(#clipPath310)" id="g306"><text id="text314" style="font-variant:normal;font-weight:normal;font-size:16.15200043px;font-family:Calibri;-inkscape-font-specification:Calibri;writing-mode:lr-tb;fill:#595959;fill-opacity:1;fill-rule:nonzero;stroke:none" transform="matrix(1,0,0,-1,360.26,475.15)"><tspan id="tspan312" y="0" x="0 7.4137678 15.893568 23.856504 31.851744 40.283089 43.981895 53.915375 57.630337 63.848858 69.259773 74.896828 78.611786 87.026978 95.458321 100.86924 104.5842 113.09631">Time Distribution</tspan></text>
 </g></g><path id="path316" style="fill:none;stroke:#d9d9d9;stroke-width:0.86273003;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" d="m 50.989,96.188 h 740.02 v 402.93 H 50.989 Z"></path></g></svg>
 
-Above is a graph showing the speed distribution (in terms of frequency) for certain speeds. From the graph, it can be seen that the peak amount of times, the time taken for the program to execute is 0-10s. It can also be seen that the large majority of the time, it takes the program 0-30s to execute.
+
+Above is a graph showing the execution time distribution (in terms of frequency). From the graph, it can be seen that the peak amount of times, the time taken for the program to execute is 0-10s. It can also be seen that the large majority of the time, it takes the program 0-30s to execute.
 
 ## Time Complexity
 
