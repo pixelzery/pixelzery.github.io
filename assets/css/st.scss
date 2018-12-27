@@ -12,7 +12,7 @@
 //general
 body{
 	font-family: "Lato",#{$ffall};
-	font-size: 16px;
+	font-size: 17px;
 	@extend %tw;
 
 	@include max($wm){
@@ -377,6 +377,10 @@ $header-bar-height: 80px;
     position: fixed;
     width: 100%;
     z-index: 2;
+
+    @include prefix(box-shadow, rgba(0, 0, 0, 0.75) 0px 1px 20px 0px,webkit ms moz);
+    /*border-bottom: #888 1px solid;*/
+
     .header-container{
 	    width: 100%;
 	    height: 100%;
@@ -529,4 +533,10 @@ p { margin-bottom: 0.8rem; }
 ul,ol{
 	    margin-bottom: 0.8rem;
 }
+}
+
+// katex fix
+.katex-display{
+	overflow-x: auto;
+	overflow-y: hidden;
 }
