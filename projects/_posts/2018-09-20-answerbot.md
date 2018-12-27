@@ -2,6 +2,8 @@
 title: AnswerBot
 description: "A search engine for parsing and answering plain English questions using NLP techniques."
 image: /passets/5/demo3.png
+displaybox-syle: normal
+displaybox-yt: 8yQCvzhGDkk
 ---
 
 Is it possible to parse a natural language (plain English) question and gather relevant information for it from the internet using Natural Language Processing techniques? AnswerBot is the answer. [Code can be found here](https://github.com/makurell/AnswerBot).

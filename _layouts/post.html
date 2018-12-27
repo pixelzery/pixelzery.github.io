@@ -5,11 +5,23 @@ layout: default
 <div class="post">
 {% include header-bar.html %}
 <div class="header-pad"></div>
-{% capture img %}{% if page.image %}{{ page.image }}{% else %}{{ site.defaultimage }}{% endif %}{% endcapture %}
-<div class="header" style="background-image: url({{ img }});">
-<img class="header-img" src="{{ img }}">
-</div>
-{% include header-img-fb.html %}
+
+{% if page.displaybox or page.displaybox-yt %}
+	<div class="displaybox" style="{% if page.displaybox-style == 'wide' %}padding:0;{% endif %}">
+		{% if page.displaybox %}
+			<iframe src="{{ page.displaybox }}"></iframe>
+		{% elsif page.displaybox-yt %}
+			{% include youtube id=page.displaybox-yt %}
+		{% endif %}
+	</div>
+{% else %}
+	{% capture img %}{% if page.image %}{{ page.image }}{% else %}{{ site.defaultimage }}{% endif %}{% endcapture %}
+	<div class="header" style="background-image: url({{ img }});">
+	<img class="header-img" src="{{ img }}">
+	</div>
+	{% include header-img-fb.html %}
+{% endif %}
+
 <div class="container">
 <div class="post-header">
 	<h1>{{ page.title }}</h1>

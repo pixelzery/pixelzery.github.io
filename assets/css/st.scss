@@ -180,8 +180,31 @@ $header-img-height: 250px;
     @extend %flex
 }
 
+//displaybox
+// displaybox
+.displaybox{
+	height: inherit;
+    background: #111;
+    padding: 0 20%;
+    line-height: 0;
+
+    iframe{
+    	width: 100%;
+	    height: 34vw;
+	    @include max($wxl){
+			height: 40vw;
+		}
+		@include max($wl){
+			height: 44vw;
+		}
+		@include max($wm){
+			height: 55vw;
+		}
+    }
+}
+
 //navigation bar when in container - (used in about)
-.container{
+.container, .displaybox{
 	.nav-bar{
 		padding: 10px;
 		// padding-top: 30px;
@@ -193,8 +216,8 @@ $header-img-height: 250px;
 	}
 }
 
-//container
-.container{
+//container (+ displaybox)
+.container, .displaybox{
 	padding: 10px 20%;
 	width: 100%;
 
@@ -208,6 +231,14 @@ $header-img-height: 250px;
 		padding: 10px 5%;
 	}
 }
+
+// displaybox padding overriding
+.displaybox{
+	@include max($wm){
+		padding: 0;
+	}
+}
+
 //narrow container
 .container.narrow{
 	padding: 10px 8%;
