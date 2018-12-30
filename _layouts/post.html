@@ -9,7 +9,50 @@ layout: default
 {% if page.displaybox or page.displaybox-yt %}
 	<div class="displaybox" style="{% if page.displaybox-style == 'wide' %}padding:0;{% endif %}">
 		{% if page.displaybox %}
-			<iframe src="{{ page.displaybox }}"></iframe>
+		<div class="displaybox-iframe-holder">
+			<iframe src="{{ page.displaybox }}" class="displaybox-iframe"></iframe>
+			<script>
+			$(document).ready(function(){
+				
+				var num = 10;
+				var scrollHooked = false;
+
+				function resizeFr() {
+					var el = $(".displaybox-iframe");
+
+					el[0].style.height='0';
+					el[0].style.height=el.contents().height()+60+'px';
+				}
+
+				$(window).resize(function(){
+					num=100;
+				});
+
+				setInterval(function(){
+					if(num<=0){
+						if(!scrollHooked){
+							$(window).scroll(function(){
+								num=0;
+							});
+							scrollHooked = true;
+						}
+						return;
+					}
+					resizeFr();
+					num-=1;
+				},10);
+
+			});
+			</script>
+		</div>
+		<!-- <style>
+			.displaybox-iframe{
+				height: 76vw;
+				width: 64vw;
+				max-height: 75vh;
+				max-width: 72vh;
+			}
+		</style> -->
 		{% elsif page.displaybox-yt %}
 			{% include youtube id=page.displaybox-yt %}
 		{% endif %}

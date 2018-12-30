@@ -186,21 +186,31 @@ $header-img-height: 250px;
 	height: inherit;
     background: #111;
     padding: 0 20%;
-    line-height: 0;
+	line-height: 0;
 
-    iframe{
-    	width: 100%;
-	    height: 34vw;
-	    @include max($wxl){
-			height: 40vw;
+	.displaybox-iframe-holder{
+		background: white;
+
+		iframe{
+			width: 100%;
+			max-width: 75vh;
+			border: none;
+			background: white;
+			padding: 20px;
+			display: block;
+			margin: 0 auto;
+		//     height: 34vw;
+		//     @include max($wxl){
+		// 		height: 40vw;
+		// 	}
+		// 	@include max($wl){
+		// 		height: 44vw;
+		// 	}
+		// 	@include max($wm){
+		// 		height: 55vw;
+		// 	}
 		}
-		@include max($wl){
-			height: 44vw;
-		}
-		@include max($wm){
-			height: 55vw;
-		}
-    }
+	}
 }
 
 //navigation bar when in container - (used in about)

@@ -2,7 +2,7 @@ var c = document.getElementById('ceq12'),
 cx = c.getContext('2d');
 
 function resizeCanvas() {
-    c.width = window.innerWidth;
+    c.width = c.parentElement.clientWidth;
     c.height = c.width*(3/4); // ratio
     draw();
 }
@@ -56,36 +56,89 @@ function drawHeart(x,y,s){
         }
     }
 
+    // options handling
     var filled = document.getElementsByClassName('eq12filled')[0].checked;
 
-    if(!filled){
-        // top
-        cx.fillStyle = '#F25F5C';
-        path(false); // false = positive sqrt
+    var col1 = document.getElementsByClassName('eq12col1')[0];
+    var col2 = document.getElementsByClassName('eq12col2')[0];
 
-        // bottom
-        cx.fillStyle = '#247BA0';
-        path(true); // true = negative sqrt
+    var unicolour = document.getElementsByClassName('eq12unicol')[0].checked;
+    col2.disabled = unicolour;
+
+    var topcol = col1.value;
+    var botcol = col2.value;
+    if(unicolour){
+        botcol = topcol;
+    }
+
+    // drawing
+    // top
+    cx.fillStyle = topcol;
+    if(!filled){
+        path(false);
     }else{
-        // top
-        cx.fillStyle = '#F25F5C';
         cx.beginPath();
-        path(false, true); // false = positive sqrt
+        path(false,true);
         cx.closePath();
         cx.fill();
+    }
 
-        // bottom
-        cx.fillStyle = '#247BA0';
+    // bottom
+    cx.fillStyle = botcol;
+    if(!filled){
+        path(true);
+    }else{
         cx.beginPath();
-        path(true, true); // true = negative sqrt
+        path(true,true);
         cx.closePath();
         cx.fill();
     }
 }
 
+// drag handling
+var hx = cx.canvas.width/2; // heart x coord
+var hy = cx.canvas.height/2; // heart y coord
+
+var hx1 = hx;
+var hy1 = hy;
+
+var mousex1 = 0;
+var mousey1 = 0;
+var mouseDown = false;
+
+c.addEventListener("mousedown",function(e){
+    mouseDown = true;
+    mousex1 = e.clientX;
+    mousey1 = e.clientY;
+    hx1=hx;
+    hy1=hy;
+},false);
+
+c.addEventListener("mouseup",function(e){
+    mouseDown = false;
+},false);
+
+c.addEventListener("mousemove",function(e){
+    if(!mouseDown){
+        return;
+    }
+
+    var dx = e.clientX - mousex1;
+    var dy = e.clientY - mousey1;
+
+    if(dy*dy+dx*dx<100){
+        // barely moved, disregard
+        return;
+    }
+
+    hx=hx1+dx;
+    hy=hy1+dy;
+
+},false);
+
 function draw(){
     var size = document.getElementsByClassName('eq12size')[0].value;
-    drawHeart(cx.canvas.width/2,cx.canvas.height/2,cx.canvas.width*(size/1000));
+    drawHeart(hx,hy,cx.canvas.width*(size/1000));
 }
 
 setInterval(function(){
