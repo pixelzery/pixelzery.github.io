@@ -258,6 +258,7 @@ $header-img-height: 250px;
 //content
 .content{
 	font-family: "Lato",#{$ffall};
+	padding-bottom: 5rem;
 }
 
 //grid stuff
@@ -545,6 +546,7 @@ h1,h2{
 
 .contentbox{
 	padding: 20px;
+	padding-bottom: 0.8rem;
     border: solid #ccc;
 }
 
