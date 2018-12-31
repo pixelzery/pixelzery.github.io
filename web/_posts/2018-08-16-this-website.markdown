@@ -26,4 +26,3 @@ In the past 10 days of work on this website since its conception, a total of 94 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ffmpeg -r 5 -i about/%03d.png -c:v libxvid -b:v 16000k -pix_fmt yuv420p about.avi</code></pre></div></div>
 
 <p>Then I added fade and text ‘n stuff~</p>
-{% include endc %}
