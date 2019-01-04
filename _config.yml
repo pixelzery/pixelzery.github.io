@@ -1,29 +1,33 @@
 title: Makurell
-description: >-
-  Starry projects ☆
+description: Hi, I'm Abhinav Bhandari and welcome to the projects and notes of a Python/C#/JS developer, Machine Learning explorer and all-round Computer Science enthusiast!
 
 author:
-  name:    makurell
+  name:    Abhinav Bhandari
   twitter: makurell
   github:  makurell
-  instagram:  makurell
   email:   makureoll@gmail.com
 
 baseurl: ""
 url: "http://makurell.github.io"
 gh: "http://github.com/makurell"
-repository: makurell/makurell.github.io
 
 defaultimage: "/assets/images/default.jpg"
 
 permalink: /:categories/:title/
 
+# seo
+social:
+  name: Abhinav Bhandari
+  links:
+    - https://twitter.com/makurell
+    - https://github.com/makurell
 
 # Build stuff:
 markdown: kramdown
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-seo-tag
 sass:
   sass_dir: _sass
   style: compressed

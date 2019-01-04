@@ -7,7 +7,10 @@ layout: default
 <div class="home-header">
 	<div class="header-bar container">
 		<div class="header-container">
-			<div class="titleholder"><h1><a href="/">{{ site.title }}</a></h1></div>
+			<div class="titleholder">
+				<h1><a href="/">{{ site.title }}</a></h1>
+				<h2>{{ site.description }}</h2>
+			</div>
 			{% include nav-inline.html %}
 		</div>
 	</div>
@@ -15,9 +18,11 @@ layout: default
 <div class="header-pad"></div>
 {% include home-scrollpast.html %}
 
+
 <div class="container narrow">
-<div class="content">
-{{ content }}
+	<div class="content">
+	{{ content }}
+	</div>
 </div>
-</div>
+
 </div>
