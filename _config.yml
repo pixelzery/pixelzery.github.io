@@ -1,15 +1,15 @@
-title: Makurell
+title: PixelZerg
 description: Hi, I'm Abhinav Bhandari and welcome to the projects of a Python/C#/JS developer, Machine Learning explorer and all-round Computer Science enthusiast!
 
 author:
   name:    Abhinav Bhandari
   twitter: makurell
-  github:  makurell
-  email:   makureoll@gmail.com
+  github:  pixelzerg
+  email:   pixelzerg@gmail.com
 
 baseurl: ""
-url: "http://makurell.github.io"
-gh: "http://github.com/makurell"
+url: "http://pixelzerg.github.io"
+gh: "http://github.com/pixelzerg"
 
 defaultimage: "/assets/images/default.jpg"
 
@@ -20,7 +20,7 @@ social:
   name: Abhinav Bhandari
   links:
     - https://twitter.com/makurell
-    - https://github.com/makurell
+    - https://github.com/pixelzerg
 
 # Build stuff:
 markdown: kramdown
