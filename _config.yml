@@ -3,7 +3,7 @@ description: Hi, I'm Abhinav Bhandari and welcome to the projects of a Python/C#
 
 author:
   name:    Abhinav Bhandari
-  twitter: makurell
+  twitter: pixelzerg
   github:  pixelzerg
   email:   pixelzerg@gmail.com
 
@@ -19,7 +19,7 @@ permalink: /:categories/:title/
 social:
   name: Abhinav Bhandari
   links:
-    - https://twitter.com/makurell
+    - https://twitter.com/pixelzerg
     - https://github.com/pixelzerg
 
 # Build stuff:
