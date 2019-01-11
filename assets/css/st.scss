@@ -193,7 +193,7 @@ $header-img-height: 250px;
 
 		iframe{
 			width: 100%;
-			max-width: 75vh;
+			max-width: 55vh;
 			border: none;
 			background: white;
 			padding: 20px;
@@ -210,6 +210,10 @@ $header-img-height: 250px;
 		// 		height: 55vw;
 		// 	}
 		}
+	}
+
+	.youtube{
+		max-width: 1000px;
 	}
 }
 
@@ -599,4 +603,37 @@ ul,ol{
 .katex-display{
 	overflow-x: auto;
 	overflow-y: hidden;
+}
+
+//linksbox (not to be confused with linkbox)
+.linksbox{
+	$col: #6a737d;
+
+    padding: 4.8px 16px; //fallback
+	padding: 0.3rem 1rem;
+    background: $col;
+	text-align: center;
+	margin-bottom: 17.5px;
+	@include rounded(8px);
+	
+	.nav-bar{
+		padding: 0;
+		background: $col;
+
+		.opt{
+			color: #fff;
+			
+			font-size: 18.7px;
+
+			@include max($wm){
+				font-size: 16.5px;
+			}
+			@include max($wml){
+				font-size: 15px;
+			}
+			@include max($wxs){
+				font-size: 8.7vw;
+			}
+		}
+	}
 }
