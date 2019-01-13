@@ -7,6 +7,8 @@ displaybox-yt: 8yQCvzhGDkk
 links:
   - GitHub Page: https://github.com/PixelZerg/AnswerBot
   - Video: https://www.youtube.com/watch?v=8yQCvzhGDkk
+redirect_from:
+    - "/projects/answerbot/"
 ---
 
 Is it possible to parse a natural language (plain English) question and gather relevant information for it from the internet using Natural Language Processing techniques? AnswerBot is the answer. [Code can be found here](https://github.com/makurell/AnswerBot).

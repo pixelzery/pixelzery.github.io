@@ -1,0 +1,49 @@
+---
+layout: default
+---
+
+<div class="page">
+
+{% include header-bar.html %}
+<div class="home-header">
+    <div class="header-bar container">
+        <div class="header-container">
+            <div class="titleholder">
+                <h1><a href="/">{{ site.title }}</a></h1>
+            </div>
+            {% include nav-inline.html %}
+        </div>
+    </div>
+</div>
+<div class="header-pad"></div>
+{% include home-scrollpast.html %}
+
+
+<div class="container narrow">
+    {% if page.title %}
+    <div class="post-header">
+        <h1>{{ page.title }}</h1>
+        <div class="meta">{% if page.description %}{{ page.description }}{% endif %}</div>
+    </div>
+    {% endif %}
+
+    <div class="content">
+        <div class="grid">
+        <div class="gridbox">
+        {% for post in site.posts %}
+        <div class="grid-item">
+            <div class="post-item">
+                <a href="{{ post.url }}" class="post-image-holder"><div class="post-image" style="background-image: url({% if post.thumb %}{{ post.thumb }}{% elsif post.image %}{{ post.image }}{% else %}{{ site.defaultimage }}{% endif %});{% if post.background %}background:{{ post.background }}{% endif %};">
+                </div></a>
+                <a href="{{ post.url }}" class="linkbox"><div class="linkbox-inner"><h2 class="title">{{ post.title }}</h2><p>{% if post.description %}{{ post.description }}{% else %}{{ post.content | markdownify | strip_html | truncate: 100 }}{% endif %}</p></div></a>
+            </div>
+        </div>
+        {% endfor %}
+        {% include post-item-fb.html %}
+        </div>
+        </div>
+    </div>
+
+</div>
+
+</div>

@@ -1,0 +1,4 @@
+---
+tag: articles
+permalink: "/articles/"
+---

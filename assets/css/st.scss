@@ -157,7 +157,14 @@ $header-img-height: 250px;
 	    font-family: "Lato",#{$ffall};
 	    margin-bottom: 16px;
 	}
+}
 
+// post header when under page/home
+.page, .home{
+	.post-header{
+		max-width: 1152px;
+		margin: 0 auto;
+	}
 }
 
 //navigation bar

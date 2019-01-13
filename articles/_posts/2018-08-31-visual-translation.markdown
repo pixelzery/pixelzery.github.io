@@ -3,9 +3,9 @@ title: Visual Translation
 layout: post
 image: "/passets/3/5.png"
 thumb: "/passets/3/8.png"
-background: "#eee"
-imgcode: "passets/3/logo.html"
 description: 'Highlighting on hover - an intuitive way of visualising translations on the web.'
+redirect_from:
+    - "/web/visual-translation/"
 ---
 
 With translation, a whole lot of information is lost - you wouldn't really be able to see from a traditionally translated version of some text, which characters in the original correspond to what (unless you can understand the original too).
