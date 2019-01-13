@@ -1,5 +1,5 @@
 {% capture img %}{% if post.thumb %}{{ post.thumb }}{% elsif post.image %}{{ post.image }}{% endif %}{% endcapture %}
-<div class="grid-item">
+<div class="grid-item {% if img == '' %}noimg{% endif %}">
     <div class="post-item {% if img == '' %}noimg{% endif %}">
         <a href="{{ post.url }}" class="post-image-holder">
             {% unless img == '' %}

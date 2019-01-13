@@ -1,18 +1,22 @@
-<script>
-$(window).on('resize', updtPostItems);
-updtPostItems();
-function updtPostItems(){
-  if(window.innerWidth>591){
-    var biggest=0;
-    $('.linkbox-inner').each(function(i, obj) {
-        var temp = $(obj).height();
-        if(temp>biggest){
-          biggest=temp;
-        }
-    });
-    $('.linkbox').css('height',(biggest+50)+'px');
-  }else{
-    $('.linkbox').css('height','inherit');
-  }
+<style class="masonry-nojs">
+/* if no js, this style will be used */
+.grid .gridbox .grid-item.noimg {
+    width: 100%;
 }
+.grid-item.noimg .post-item.noimg .linkbox{
+    height: inherit;
+}
+</style>
+
+<script src="/assets/js/magic-grid.min.js"></script>
+<script>
+// js available
+$('.masonry-nojs').remove();
+$('.linkbox').css('height', 'inherit');
+new MagicGrid({
+  container: ".gridbox",
+  static: true,
+  animate: true,
+  gutter: -2,
+}).listen();
 </script>

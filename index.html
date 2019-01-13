@@ -40,9 +40,7 @@ layout: default
 		<div class="grid">
 		<div class="gridbox">
 		{% for post in site.posts %}
-			{% unless post.categories contains "notes" %}
 			{% include post-item.html %}
-			{% endunless %}
 		{% endfor %}
 		{% include post-item-fb.html %}
 		</div>
