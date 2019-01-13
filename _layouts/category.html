@@ -34,7 +34,7 @@ layout: default
                 {% for cat in site.categories %}
                 {% if cat[0] == norm-title %}
                     {% for post in cat[1] %}
-                    {% include linkbox.html %}
+                    {% include post-item.html %}
                     {% endfor %}
                 {% endif %}
                 {% endfor %}

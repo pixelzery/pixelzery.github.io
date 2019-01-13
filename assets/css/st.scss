@@ -424,6 +424,13 @@ $header-img-height: 250px;
 	}
 }
 
+// post-item without image
+.post-item.noimg{
+	.linkbox{
+		@include rounded(8px);
+	}
+}
+
 //header-bar
 $header-bar-height: 80px;
 .header-bar{
