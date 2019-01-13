@@ -1,4 +1,7 @@
 <div class="nav-inline">
-	<a class="{% if page.title == 'Home' %}cur{% endif %}" href="/">Home</a>
+    <a class="{% if page.title == 'Home' %}cur{% endif %}" href="/">Home</a>
+    {% for cat in site.category %}
+    <a class="{% if page.title == cat.title  %}cur{% endif %}" href="{{ cat.url }}">{{ cat.title }}</a>
+    {% endfor %}
 	<a class="{% if page.title == 'About' %}cur{% endif %}" href="/about/">About</a>
 </div>

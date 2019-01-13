@@ -2,7 +2,14 @@
 layout: page
 title: About
 permalink: /about/
+description: "Who am I?"
 ---
+
+<script>
+{% for cat in site.category %}
+    {{ cat.title }}
+{% endfor %}
+</script>
 
 Hello, my name's Abhinav Bhandari. I am a {% include myage.html %} old person living in the UK who likes to experiment and create things. (Yes, I generated that age text).
 
