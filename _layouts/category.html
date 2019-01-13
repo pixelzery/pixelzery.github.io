@@ -30,15 +30,14 @@ layout: default
     <div class="content">
         <div class="grid">
         <div class="gridbox">
-        {% for post in site.posts %}
-        <div class="grid-item">
-            <div class="post-item">
-                <a href="{{ post.url }}" class="post-image-holder"><div class="post-image" style="background-image: url({% if post.thumb %}{{ post.thumb }}{% elsif post.image %}{{ post.image }}{% else %}{{ site.defaultimage }}{% endif %});{% if post.background %}background:{{ post.background }}{% endif %};">
-                </div></a>
-                <a href="{{ post.url }}" class="linkbox"><div class="linkbox-inner"><h2 class="title">{{ post.title }}</h2><p>{% if post.description %}{{ post.description }}{% else %}{{ post.content | markdownify | strip_html | truncate: 100 }}{% endif %}</p></div></a>
-            </div>
-        </div>
-        {% endfor %}
+                {% capture norm-title %}{{ page.title | slugify }}{% endcapture %}
+                {% for cat in site.categories %}
+                {% if cat[0] == norm-title %}
+                    {% for post in cat[1] %}
+                    {% include linkbox.html %}
+                    {% endfor %}
+                {% endif %}
+                {% endfor %}
         {% include post-item-fb.html %}
         </div>
         </div>
