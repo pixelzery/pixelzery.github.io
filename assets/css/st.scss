@@ -43,16 +43,17 @@ footer{
 
 //page header
 .page,.post{
-	.header{
-			.titleholder{
-		    padding: 5vh 0;
-		    padding-bottom: 1vh;
+	.home-header
+	.header-bar
+	.header-container
+	.titleholder{
+			padding: 7vh 0;
+			// padding-bottom: 1vh;
 
-		    h1{
-		    	font-size: 45px;
-		    	font-weight: 300;
-		    }
-		}
+			// h1{
+			// 	font-size: 45px;
+			// 	font-weight: 300;
+			// }
 	}
 }
 
@@ -424,7 +425,8 @@ $header-bar-height: 80px;
     width: 100%;
     z-index: 2;
 
-    @include prefix(box-shadow, rgba(0, 0, 0, 0.75) 0px 1px 20px 0px,webkit ms moz);
+	@include prefix(box-shadow, rgba(0, 0, 0, 0.75) 0px 1px 20px 0px,webkit ms moz);
+	@include prefix(transform, translateZ(0),webkit ms moz); // flickering on Chrome
     /*border-bottom: #888 1px solid;*/
 
     .header-container{
@@ -564,9 +566,9 @@ $header-bar-height: 80px;
 		}
 	}
 }
-.home{
+.home, .page{
 	.header-pad{
-		height: 0;
+		height: 0px;
 	}
 }
 
