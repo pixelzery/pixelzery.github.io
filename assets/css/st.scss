@@ -157,7 +157,14 @@ $header-img-height: 250px;
 	    font-family: "Lato",#{$ffall};
 	    margin-bottom: 16px;
 	}
+}
 
+// post header when under page/home
+.page, .home{
+	.post-header{
+		max-width: 1152px;
+		margin: 0 auto;
+	}
 }
 
 //navigation bar
@@ -358,8 +365,10 @@ $header-img-height: 250px;
 	.post-image-holder{
 		overflow: hidden;
 		@include border-radius(8px,8px,0,0);
+		box-shadow: 8px -10px 36px rgba(39,44,49,.03), 1px -3px 7px rgba(39,44,49,.04);
+
 		.post-image{
-			height: 200px;
+			height: 250px;
 			width: 100%;
 
 		    background-size: cover;
@@ -381,7 +390,7 @@ $header-img-height: 250px;
 	.linkbox{
 	    height: 170px;
 	    overflow: hidden;
-		padding: 10px 20px;
+		padding: 20px 40px;
 		text-align: center;
 
 		@include border-radius(0,0,8px,8px);
@@ -405,20 +414,35 @@ $header-img-height: 250px;
 		@include max(820px){
 			.post-image-holder{
 				.post-image{
-					height: 150px;
+					height: 200px;
 				}
+			}
+			.linkbox{
+				padding: 20px 20px;
 			}
 		}
 	}
 	@include max(591px){
+		.post-image-holder .post-image{
+			height: 45vw;
+		}
 		.linkbox{
 			height: inherit; //1 col so no longer need to worry
+			padding: 15px 20px;
 		}
 	}
 }
 
+// post-item without image
+.post-item.noimg{
+	.linkbox{
+		box-shadow: 8px -10px 36px rgba(39,44,49,.03), 1px -3px 7px rgba(39,44,49,.04);
+		@include rounded(8px);
+	}
+}
+
 //header-bar
-$header-bar-height: 80px;
+$header-bar-height: 90px;
 .header-bar{
 	@extend %tb;
 	height: $header-bar-height;
@@ -437,7 +461,9 @@ $header-bar-height: 80px;
 	    display: table; //fallback
 	    display: flex;
 	    align-items: center;
-	    justify-content: center;
+		justify-content: center;
+		text-align: center;
+
 	    a{
 	    	color: $cw;
 	    	&:hover{
@@ -450,6 +476,7 @@ $header-bar-height: 80px;
 	    }
 	    h1{
 	    	padding: 0;
+			padding-top: 7px; // fb
 	    	flex: 1;
 	    }
 
@@ -475,18 +502,41 @@ $header-bar-height: 80px;
 }
 
 //height updates
-@supports(display: flex){
-	//if not using fallback version, can afford smaller height
-	//special case: ie11 supports flex but not @supports
-	$header-bar-height: 65px;
+@include min($wmx + 1px){
+	@supports(display: flex){
+		//if not using fallback version, can afford smaller height
+		//special case: ie11 supports flex but not @supports
+		$header-bar-height: 65px;
+		.header-bar{
+			height: $header-bar-height;
+
+			.header-container{
+				text-align: left;
+				h1{
+					padding: 0;
+				}
+			}
+		}
+		.header-pad{
+			height: $header-bar-height;
+		}
+		.post .header .header-img{
+			top: $header-bar-height;
+		}
+	}
+}
+
+@include max($wmx){
 	.header-bar{
-		height: $header-bar-height;
-	}
-	.header-pad{
-		height: $header-bar-height;
-	}
-	.post .header .header-img{
-		top: $header-bar-height;
+		.header-container{
+			display: table;
+			text-align: center;
+
+			h1{
+				padding: 0;
+				padding-top: 7px;
+			}
+		}
 	}
 }
 

@@ -1,0 +1,48 @@
+---
+layout: default
+---
+
+<div class="page">
+
+{% include header-bar.html %}
+<div class="home-header">
+    <div class="header-bar container">
+        <div class="header-container">
+            <div class="titleholder">
+                <h1><a href="/">{{ site.title }}</a></h1>
+            </div>
+            {% include nav-inline.html %}
+        </div>
+    </div>
+</div>
+<div class="header-pad"></div>
+{% include home-scrollpast.html %}
+
+
+<div class="container narrow">
+    {% if page.title %}
+    <div class="post-header">
+        <h1>{{ page.title }}</h1>
+        <div class="meta">{% if page.description %}{{ page.description }}{% endif %}</div>
+    </div>
+    {% endif %}
+
+    <div class="content">
+        <div class="grid">
+        <div class="gridbox">
+                {% capture norm-title %}{{ page.title | slugify }}{% endcapture %}
+                {% for cat in site.categories %}
+                {% if cat[0] == norm-title %}
+                    {% for post in cat[1] %}
+                    {% include post-item.html %}
+                    {% endfor %}
+                {% endif %}
+                {% endfor %}
+        {% include post-item-fb.html %}
+        </div>
+        </div>
+    </div>
+
+</div>
+
+</div>

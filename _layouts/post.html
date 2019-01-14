@@ -58,17 +58,26 @@ layout: default
 		{% endif %}
 	</div>
 {% else %}
-	{% capture img %}{% if page.image %}{{ page.image }}{% else %}{{ site.defaultimage }}{% endif %}{% endcapture %}
-	<div class="header" style="background-image: url({{ img }});">
+	{% if page.image %}
+	<div class="header" style="background-image: url({{ page.image }});">
 	<img class="header-img" src="{{ img }}">
 	</div>
+	{% endif %}
 	{% include header-img-fb.html %}
 {% endif %}
 
 <div class="container">
 <div class="post-header">
 	<h1>{{ page.title }}</h1>
-	<div class="meta">{{ page.date | date: "%d %b, %Y" }}{% if page.categories %} - {{ page.categories | join: ', ' }}{% endif %}</div>
+	<div class="meta">
+		<span>{{ page.date | date: "%d %b, %Y" }}</span>
+		{% if page.categories %}
+		<span> - </span>
+			{% for cat in page.categories %}
+			<a href="/{{ cat }}/">{{ cat | capitalize }}</a>
+			{% endfor %}
+		{% endif %}
+	</div>
 
 	{% if page.links %}
 	<div class="linksbox">
@@ -83,6 +92,9 @@ layout: default
 	{% endif %}
 </div>
 <div class="content">
+	{% if page.categories contains 'notes' %}
+		<p>{{ page.description | markdownify }}</p>
+	{% endif %}
 {{ content }}
 </div>
 </div>

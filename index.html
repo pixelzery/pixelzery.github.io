@@ -1,26 +1,52 @@
 ---
 title: Home
-layout: home
+layout: default
 ---
 
-<div class="grid">
-<div class="gridbox">
-{% for post in site.posts %}
-<div class="grid-item">
-	<div class="post-item">
-		<a href="{{ post.url }}" class="post-image-holder"><div class="post-image" style="background-image: url({% if post.thumb %}{{ post.thumb }}{% elsif post.image %}{{ post.image }}{% else %}{{ site.defaultimage }}{% endif %});{% if post.background %}background:{{ post.background }}{% endif %};">
-			{% if post.imgcode %}
-			<div class="imgcode-holder">
-				<div class="imgcode">
-					<div>{% include_relative {{ post.imgcode }} %}</div>
-				</div>
+<div class="home">
+
+{% include header-bar.html %}
+<div class="home-header">
+	<div class="header-bar container">
+		<div class="header-container">
+			<div class="titleholder">
+				<h1><a href="/">{{ site.title }}</a></h1>
+				<h2>{{ site.description }}</h2>
 			</div>
-			{% endif %}
-		</div></a>
-		<a href="{{ post.url }}" class="linkbox"><div class="linkbox-inner"><h2 class="title">{{ post.title }}</h2><p>{% if post.description %}{{ post.description }}{% else %}{{ post.content | markdownify | strip_html | truncate: 100 }}{% endif %}</p></div></a>
+			{% include nav-inline.html %}
+		</div>
 	</div>
 </div>
-{% endfor %}
-{% include post-item-fb.html %}
+<div class="header-pad"></div>
+{% include home-scrollpast.html %}
+
+
+<div class="container narrow">
+	{% if 1 == 1 %}
+		{% if page.title %}
+		<div class="post-header">
+			<h1>{{ page.title }}</h1>
+			<div class="meta">An amalgamation of all my most recent posts. For more, see the menu above.</div>
+			{% comment %}wrote desc inline because don't want SEO to pick it up ^{% endcomment %}
+		</div>
+		{% endif %}
+	{% else %}
+		<div class="post-header">
+			<div class="meta"></div>
+		</div>
+	{% endif %}
+
+	<div class="content">
+		<div class="grid">
+		<div class="gridbox">
+		{% for post in site.posts %}
+			{% include post-item.html %}
+		{% endfor %}
+		{% include post-item-fb.html %}
+		</div>
+		</div>
+	</div>
+
 </div>
+
 </div>

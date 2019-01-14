@@ -3,8 +3,6 @@ title: Visual Translation
 layout: post
 image: "/passets/3/5.png"
 thumb: "/passets/3/8.png"
-background: "#eee"
-imgcode: "passets/3/logo.html"
 description: 'Highlighting on hover - an intuitive way of visualising translations on the web.'
 redirect_from:
     - "/web/visual-translation/"

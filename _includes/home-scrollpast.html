@@ -14,7 +14,6 @@ function updt(){
 var down=false;
 $(window).scroll(function(){
     if($(window).scrollTop() > t && !down){
-    	console.log('down');
     	down=true;
     	$('.home-header .nav-inline a').css("display","none");
     	$('.home-header .nav-inline a').animate({
@@ -25,7 +24,6 @@ $(window).scroll(function(){
 		},200);
     }
     else if($(window).scrollTop() < t & down){
-    	console.log('up');
     	down=false;
 		$('.home-header .header-bar').css("height","inherit");
 		$('.home-header .nav-inline a').css("display","inline");
