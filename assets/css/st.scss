@@ -354,6 +354,7 @@ $header-img-height: 250px;
 }
 
 //post-item
+$post-round: 5px;
 .post-item{
 	height: inherit;
 	margin: 10px;
@@ -364,8 +365,8 @@ $header-img-height: 250px;
 	}
 	.post-image-holder{
 		overflow: hidden;
-		@include border-radius(8px,8px,0,0);
-		box-shadow: 8px -10px 36px rgba(39,44,49,.03), 1px -3px 7px rgba(39,44,49,.04);
+		@include border-radius($post-round,$post-round,0,0);
+		box-shadow: $post-round -10px 36px rgba(39,44,49,.03), 1px -3px 7px rgba(39,44,49,.04);
 
 		.post-image{
 			height: 250px;
@@ -393,7 +394,7 @@ $header-img-height: 250px;
 		padding: 20px 40px;
 		text-align: center;
 
-		@include border-radius(0,0,8px,8px);
+		@include border-radius(0,0,$post-round,$post-round);
 		@extend %tb;
 
 	    h2{
@@ -437,7 +438,7 @@ $header-img-height: 250px;
 .post-item.noimg{
 	.linkbox{
 		box-shadow: 8px -10px 36px rgba(39,44,49,.03), 1px -3px 7px rgba(39,44,49,.04);
-		@include rounded(8px);
+		@include rounded($post-round);
 	}
 }
 
