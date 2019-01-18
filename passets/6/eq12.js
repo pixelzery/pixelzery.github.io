@@ -138,7 +138,7 @@ c.addEventListener("mousemove",function(e){
 
 function draw(){
     var size = document.getElementsByClassName('eq12size')[0].value;
-    drawHeart(hx,hy,cx.canvas.width*(size/1000));
+    drawHeart(hx,hy,cx.canvas.height*(size/1000));
 }
 
 setInterval(function(){
