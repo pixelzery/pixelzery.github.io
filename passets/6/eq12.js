@@ -2,8 +2,8 @@ var c = document.getElementById('ceq12'),
 cx = c.getContext('2d');
 
 function resizeCanvas() {
-    c.width = c.parentElement.clientWidth;
-    c.height = c.width*(3/4); // ratio
+    c.width = window.innerWidth;
+    c.height = window.innerHeight*(3/4); // ratio
     draw();
 }
 window.addEventListener('resize', resizeCanvas, false);
