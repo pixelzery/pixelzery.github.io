@@ -1,7 +1,10 @@
 <div class="nav-inline">
     <a class="{% if page.title == 'Home' %}cur{% endif %}" href="/">Home</a>
-    {% for cat in site.category %}
 
+    {% assign cat_indexes = "2|0|1" | split: "|" %}
+    {% for cat_index in cat_indexes %}
+        {% assign int_cat_index = cat_index | times: 1 %}
+        {% assign cat = site.category[int_cat_index] %}
         {% assign highlight = false %}
         {% capture norm-title %}{{ cat.title | slugify }}{% endcapture %}
         {% if page.title == cat.title  %}
@@ -12,5 +15,6 @@
 
         <a class="{% if highlight  %}cur{% endif %}" href="{{ cat.url }}">{{ cat.title }}</a>
     {% endfor %}
+    
 	<a class="{% if page.title == 'About' %}cur{% endif %}" href="/about/">About</a>
 </div>

@@ -1,6 +1,7 @@
 ---
 title: AnswerBot
 description: "A search engine for parsing and answering plain English questions using NLP techniques."
+feature: true
 image: /passets/5/demo3.png
 displaybox-syle: normal
 displaybox-yt: 8yQCvzhGDkk
