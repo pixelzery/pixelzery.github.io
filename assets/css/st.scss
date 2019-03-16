@@ -198,10 +198,14 @@ $header-img-height: 250px;
 
 	.displaybox-iframe-holder{
 		background: white;
+		height: 72vh;
 
 		iframe{
+			height: 100%;
 			width: 100%;
-			max-width: 55vh;
+			overflow-x: hidden;
+
+			// max-width: 55vh;
 			border: none;
 			background: white;
 			padding: 20px;
