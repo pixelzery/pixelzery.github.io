@@ -1,6 +1,7 @@
 ---
 title: Visual Translation
 layout: post
+feature: true
 image: "/passets/3/5.png"
 thumb: "/passets/3/8.png"
 description: 'Highlighting on hover - an intuitive way of visualising translations on the web.'

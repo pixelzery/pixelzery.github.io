@@ -1,13 +1,10 @@
 <div class="nav-inline">
     <a class="{% if page.title == 'Home' %}cur{% endif %}" href="/">Home</a>
 
-    <a class="{% if page.title == 'Projects' %}cur{% endif %}" href="/projects/">Projects</a>
-    <a class="{% if page.title == 'Articles' %}cur{% endif %}" href="/articles/">Articles</a>
-    <a class="{% if page.title == 'Notes' %}cur{% endif %}" href="/notes/">Notes</a>
-
-    {% comment %}
-    {% for cat in site.category reversed %}
-
+    {% assign cat_indexes = "2|0|1" | split: "|" %}
+    {% for cat_index in cat_indexes %}
+        {% assign int_cat_index = cat_index | times: 1 %}
+        {% assign cat = site.category[int_cat_index] %}
         {% assign highlight = false %}
         {% capture norm-title %}{{ cat.title | slugify }}{% endcapture %}
         {% if page.title == cat.title  %}
@@ -18,7 +15,6 @@
 
         <a class="{% if highlight  %}cur{% endif %}" href="{{ cat.url }}">{{ cat.title }}</a>
     {% endfor %}
-    {% endcomment %}
     
 	<a class="{% if page.title == 'About' %}cur{% endif %}" href="/about/">About</a>
 </div>
