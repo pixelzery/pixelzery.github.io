@@ -240,9 +240,12 @@ $header-img-height: 250px;
 
 //container (+ displaybox)
 .container, .displaybox{
-	padding: 10px 20%;
+	padding: 10px 25%;
 	width: 100%;
 
+	@include max(1580px){
+		padding: 10px 20%;
+	}
 	@include max($wxl){
 		padding: 10px 15%;
 	}
