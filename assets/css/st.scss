@@ -227,6 +227,15 @@ $header-img-height: 250px;
 	.youtube{
 		max-width: 1000px;
 	}
+
+	.topimg{
+		display: block;
+		min-width: 100%;
+		max-height: 48vh;
+		width: 100%;
+		height: auto;
+		object-fit: contain;
+	}
 }
 
 //navigation bar when in container - (used in about)

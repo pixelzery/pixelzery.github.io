@@ -27,11 +27,10 @@ layout: default
 	</div>
 {% else %}
 	{% if page.image %}
-	<div class="header" style="background-image: url({{ page.image }});">
-	<img class="header-img" src="{{ page.image }}">
+	<div class="displaybox" style="{% if page.displaybox-style == 'wide' %}padding:0;{% endif %}">
+		<img class="topimg" src="{{ page.image }}">
 	</div>
 	{% endif %}
-	{% include header-img-fb.html %}
 {% endif %}
 
 <div class="container">
@@ -60,9 +59,6 @@ layout: default
 	{% endif %}
 </div>
 <div class="content">
-	{% if page.categories contains 'notes' %}
-		<p>{{ page.description | markdownify }}</p>
-	{% endif %}
 {{ content }}
 </div>
 </div>
