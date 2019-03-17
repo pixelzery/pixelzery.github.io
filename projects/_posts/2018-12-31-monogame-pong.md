@@ -3,6 +3,7 @@ title: MonoGame Pong with AI
 description: Pong using MonoGame, with visual AI.
 layout: post
 feature: true
+image: /passets/8/aimage.gif
 thumb: /passets/8/thumb.png
 displaybox-syle: normal
 video:
