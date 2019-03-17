@@ -4,8 +4,10 @@ description: Pong using MonoGame, with visual AI.
 layout: post
 feature: true
 thumb: /passets/8/thumb.png
-image: https://github.com/PixelZerg/Pong/raw/master/demo.gif
 displaybox-syle: normal
+video:
+  - "/passets/8/video.mp4"
+  - "/passets/8/video.webm"
 links:
   - GitHub Page: https://github.com/PixelZerg/Pong
   - Related Note: /notes/movement/

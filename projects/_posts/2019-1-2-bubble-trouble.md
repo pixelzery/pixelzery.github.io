@@ -13,4 +13,4 @@ links:
   - Play Here: https://pixelzerg.github.io/bubbletrouble/
 ---
 
-{% include youtube id='WWV7nvVjGKY' %}
+More info coming soon...
