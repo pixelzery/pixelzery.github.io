@@ -25,12 +25,18 @@ layout: default
 			{% include youtube id=page.displaybox-yt %}
 		{% endif %}
 	</div>
-{% else %}
-	{% if page.image %}
+{% elsif page.image %}
 	<div class="displaybox" style="{% if page.displaybox-style == 'wide' %}padding:0;{% endif %}">
 		<img class="topimg" src="{{ page.image }}">
 	</div>
-	{% endif %}
+{% elsif page.video %}
+<div class="displaybox" style="{% if page.displaybox-style == 'wide' %}padding:0;{% endif %}">
+	<video class="topimg" autoplay="autoplay" loop="loop" muted plays-inline>
+		{% for source in page.video %}
+		<source src="{{ source }}">
+		{% endfor %}
+	</video>
+</div>
 {% endif %}
 
 <div class="container">
