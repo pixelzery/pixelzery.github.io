@@ -2,7 +2,7 @@
 title: Trig Graphs
 description: Just some nice looking trig graphs
 layout: post
-feature: true
+feature: false
 image: "https://raw.githubusercontent.com/PixelZerg/trig-graphs/master/out/sine-red.png"
 displaybox-syle: normal
 links:
