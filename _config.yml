@@ -1,15 +1,15 @@
-title: PixelZerg
-description: Hi, I’m Abhinav. Fascinated by Computer Science. Experiment with Python/C#/JS for fun. Have a tendency to get engrossed in interesting stuff. Welcome to me being me.
+title: Pixel0a
+description: ""
 
 author:
-  name:    Abhinav Bhandari
-  twitter: pixelzerg
-  github:  pixelzerg
+  name:    Pixel
+  twitter: pixel0a
+  github:  pixel0a
   email:   pixelzerg@gmail.com
 
 baseurl: ""
-url: "http://pixelzerg.github.io"
-gh: "http://github.com/pixelzerg"
+url: "http://pixel0a.github.io"
+gh: "http://github.com/pixel0a"
 
 defaultimage: "/assets/images/default.jpg"
 
@@ -17,10 +17,10 @@ permalink: /:categories/:title/
 
 # seo
 social:
-  name: Abhinav Bhandari
+  name: Pixel
   links:
-    - https://twitter.com/pixelzerg
-    - https://github.com/pixelzerg
+    - https://twitter.com/pixel0a
+    - https://github.com/pixel0a
 
 # Build stuff:
 markdown: kramdown
