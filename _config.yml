@@ -1,15 +1,15 @@
-title: PixelRyo
+title: PixelZerg
 description: ""
 
 author:
-  name:    PixelRyo
-  twitter: pixelryo_
-  github:  pixelryo
-  email:   pixelryo@yahoo.com
+  name:    PixelZerg
+  twitter: pixelzerg
+  github:  pixelzerg
+  email:   pixelzerg@gmail.com
 
 baseurl: ""
-url: "http://pixelryo.github.io"
-gh: "http://github.com/pixelryo"
+url: "http://pixelzerg.github.io"
+gh: "http://github.com/pixelzerg"
 
 defaultimage: "/assets/images/default.jpg"
 
@@ -19,8 +19,8 @@ permalink: /:categories/:title/
 social:
   name: Pixel
   links:
-    - https://twitter.com/pixelryo_
-    - https://github.com/pixelryo
+    - https://twitter.com/pixelzerg
+    - https://github.com/pixelzerg
 
 # Build stuff:
 markdown: kramdown
