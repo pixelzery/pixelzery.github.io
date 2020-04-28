@@ -1,9 +1,0 @@
----
-title: s
-layout: post
-image: "/passets/1/splash.png"
----
-
-This formula converges quite fast. The calculator shows every stage in the summation as k changes from 0 to infinity. You probably won't need to use pi to such an accuracy and even if you did, you can easily find pre-computed values of pi on the Internet. The computer calculating pi in this way looks pretty cool, either way.
-<br><br>
-Digits that are greyed out are the digits that are still being computed and are just rough, non-final values. The darker digits are digits that have finished being computed and is definitely the digit for that position in pi. Once you have calculated 5,750 digits (most people will probably have left WAY before this time), all of the next digits will be grey since that is the length of the pre-computed string that is used to verify the result (just saying this to save you A LOT of time in-case you wanted to find out manually).
