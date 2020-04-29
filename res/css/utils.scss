@@ -4,6 +4,7 @@
 // $cfore: hsla(200, 20%, 40%, 1);
 // $cback: #f4f2f1;
 $cfore: #222;
+$ctint: lighten($cfore, 40%);
 $cback: #fff;
 
 // widths
@@ -11,6 +12,10 @@ $wmax: 1200px;
 $wheadershrink: 970px;
 $wheadercenter: $wheadershrink;
 $wheadersecondshrink: 300px;
+
+$wgridhalf: $wheadershrink;
+$wgridsingle: 730px;
+
 
 // themes
 %uninverted{

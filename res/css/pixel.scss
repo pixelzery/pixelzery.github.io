@@ -26,12 +26,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 $header-height: 75px;
+$header-height-thin: 55px;
 .header{
     @extend %inverted;
     @extend %font-heading;
 
     width: 100%;
-    height: $header-height;
+    height: $header-height-thin;
 
     // border-bottom: 2px solid $cfore;
 
@@ -81,7 +82,7 @@ footer{
 }
 
 .content{
-    margin-top: $header-height;
+    margin-top: $header-height-thin;
 }
 
 @include max($wheadershrink){
@@ -106,6 +107,13 @@ footer{
 }
 
 @include max($wheadercenter){
+    .header{
+        height: $header-height;
+    }
+    .content{
+        margin-top: $header-height;
+    }
+
     .header .header-inner{
         // display: table;
         // margin: 0 auto;
@@ -155,7 +163,7 @@ $wcontentphone: 450px;
             margin-bottom: 0.3em;
         }
     }
-    .projects{
+    .project-grid{
         .project-holder{
             width: 33%; // fallback
             width: calc(100%/3);
@@ -174,17 +182,32 @@ $wcontentphone: 450px;
                 padding: 20px;
                 margin: 10px;
 
-                border: 2px solid;
+                border: 2px solid $ctint;
                 @include rounded;
+
+                text-align: justify;
 
                 h2{
                     margin: 0;
                 }
                 .date{
                     margin-bottom: 0.3em;
+                    color: $ctint;
                 }
-                .description{
-                    text-align: justify;
+            }
+
+            // responsive
+            @include max($wgridhalf){
+                width: 50%; // fallback
+                width: calc(100%/2);
+            }
+            @include max($wgridsingle){
+                width: 100%; // fallback
+                width: calc(100%);
+
+                .project{
+                    height: initial;
+                    height: fit-content;
                 }
             }
         }
