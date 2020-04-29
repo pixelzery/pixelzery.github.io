@@ -7,6 +7,7 @@
 html, body {
     @extend %uninverted;
     font-family: 'Libre Baskerville', serif;
+    overflow-x: hidden;
 }
 
 .container{
@@ -15,7 +16,11 @@ html, body {
     padding: 20px;
 }
 
-$header-height: 90px;
+p{
+    overflow-y: hidden;
+}
+
+$header-height: 75px;
 .header{
     @extend %inverted;
 
@@ -31,10 +36,20 @@ $header-height: 90px;
         overflow: hidden; // https://stackoverflow.com/a/5369963/5013267
         height: 100%;
 
+        display: block; // fallback
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+
         h1{
+            flex: 1;
             float: left;
             font-weight: 300;
             margin: 0;
+            margin-right: 1em;
 
             a{
                 @extend %inverted;
@@ -62,4 +77,52 @@ footer{
 .content{
     padding-top: $header-height;
     padding-bottom: 0;
+}
+
+@include max($wheadershrink){
+    .header .header-inner{
+        position: absolute;
+        display: block;
+
+        h1, .nav {
+            float: none;
+            flex: none;
+        }
+
+        .nav{
+            margin-top: 0.3em;
+            font-size: 0.9em;
+        }
+    }
+}
+
+@include max($wheadersecondshrink){
+    // revert to relative header (so that the nav links can wrap and expand the bar)
+    .header{
+        position: relative;
+
+        .header-inner{
+            position: relative;
+
+            h1{
+                margin-right: 0;
+            }
+
+            .nav a{
+                display: table-cell; // make them vertical
+            }
+        }
+    }
+    .content{
+        padding-top: 0;
+    }
+}
+
+// content responsive
+$wcontentphone: 450px;
+@include max($wcontentphone){
+    .container{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }
