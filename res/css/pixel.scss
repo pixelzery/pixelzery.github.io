@@ -7,17 +7,17 @@
 html, body {
     @extend %uninverted;
     font-family: 'Libre Baskerville', serif;
+
     overflow-x: hidden;
+    margin: 0;
+    line-height: 1.2; // fix weird double scrollbar bug
+                      // think this bug is due to Normalize.css somehow
 }
 
 .container{
     margin: 0 auto;
     max-width: $wmax;
     padding: 20px;
-}
-
-p{
-    overflow-y: hidden;
 }
 
 $header-height: 75px;
@@ -60,8 +60,6 @@ $header-height: 75px;
             float: right;
 
             a{
-                text-transform: uppercase;
-
                 &:not(:last-child){ //not last for fallback (if 'not' not supported, doesn't matter)
                     margin-right: 1em;
                 }
@@ -89,6 +87,10 @@ footer{
             flex: none;
         }
 
+        h1{
+            margin-right: 0;
+        }
+
         .nav{
             margin-top: 0.3em;
             font-size: 0.9em;
@@ -104,11 +106,8 @@ footer{
         .header-inner{
             position: relative;
 
-            h1{
-                margin-right: 0;
-            }
-
             .nav a{
+                // fixme: when reload page right into small resolution (rather than big resolution then drag, text is all bunched up weirdly) (more testing needed)
                 display: table-cell; // make them vertical
             }
         }
@@ -126,3 +125,5 @@ $wcontentphone: 450px;
         padding-right: 10px;
     }
 }
+
+// todo tomorrow: menu button for phones
