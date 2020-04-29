@@ -46,3 +46,11 @@ src: local('Libre Baskerville'), local('LibreBaskerville-Regular'),
 		url('/res/font/libre-baskerville-v7-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
 		url('/res/font/libre-baskerville-v7-latin-regular.svg#LibreBaskerville') format('svg'); /* Legacy iOS */
 }
+
+// font themes
+%font-heading{
+    font-family: 'Libre Baskerville', serif;
+}
+%font-body{
+    font-family: "Lato", $fontfall;
+}

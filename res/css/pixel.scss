@@ -3,15 +3,20 @@
 // PixelZerg styling
 
 @import 'utils';
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 html, body {
     @extend %uninverted;
-    font-family: 'Libre Baskerville', serif;
+    @extend %font-body;
 
     overflow-x: hidden;
     margin: 0;
     line-height: 1.2; // fix weird double scrollbar bug
                       // think this bug is due to Normalize.css somehow
+}
+
+h1, h2, h3, h4, h5, h6 {
+    @extend %font-heading;
 }
 
 .container{
@@ -23,6 +28,7 @@ html, body {
 $header-height: 75px;
 .header{
     @extend %inverted;
+    @extend %font-heading;
 
     width: 100%;
     height: $header-height;
@@ -137,4 +143,34 @@ $wcontentphone: 450px;
     }
 }
 
-// todo tomorrow: menu button for phones
+// project
+.section{
+    .section-header{
+        text-align: center;
+        margin-bottom: 1em;
+        
+        h1{
+            margin-bottom: 0.3em;
+        }
+    }
+    .projects{
+        .project{
+            display: inline-table;
+                max-width: 350px;
+                height: 120px;
+                padding: 10px;
+                margin: 10px;
+                border: 2px solid;
+
+            h2{
+                margin: 0;
+            }
+            .date{
+                margin-bottom: 0.3em;
+            }
+            .description{
+                text-align: justify;
+            }
+        }
+    }
+}
