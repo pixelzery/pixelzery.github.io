@@ -1,11 +1,15 @@
 // colours
+// alt (bluey) colour scheme:
+// $ctint: #a3c3ca;
+// $cfore: hsla(200, 20%, 40%, 1);
+// $cback: #f4f2f1;
 $cfore: #222;
-$cback: #eee;
+$cback: #fff;
 
 // widths
 $wmax: 1200px;
 $wheadershrink: 970px;
-$wheadercenter: 720px;
+$wheadercenter: $wheadershrink;
 $wheadersecondshrink: 300px;
 
 // themes

@@ -2,6 +2,9 @@
 layout: default
 ---
 
+# Projects
+This is some text blah blah what is a project haha the quick brown fox jumped over the lazy dog.
+
 <p>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus urna elit, viverra ac ultricies sit amet, ultricies id mi. Nullam pretium mi quis lorem pharetra, ac rutrum tellus sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam facilisis, augue at tincidunt congue, nulla purus accumsan nunc, a venenatis felis felis eu libero. In metus orci, pellentesque eu eros et, fermentum commodo lorem. Aliquam pharetra eleifend est eleifend sodales. Maecenas auctor non ipsum eu aliquet. Pellentesque venenatis nec risus ac sagittis. Nullam sodales, velit egestas rhoncus elementum, ligula diam elementum tellus, non iaculis sapien turpis eu nibh. In convallis dolor et nunc eleifend sagittis id ac sem. Etiam aliquam a ante at euismod. Sed a nibh a purus viverra dapibus. Praesent nec vulputate purus. Integer posuere ullamcorper blandit. Curabitur varius erat tortor, in molestie lacus dignissim eu.
 </p>
