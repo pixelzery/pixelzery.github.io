@@ -1,0 +1,41 @@
+// colours
+$cfore: #222;
+$cback: #eee;
+
+// widths
+$wmax: 1200px;
+
+// themes
+%uninverted{
+	color: $cfore;
+	background-color: $cback;
+}
+%inverted{
+	color: $cback;
+	background-color: $cfore;
+}
+
+// responsive
+@mixin min($width) {
+	@media only screen and (min-width: #{$width}) { @content; }
+}
+@mixin max($width) {
+	@media only screen and (max-width: #{$width}) { @content; }
+}
+
+//font stuff
+$fontfall: Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+
+/* libre-baskerville-regular - latin */
+@font-face {
+font-family: 'Libre Baskerville';
+font-style: normal;
+font-weight: 400;
+src: url('/res/font/libre-baskerville-v7-latin-regular.eot'); /* IE9 Compat Modes */
+src: local('Libre Baskerville'), local('LibreBaskerville-Regular'),
+		url('/res/font/libre-baskerville-v7-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		url('/res/font/libre-baskerville-v7-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+		url('/res/font/libre-baskerville-v7-latin-regular.woff') format('woff'), /* Modern Browsers */
+		url('/res/font/libre-baskerville-v7-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+		url('/res/font/libre-baskerville-v7-latin-regular.svg#LibreBaskerville') format('svg'); /* Legacy iOS */
+}

@@ -25,5 +25,5 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
 sass:
-  sass_dir: _sass
+  sass_dir: res/css
   style: compressed
