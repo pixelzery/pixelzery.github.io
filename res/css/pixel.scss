@@ -145,6 +145,8 @@ $wcontentphone: 450px;
 
 // project
 .section{
+    overflow: auto; // because floating children
+
     .section-header{
         text-align: center;
         margin-bottom: 1em;
@@ -154,22 +156,36 @@ $wcontentphone: 450px;
         }
     }
     .projects{
-        .project{
-            display: inline-table;
-                max-width: 350px;
-                height: 120px;
-                padding: 10px;
-                margin: 10px;
-                border: 2px solid;
+        .project-holder{
+            width: 33%; // fallback
+            width: calc(100%/3);
+            
+            display: inline-block;
+            overflow: hidden;
+            float: left; // will fallback relatively nicely
 
-            h2{
-                margin: 0;
-            }
-            .date{
-                margin-bottom: 0.3em;
-            }
-            .description{
-                text-align: justify;
+            padding: 0;
+            margin: 0;
+
+            .project{
+                display: block;
+                overflow: hidden;
+                height: 150px;
+                padding: 20px;
+                margin: 10px;
+
+                border: 2px solid;
+                @include rounded;
+
+                h2{
+                    margin: 0;
+                }
+                .date{
+                    margin-bottom: 0.3em;
+                }
+                .description{
+                    text-align: justify;
+                }
             }
         }
     }

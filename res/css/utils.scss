@@ -54,3 +54,15 @@ src: local('Libre Baskerville'), local('LibreBaskerville-Regular'),
 %font-body{
     font-family: "Lato", $fontfall;
 }
+
+// mixins
+@mixin prefix($property, $value, $prefixes: ()) {
+	@each $prefix in $prefixes {
+		#{'-' + $prefix + '-' + $property}: $value;
+	}
+	#{$property}: $value;
+}
+
+@mixin rounded($radius: 3px) {
+	@include prefix(border-radius, $radius,webkit ms moz);
+}
