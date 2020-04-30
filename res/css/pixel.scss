@@ -3,6 +3,7 @@
 // PixelZerg styling
 
 @import 'utils';
+@import 'other';
 
 html, body {
     @extend %uninverted;
@@ -228,11 +229,16 @@ $wcontentphone: 450px;
 }
 
 .section-about{
-    background: #a3c3ca;
-    background: url(/res/img/notes.jpg);
+    // background: #a3c3ca;
     background-origin: unset;
     background-position: center;
     background-size: cover;
+    // background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    &.low{
+        background-image: url(/res/img/notes_dark.low.jpg);
+    }
 
     .container{
         height: 100%;
@@ -252,6 +258,7 @@ $wcontentphone: 450px;
             h3 {
                 font-size: 2em;
                 max-width: 50%;
+                color: $cback;
 
                 @include max($wgridsingle){
                     max-width: 100%; // fallback

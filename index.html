@@ -2,8 +2,8 @@
 layout: default
 ---
 <div class="header-pad"></div>
-<div class="section section-about">
-    <div class="background-dim">
+<div class="section section-about low">
+    <div class="section section-about high">
         <div class="container">
             <div class="about-holder">
                 <div class="about">
@@ -14,6 +14,18 @@ layout: default
     </div>
 </div>
 {% include about-age.html %}
+
+<!-- begin lazy loading stuff -->
+<script>
+function upgradeImage(object) {
+    if(window.screen.width * window.devicePixelRatio >= 1920){
+        document.querySelectorAll('.section-about.high')[0].style.backgroundImage = "url(" + object.src + ")";
+    }
+}
+</script>
+<img class="hidden" src="/res/img/notes_dark.jpg" onload="upgradeImage(this);">
+<!-- end lazy loading stuff -->
+
 <div class="section section-project-grid">
     <div class="container">
         <div class="section-header">
