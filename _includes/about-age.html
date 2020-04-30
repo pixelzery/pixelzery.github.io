@@ -1,0 +1,5 @@
+<script>
+    // Should work IE 5.5+
+    var months = (new Date().getTime() - 1030122000000) * 3.80517e-10;
+    document.getElementById('age').innerText = Math.floor(months/12) + "y " + Math.round(((months % 12) * 100)/100) + "m old ";
+</script>
