@@ -158,7 +158,7 @@ $wcontentphone: 450px;
 
     .section-header{
         text-align: center;
-        margin: 4em;
+        margin: 64px;
         // margin-bottom: 2em;
         
         h1{
@@ -252,16 +252,33 @@ $wcontentphone: 450px;
             h3 {
                 font-size: 2em;
                 max-width: 50%;
+
+                @include max($wgridsingle){
+                    max-width: 100%; // fallback
+                    max-width: none;
+
+                    font-size: 1.5em;
+                }
             }
         }
     }
 
     @supports(height: 45vh){
-        &{
-            height: 45vh;
+        height: 45vh;
 
+        .about-holder{
+            margin: 0;
+        }
+
+        @include max($wgridsingle){
+            max-width: 100%; // fallback
+            max-width: none;
+
+            font-size: 1.1em;
+
+            height: 100%;
             .about-holder{
-                margin: 0;
+                padding: 64px 0;
             }
         }
     }
