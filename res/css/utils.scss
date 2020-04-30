@@ -3,8 +3,16 @@
 // $ctint: #a3c3ca;
 // $cfore: hsla(200, 20%, 40%, 1);
 // $cback: #f4f2f1;
+
+$ctint: #ddcbbe;
+// $ctint: #67b1cc;
+// $ctint: #b3c6ca;
+// $ctint: #77bfbb;
+$ctintdark: darken($ctint, 40%);
+
 $cfore: #222;
-$ctint: lighten($cfore, 40%);
+// $ctint: lighten($cfore, 40%);
+// $ctint: $cfore;
 $cback: #fff;
 
 // widths
@@ -16,6 +24,17 @@ $wheadersecondshrink: 300px;
 $wgridhalf: 970px;
 $wgridsingle: $wheadercenter;
 
+// util mixins
+@mixin prefix($property, $value, $prefixes: ()) {
+	@each $prefix in $prefixes {
+		#{'-' + $prefix + '-' + $property}: $value;
+	}
+	#{$property}: $value;
+}
+
+@mixin rounded($radius: 3px) {
+	@include prefix(border-radius, $radius, webkit ms moz);
+}
 
 // themes
 %uninverted{
@@ -25,6 +44,25 @@ $wgridsingle: $wheadercenter;
 %inverted{
 	color: $cback;
 	background-color: $cfore;
+}
+
+// bordered themes
+%uninverted-bordered{
+	@extend %uninverted;
+	@include rounded;
+    border: 2px solid $ctint;
+}
+
+%inverted-bordered{
+	@extend %inverted;
+	color: $ctint;
+	@include rounded;
+    border: 2px solid $ctint;
+}
+
+// transition themes
+%transition{
+	@include prefix(transition, all .1s ease-in-out, webkit moz ms o)
 }
 
 // responsive
@@ -59,16 +97,4 @@ src: local('Source Serif Pro Bold'), local('SourceSerifPro-Bold'),
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 %font-body{
     font-family: "Lato", $fontfall;
-}
-
-// mixins
-@mixin prefix($property, $value, $prefixes: ()) {
-	@each $prefix in $prefixes {
-		#{'-' + $prefix + '-' + $property}: $value;
-	}
-	#{$property}: $value;
-}
-
-@mixin rounded($radius: 3px) {
-	@include prefix(border-radius, $radius,webkit ms moz);
 }

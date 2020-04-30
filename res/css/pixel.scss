@@ -34,8 +34,6 @@ $header-height-thin: 54px;
     width: 100%;
     // height: $header-height-thin; // don't force (IE compat)
 
-    // border-bottom: 2px solid $cfore;
-
     position: absolute; // fallback
     position: fixed;
 
@@ -62,7 +60,6 @@ $header-height-thin: 54px;
 
             a{
                 @extend %inverted;
-                text-decoration: none;
             }
         }
         .nav{
@@ -190,15 +187,14 @@ $wcontentphone: 450px;
                 padding: 20px;
                 margin: 10px;
 
-                border: 2px solid $ctint;
-                @include rounded;
+                @extend %uninverted-bordered;
 
                 h2{
                     margin: 0;
                 }
                 .date{
                     margin-bottom: 0.3em;
-                    color: $ctint;
+                    color: $ctintdark;
                 }
             }
 
@@ -289,4 +285,27 @@ $wcontentphone: 450px;
             }
         }
     }
+}
+
+// buttons
+.button {
+    @extend %uninverted-bordered;
+    @extend %transition;
+
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+
+    &:hover{
+        @extend %inverted-bordered;
+    }
+}
+
+.section-button {
+    text-align: center;
+}
+
+// logo
+.pz-logo{
+    padding-right: 5px;
 }
