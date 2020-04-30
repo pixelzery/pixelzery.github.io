@@ -77,6 +77,7 @@ $header-height-thin: 54px;
 }
 
 footer{
+    @extend %inverted;
     text-align: center;
 }
 

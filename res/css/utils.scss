@@ -15,6 +15,9 @@ $cfore: #222;
 // $ctint: $cfore;
 $cback: #fff;
 
+$clink: #007db2;
+$clink-inverted: lighten($clink, 40%);
+
 // widths
 $wmax: 1200px;
 $wheadercenter: 730px;
@@ -36,27 +39,49 @@ $wgridsingle: $wheadercenter;
 	@include prefix(border-radius, $radius, webkit ms moz);
 }
 
+@mixin link-col($linkcolour) {
+	a {
+		text-decoration: none;
+		color: $linkcolour;
+
+		&:hover{
+			color: lighten($linkcolour, 20%) !important;
+		}
+
+		&:visited{
+			color: $linkcolour;
+		}
+	}
+}
+
 // themes
 %uninverted{
 	color: $cfore;
 	background-color: $cback;
+
+	@include link-col($clink);
 }
 %inverted{
 	color: $cback;
 	background-color: $cfore;
+
+	@include link-col($clink-inverted);
 }
 
 // bordered themes
 %uninverted-bordered{
 	@extend %uninverted;
 	@include rounded;
+
+	color: $cfore !important;
     border: 2px solid $ctint;
 }
 
 %inverted-bordered{
 	@extend %inverted;
-	color: $ctint;
 	@include rounded;
+
+	color: $ctint !important;
     border: 2px solid $ctint;
 }
 
