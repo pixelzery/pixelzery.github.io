@@ -3,7 +3,6 @@
 // PixelZerg styling
 
 @import 'utils';
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 html, body {
     @extend %uninverted;
@@ -26,13 +25,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 $header-height: 75px;
-$header-height-thin: 55px;
+$header-height-thin: 54px;
 .header{
     @extend %inverted;
     @extend %font-heading;
 
     width: 100%;
-    height: $header-height-thin;
+    // height: $header-height-thin; // don't force (IE compat)
 
     // border-bottom: 2px solid $cfore;
 
@@ -69,8 +68,10 @@ $header-height-thin: 55px;
             float: right;
 
             a{
-                &:not(:last-child){ //not last for fallback (if 'not' not supported, doesn't matter)
-                    margin-right: 1em;
+                margin-right: 1em;
+
+                &:last-child{ // fallback: if not supported, will simply not remove margin on last link
+                    margin-right: 0;
                 }
             }
         }
@@ -81,7 +82,7 @@ footer{
     text-align: center;
 }
 
-.content{
+.header-pad{
     margin-top: $header-height-thin;
 }
 
@@ -108,9 +109,9 @@ footer{
 
 @include max($wheadercenter){
     .header{
-        height: $header-height;
+        // height: $header-height; // don't force (IE compat)
     }
-    .content{
+    .header-pad{
         margin-top: $header-height;
     }
 
@@ -133,11 +134,11 @@ footer{
 
             .nav a{
                 // fixme: when reload page right into small resolution (rather than big resolution then drag, text is all bunched up weirdly) (more testing needed)
-                display: table-cell; // make them vertical
+                display: block; // make them vertical
             }
         }
     }
-    .content{
+    .header-pad{
         margin-top: 0;
     }
 }
@@ -157,13 +158,19 @@ $wcontentphone: 450px;
 
     .section-header{
         text-align: center;
-        margin-bottom: 1em;
+        margin: 4em;
+        // margin-bottom: 2em;
         
         h1{
             margin-bottom: 0.3em;
         }
     }
+}
+
+.section-project-grid{
     .project-grid{
+        overflow: auto; // because float
+
         .project-holder{
             width: 33%; // fallback
             width: calc(100%/3);
@@ -184,8 +191,6 @@ $wcontentphone: 450px;
 
                 border: 2px solid $ctint;
                 @include rounded;
-
-                text-align: justify;
 
                 h2{
                     margin: 0;
@@ -209,6 +214,49 @@ $wcontentphone: 450px;
                     height: initial;
                     height: fit-content;
                 }
+            }
+        }
+    }
+}
+
+.section-about{
+    background: #a3c3ca;
+    /* color: hsla(200, 20%, 40%, 1); */
+    /* color: #f4f2f1; */
+    background-origin: unset;
+    background-position: center;
+    background-size: cover;
+    /* background-color: rgba(255,255,255,0.5); */
+    // height: 45vh;
+
+    .container{
+        height: 100%;
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+
+    .about-holder{
+        display: table;
+        height: 100%;
+        margin: 5em 0; // fallback for when vh not supported
+
+        .about{
+            display: table-cell;
+            vertical-align: middle;
+
+            h3 {
+                font-size: 2em;
+                max-width: 50%;
+            }
+        }
+    }
+
+    @supports(height: 45vh){
+        &{
+            height: 45vh;
+
+            .about-holder{
+                margin: 0;
             }
         }
     }

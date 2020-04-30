@@ -9,12 +9,12 @@ $cback: #fff;
 
 // widths
 $wmax: 1200px;
-$wheadershrink: 970px;
-$wheadercenter: $wheadershrink;
+$wheadercenter: 730px;
+$wheadershrink: $wheadercenter;
 $wheadersecondshrink: 300px;
 
-$wgridhalf: $wheadershrink;
-$wgridsingle: 730px;
+$wgridhalf: 970px;
+$wgridsingle: $wheadercenter;
 
 
 // themes
@@ -38,24 +38,25 @@ $wgridsingle: 730px;
 //font stuff
 $fontfall: Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
 
-/* libre-baskerville-regular - latin */
+/* source-serif-pro-700 - latin */
 @font-face {
-font-family: 'Libre Baskerville';
+font-family: 'Source Serif Pro';
 font-style: normal;
-font-weight: 400;
-src: url('/res/font/libre-baskerville-v7-latin-regular.eot'); /* IE9 Compat Modes */
-src: local('Libre Baskerville'), local('LibreBaskerville-Regular'),
-		url('/res/font/libre-baskerville-v7-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-		url('/res/font/libre-baskerville-v7-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-		url('/res/font/libre-baskerville-v7-latin-regular.woff') format('woff'), /* Modern Browsers */
-		url('/res/font/libre-baskerville-v7-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-		url('/res/font/libre-baskerville-v7-latin-regular.svg#LibreBaskerville') format('svg'); /* Legacy iOS */
+font-weight: 700;
+src: url('/res/font/source-serif-pro-v7-latin-700.eot'); /* IE9 Compat Modes */
+src: local('Source Serif Pro Bold'), local('SourceSerifPro-Bold'),
+		url('/res/font/source-serif-pro-v7-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		url('/res/font/source-serif-pro-v7-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+		url('/res/font/source-serif-pro-v7-latin-700.woff') format('woff'), /* Modern Browsers */
+		url('/res/font/source-serif-pro-v7-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+		url('/res/font/source-serif-pro-v7-latin-700.svg#SourceSerifPro') format('svg'); /* Legacy iOS */
 }
 
 // font themes
 %font-heading{
-    font-family: 'Libre Baskerville', serif;
+    font-family: 'Source Serif Pro', serif;
 }
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 %font-body{
     font-family: "Lato", $fontfall;
 }
