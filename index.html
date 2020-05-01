@@ -16,21 +16,22 @@ layout: default
 {% include about-age.html %}
 
 <!-- begin lazy loading stuff -->
+<img class="hidden lazy-loader" onload="upgradeImage(this);">
 <script>
+if(window.screen.width * window.devicePixelRatio >= 1920){
+    document.querySelectorAll('.lazy-loader')[0].setAttribute('src', '/res/img/notes_dark.jpg');
+}
 function upgradeImage(object) {
-    if(window.screen.width * window.devicePixelRatio >= 1920){
-        document.querySelectorAll('.section-about.high')[0].style.backgroundImage = "url(" + object.src + ")";
-    }
+    document.querySelectorAll('.section-about.high')[0].style.backgroundImage = "url(" + object.src + ")";
 }
 </script>
-<img class="hidden" src="/res/img/notes_dark.jpg" onload="upgradeImage(this);">
 <!-- end lazy loading stuff -->
 
 <div class="section section-project-grid">
     <div class="container">
         <div class="section-header">
             <h1>Projects</h1>
-            <div class="description">This is some text blah blah what is a project haha the quick brown fox jumped over the lazy dog.</div>
+            <div class="description">Isn't Computer Science awesome?</div>
         </div>
 
         <div class="project-grid">
@@ -81,10 +82,9 @@ function upgradeImage(object) {
         <div class="section-header">
             <h1>History</h1>
             <div class="description">When I was a kid, I began transforming my many ideas into many projects at an astonishing rate. At some point, for better or for worse, I also began spewing some of these out onto the internet. Either way, this has meant that several relics from this era still exist, frozen in time and immortalised by the perpetuity of the internet.</div>
-        </div>
-
-        <div class="section-button">
-            <a class="button" href="https://google.com">Let's take a look</a>
+            <div class="section-button">
+                <a class="button" href="https://google.com">Let's take a look</a>
+            </div>
         </div>
     </div>
 </div>

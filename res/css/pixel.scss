@@ -258,6 +258,10 @@ $wcontentphone: 450px;
                 max-width: 50%;
                 color: $cback;
 
+                @include max($wgridhalf){
+                    max-width: 75%;
+                }
+
                 @include max($wgridsingle){
                     max-width: 100%; // fallback
                     max-width: none;
