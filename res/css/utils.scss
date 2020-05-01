@@ -4,7 +4,7 @@
 // $cfore: hsla(200, 20%, 40%, 1);
 // $cback: #f4f2f1;
 
-$ctint: #ddcbbe;
+$ctint: lighten(#ddcbbe, 5%);
 // $ctint: #67b1cc;
 // $ctint: #b3c6ca;
 // $ctint: #77bfbb;
@@ -54,7 +54,6 @@ $wgridsingle: $wheadercenter;
 
 // bordered themes
 %uninverted-bordered{
-	@extend %uninverted;
 	@include rounded;
 
 	color: $cfore !important;
@@ -62,7 +61,6 @@ $wgridsingle: $wheadercenter;
 }
 
 %inverted-bordered{
-	@extend %inverted;
 	@include rounded;
 
 	color: $ctint !important;

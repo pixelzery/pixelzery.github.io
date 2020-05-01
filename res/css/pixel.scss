@@ -150,14 +150,14 @@ $wcontentphone: 450px;
     }
 }
 
-// project
 .section{
+    padding: 64px 0;
     overflow: auto; // because floating children
 
     .section-header{
         text-align: center;
-        margin: 64px;
-        // margin-bottom: 2em;
+        max-width: 600px;
+        margin: 1em auto;
         
         h1{
             margin-bottom: 0.3em;
@@ -165,6 +165,7 @@ $wcontentphone: 450px;
     }
 }
 
+// project
 .section-project-grid{
     .project-grid{
         overflow: auto; // because float
@@ -225,11 +226,12 @@ $wcontentphone: 450px;
 }
 
 .section-about{
-    // background: #a3c3ca;
+    padding-top: 0;
+    padding-bottom: 0;
+
     background-origin: unset;
     background-position: center;
     background-size: cover;
-    // background-repeat: no-repeat;
     background-attachment: fixed;
 
     &.low{
@@ -297,6 +299,7 @@ $wcontentphone: 450px;
     display: inline-block;
 
     &:hover{
+        @extend %inverted;
         @extend %inverted-bordered;
 		text-decoration: none;
     }
@@ -309,4 +312,9 @@ $wcontentphone: 450px;
 // logo
 .pz-logo{
     padding-right: 5px;
+}
+
+.section-history{
+    background: $cforebluey;
+    color: $ctint;
 }
