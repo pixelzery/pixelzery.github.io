@@ -51,16 +51,16 @@ $header-height-thin: 54px;
         padding-top: 0.5em;
         padding-bottom: 0.5em;
 
+        a{
+            @extend %link-inverted;
+        }
+
         h1{
             flex: 1;
             float: left;
             // font-weight: 300;
             margin: 0;
             margin-right: 1em;
-
-            a{
-                @extend %inverted;
-            }
         }
         .nav{
             float: right;
@@ -77,7 +77,7 @@ $header-height-thin: 54px;
 }
 
 footer{
-    @extend %inverted;
+    margin: 1em;
     text-align: center;
 }
 
@@ -132,7 +132,6 @@ footer{
             text-align: left;
 
             .nav a{
-                // fixme: when reload page right into small resolution (rather than big resolution then drag, text is all bunched up weirdly) (more testing needed)
                 display: block; // make them vertical
             }
         }
@@ -174,9 +173,9 @@ $wcontentphone: 450px;
             width: 33%; // fallback
             width: calc(100%/3);
             
-            display: inline-block;
+            display: inline-block; // fallback
             overflow: hidden;
-            float: left; // will fallback relatively nicely
+            float: left; // NB: if works, will coerce display: block, which is desired
 
             padding: 0;
             margin: 0;
@@ -299,6 +298,7 @@ $wcontentphone: 450px;
 
     &:hover{
         @extend %inverted-bordered;
+		text-decoration: none;
     }
 }
 

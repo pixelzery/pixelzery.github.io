@@ -10,6 +10,8 @@ $ctint: #ddcbbe;
 // $ctint: #77bfbb;
 $ctintdark: darken($ctint, 40%);
 
+$cforebluey: #546474;
+
 $cfore: #222;
 // $ctint: lighten($cfore, 40%);
 // $ctint: $cfore;
@@ -39,33 +41,15 @@ $wgridsingle: $wheadercenter;
 	@include prefix(border-radius, $radius, webkit ms moz);
 }
 
-@mixin link-col($linkcolour) {
-	a {
-		text-decoration: none;
-		color: $linkcolour;
-
-		&:hover{
-			color: lighten($linkcolour, 20%) !important;
-		}
-
-		&:visited{
-			color: $linkcolour;
-		}
-	}
-}
-
 // themes
 %uninverted{
 	color: $cfore;
 	background-color: $cback;
 
-	@include link-col($clink);
 }
 %inverted{
 	color: $cback;
 	background-color: $cfore;
-
-	@include link-col($clink-inverted);
 }
 
 // bordered themes
@@ -88,6 +72,39 @@ $wgridsingle: $wheadercenter;
 // transition themes
 %transition{
 	@include prefix(transition, all .1s ease-in-out, webkit moz ms o)
+}
+
+// link themes
+%link-default {
+	@extend %transition;
+
+	color: $clink;
+
+	&:hover{
+		text-decoration: underline;
+	}
+
+	&:visited{
+		color: $clink;
+	}
+}
+a {
+	@extend %link-default;
+}
+
+%link-inverted {
+	@extend %transition;
+
+	color: $cback;
+
+	&:hover{
+		color: darken($cback, 50%) !important;
+		text-decoration: none;
+	}
+
+	&:visited{
+		color: $cback;
+	}
 }
 
 // responsive
